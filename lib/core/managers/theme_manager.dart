@@ -188,16 +188,17 @@ final ThemeData darkTheme = ThemeData(
   canvasColor: Colors.white,
   highlightColor: Colors.grey[100]!.withOpacity(0.4),
   splashColor: Colors.transparent,
-  primaryColor: const Color(0xffff3939),
+  primaryColor: const Color.fromARGB(255, 143, 201, 101),
   unselectedWidgetColor: Colors.white,
   scaffoldBackgroundColor: const Color.fromRGBO(247, 248, 251, 1),
   dividerColor: Colors.grey[300],
   fontFamily: FontConstants.cairoFontFamily,
   appBarTheme: AppBarTheme(
       centerTitle: true,
-      color: const Color(0xffff3939),
-      systemOverlayStyle:
-          const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
+      color: const Color.fromARGB(255, 143, 201, 101),
+      systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Color.fromARGB(255, 143, 201, 101),
+          statusBarBrightness: Brightness.dark),
       elevation: 0.0,
       actionsIconTheme: IconThemeData(color: Colors.grey[800])),
 );
@@ -243,17 +244,17 @@ final ThemeData lightTheme = ThemeData(
   canvasColor: Colors.white,
   highlightColor: Colors.grey[100]!.withOpacity(0.4),
   splashColor: Colors.transparent,
-  primaryColor: const Color(0xffff3939),
+  primaryColor: const Color.fromARGB(255, 143, 201, 101),
   unselectedWidgetColor: Colors.white,
   scaffoldBackgroundColor: const Color.fromRGBO(247, 248, 251, 1),
   dividerColor: Colors.grey[300],
   fontFamily: FontConstants.cairoFontFamily,
   appBarTheme: const AppBarTheme(
       centerTitle: true,
-      color: Color(0xffff3939),
+      color: Color.fromARGB(255, 143, 201, 101),
       systemOverlayStyle: SystemUiOverlayStyle(
           statusBarBrightness: Brightness.light,
-          statusBarColor: Color(0xffff3939)),
+          statusBarColor: Color.fromARGB(255, 143, 201, 101)),
       elevation: 0.5,
       actionsIconTheme: IconThemeData(color: Colors.white)),
 );

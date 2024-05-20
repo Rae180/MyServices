@@ -13,7 +13,7 @@ class DecodeResponse {
         return jsonDecode(response.body);
       } else {
         final errorData = jsonDecode(response.body);
-        String errorMessage = errorData['error'];
+        String errorMessage = errorData['message'].toString();
         throw CustomException(message: errorMessage);
       }
     } on FormatException {

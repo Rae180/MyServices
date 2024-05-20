@@ -6,24 +6,30 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? KeyboardTybe;
   final TextInputAction? textInputAction;
-  final ValueChanged<String>? onFieldSubmitted;
-
+  final FormFieldValidator<String>? validatoruser;
+  final bool? obscuretext;
+  final Widget ? widget;
   CustomTextFormField({
     required this.label,
     required this.controller,
     required this.KeyboardTybe,
-    required this.onFieldSubmitted,
     required this.textInputAction,
+    this.validatoruser,
+    this.widget,
+    this.obscuretext,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscuretext ?? false,
+      validator: validatoruser,
       controller: controller,
       keyboardType: KeyboardTybe,
+
       textInputAction: textInputAction,
-      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
+        suffixIcon: widget,
         label: label,
         labelStyle: TextStyle(
           color: Colors.grey[800],
