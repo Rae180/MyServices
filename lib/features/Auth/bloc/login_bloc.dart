@@ -15,13 +15,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(LoadingState());
       final data = await BaseRepo.repoRequest(
         request: () async {
-          var data = await client.postRequest(
-              url: ApiConstants.login,
-              jsonBody: {"email": event.email, "password": event.password});
+          var data =
+              await client.postRequest(url: ApiConstants.login, jsonBody: {
+            "email": event.email,
+            "password": event.password,
+            "fcm_device_token": "vnfngkdjkfjek"
+          });
           // List<CategoryModel> categories = [];
           // data['data'].forEach(
           //     (element) => categories.add(CategoryModel.fromJson(element)));
-          PreferenceUtils.setString('token', data['token']);
+          if (data['token'] != null) {
+            PreferenceUtils.setString('token', data['token']);
+          }
           return data['user']['is_provider'];
         },
       );

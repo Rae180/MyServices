@@ -35,7 +35,7 @@ class DecodeResponse {
         return json.decode(responseString) as Map<String, dynamic>;
       } else {
         final errorData = json.decode(responseString);
-        String errorMessage = errorData['error'];
+        String errorMessage = errorData['message'].toString();
         throw CustomException(message: errorMessage);
       }
     } on FormatException {

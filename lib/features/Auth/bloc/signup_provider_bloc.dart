@@ -77,10 +77,12 @@ class SignupProviderBloc
                 'birth_date': state.birthdaydate,
                 'service_id': state.selectService!.id,
                 'job_description': event.job,
-                'hourly_rate': event.hourly
+                'hourly_rate': event.hourly,
+                'fcm_device_token':'sadasdasda'
               },
               file: event.userimageFile);
-              PreferenceUtils.setString('token', data['token']);
+              if (data['token'] != null){
+              PreferenceUtils.setString('token', data['token']);}
           // List<CategoryModel> categories = [];
           // data['data'].forEach(
           //     (element) => categories.add(CategoryModel.fromJson(element)));

@@ -17,20 +17,24 @@ class SignUpUserBloc extends Bloc<SignUpUserEvent, SignUpUserState> {
       emit(LoadingState());
       final data = await BaseRepo.repoRequest(
         request: () async {
-        final data =  await client.multipart(url: ApiConstants.signupuser, jsonBody: {
-            "email": event.email,
-            "password": event.password,
-            'first_name': event.firstName,
-            'last_name': event.lastName,
-            'c_password': event.cpassword,
-            'phone_num': event.phoneNumber,
-            'gender': event.gender,
-            'main_address': event.address,
-            
-          },
-          file: event.image
-          );
-          PreferenceUtils.setString('token', data['token']);
+          final data = await client.multipart(
+              url: ApiConstants.signupuser,
+              jsonBody: {
+                "email": event.email,
+                "password": event.password,
+                'first_name': event.firstName,
+                'last_name': event.lastName,
+                'c_password': event.cpassword,
+                'phone_num': event.phoneNumber,
+                'gender': event.gender,
+                'main_address': event.address,
+                'fcm_device_token': 'sadasdasd'
+              },
+              file: event.image);
+          if (data['token'] != null) {
+            PreferenceUtils.setString('token', data['token']);
+          }
+
           // List<CategoryModel> categories = [];
           // data['data'].forEach(
           //     (element) => categories.add(CategoryModel.fromJson(element)));
