@@ -1,6 +1,6 @@
 part of 'signup_provider_bloc.dart';
 
-sealed class SignupProviderEvent {
+ class SignupProviderEvent {
   const SignupProviderEvent();
 }
 

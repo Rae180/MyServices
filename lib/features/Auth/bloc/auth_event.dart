@@ -1,7 +1,9 @@
 part of 'auth_bloc.dart';
 
-sealed class AuthEvent  {
+ class AuthEvent {
   const AuthEvent();
-
- 
 }
+
+class AppStarted extends AuthEvent {}
+
+class LogOutEvent extends AuthEvent {}

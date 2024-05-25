@@ -7,8 +7,8 @@ import 'package:start/features/Auth/bloc/login_bloc.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen_Provider.dart';
 import 'package:start/features/Auth/view/widgets/custom_TextFormField.dart';
-import 'package:start/features/home/view/screen/home.dart';
-import 'package:start/features/home_provider/view/screens/home_provider_screen.dart';
+import 'package:start/features/user/home/view/screen/home.dart';
+import 'package:start/features/provider/home_provider/view/screens/home_provider_screen.dart';
 import 'package:start/features/localization/cubit/lacalization_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

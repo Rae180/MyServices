@@ -1,22 +1,22 @@
 part of 'sign_up_user_bloc.dart';
 
-sealed class SignUpUserState {
+ class SignUpUserState {
   const SignUpUserState();
 
  
 }
 
-final class SignUpUserInitial extends SignUpUserState {}
+ class SignUpUserInitial extends SignUpUserState {}
 
-final class ShowPasswordstate extends SignUpUserState {} 
-final class ShowRePasswordstate extends SignUpUserState {} 
+ class ShowPasswordstate extends SignUpUserState {} 
+ class ShowRePasswordstate extends SignUpUserState {} 
 
-final class LoadingState extends SignUpUserState {}
+ class LoadingState extends SignUpUserState {}
 
-final class SuccessSignUpState extends SignUpUserState {
+ class SuccessSignUpState extends SignUpUserState {
 }
 
-final class ErrorSignUpState extends SignUpUserState {
+ class ErrorSignUpState extends SignUpUserState {
   final String message;
 
   ErrorSignUpState({required this.message});

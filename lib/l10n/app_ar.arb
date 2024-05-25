@@ -48,6 +48,16 @@
     "pleaseenterthejobdescription" : "الرجاء إدخال الوصف الوظيفي",
     "pleaseenterthehourlyrate" : "الرجاء إدخال سعر الساعة",
     "pleasepickanimage" :"يرجى اختيار صورة",
-    "tryagain":"يرجى المحاولة مرة أخرى"
-
+    "tryagain":"يرجى المحاولة مرة أخرى",
+    "logout":"تسجبل خروج",
+    "doYouWantToLogout": "هل ترغب بالخروج؟",
+    "cancel": "إلغاء",
+    "activeaccount":"حسابك غير فعال يرجى التواصل مع فريق الدعم .",
+    "home" :"الرئيسية",
+    "stopwork": "اوقف العمل",
+    "startWork": "ابدأ العمل",
+     "makeSureYouReadyForServices": "تأكد من استعدادك للخدمات",
+     "chargedPhoneMessage": "يجب شحن هاتفك للبقاء متصلا بالخدمة",
+     "stopServiceMessage":"انقر فوق \"إيقاف\" عندما لا تريد أن يتم تعيينك لخدمة جديدة"
+  
 }

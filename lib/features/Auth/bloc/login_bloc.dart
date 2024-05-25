@@ -26,6 +26,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           //     (element) => categories.add(CategoryModel.fromJson(element)));
           if (data['token'] != null) {
             PreferenceUtils.setString('token', data['token']);
+            PreferenceUtils.setBool(
+                'provider', data['user']['is_provider'] == 0 ? false : true);
           }
           return data['user']['is_provider'];
         },

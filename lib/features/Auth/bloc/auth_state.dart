@@ -1,9 +1,15 @@
 part of 'auth_bloc.dart';
 
-sealed class AuthState  {
+ class AuthState {
   const AuthState();
-  
-
 }
 
-final class AuthInitial extends AuthState {}
+ class AuthInitial extends AuthState {}
+
+class UnauthenticatedState extends AuthState {}
+
+class UnactiveAccount extends AuthState {}
+
+class AuthenticatedUserState extends AuthState {}
+
+class AuthenticatedProviderState extends AuthState {}

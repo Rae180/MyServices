@@ -57,14 +57,14 @@ class PreferenceUtils {
     return _prefsInstance.setString(key, json.encode(value));
   }
 
-  static dynamic  getObject(String key)  {
+  static dynamic getObject(String key) {
     var string = _prefsInstance.getString(key);
     if (string == null) {
       return null;
     }
 
-    final decodedJson =json.decode(string) as dynamic;
-    
+    final decodedJson = json.decode(string) as dynamic;
+
     return decodedJson;
   }
 

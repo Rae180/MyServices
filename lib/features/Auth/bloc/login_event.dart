@@ -1,6 +1,6 @@
 part of 'login_bloc.dart';
 
-sealed class LoginEvent {
+ class LoginEvent {
 }
 
 class Loginevent extends LoginEvent {

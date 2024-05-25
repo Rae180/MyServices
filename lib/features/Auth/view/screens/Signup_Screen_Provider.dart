@@ -13,11 +13,11 @@ import 'package:start/core/utils/helpers/form_submission_state.dart';
 import 'package:start/features/Auth/bloc/signup_provider_bloc.dart';
 import 'package:start/features/Auth/pickers/user_image_picker.dart';
 import 'package:start/features/Auth/view/widgets/custom_TextFormField.dart';
-import 'package:start/features/home/home_bloc/Category_bloc/category_bloc.dart';
-import 'package:start/features/home/home_bloc/service_bloc/service_bloc.dart';
-import 'package:start/features/home/model/category_model.dart';
-import 'package:start/features/home/model/service_model.dart';
-import 'package:start/features/home_provider/view/screens/home_provider_screen.dart';
+import 'package:start/features/user/home/home_bloc/Category_bloc/category_bloc.dart';
+import 'package:start/features/user/home/home_bloc/service_bloc/service_bloc.dart';
+import 'package:start/features/user/home/model/category_model.dart';
+import 'package:start/features/user/home/model/service_model.dart';
+import 'package:start/features/provider/home_provider/view/screens/home_provider_screen.dart';
 
 class SignupScreenProvider extends StatefulWidget {
   static const routeName = 'Signup_Screen_Provider';

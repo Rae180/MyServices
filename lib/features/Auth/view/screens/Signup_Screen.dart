@@ -8,7 +8,7 @@ import 'package:start/features/Auth/bloc/sign_up_user_bloc.dart';
 import 'package:start/features/Auth/pickers/user_image_picker.dart';
 import 'package:start/features/Auth/view/widgets/custom_TextFormField.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:start/features/home/view/screen/home.dart';
+import 'package:start/features/user/home/view/screen/home.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = 'SignupScreen';

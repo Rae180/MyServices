@@ -1,20 +1,20 @@
 part of 'login_bloc.dart';
 
-sealed class LoginState {}
+ class LoginState {}
 
-final class LoginInitial extends LoginState {}
+ class LoginInitial extends LoginState {}
 
-final class ShowPasswordstate extends LoginState {}
+ class ShowPasswordstate extends LoginState {}
 
-final class LoadingState extends LoginState {}
+ class LoadingState extends LoginState {}
 
-final class SuccessLoginState extends LoginState {
+ class SuccessLoginState extends LoginState {
   final int isprovider;
 
   SuccessLoginState({required this.isprovider});
 }
 
-final class ErrorLogingState extends LoginState {
+ class ErrorLogingState extends LoginState {
   final String message;
 
   ErrorLogingState({required this.message});

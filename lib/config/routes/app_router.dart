@@ -3,9 +3,10 @@ import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/core/managers/string_manager.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen_Provider.dart';
-import 'package:start/features/home/view/screen/Welcome_screen.dart';
-import 'package:start/features/home/view/screen/home.dart';
-import 'package:start/features/home_provider/view/screens/home_provider_screen.dart';
+import 'package:start/features/app_wrapper/app_wrapper.dart';
+import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
+import 'package:start/features/user/home/view/screen/home.dart';
+import 'package:start/features/provider/home_provider/view/screens/home_provider_screen.dart';
 
 class AppRouter {
   Route? onGenerateRoute(RouteSettings routeSettings) {
@@ -22,6 +23,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const SignupScreenProvider());
       case HomeProviderPage.routeName:
         return MaterialPageRoute(builder: (context) => const HomeProviderPage());
+      case AppWrapper.routeName:
+        return MaterialPageRoute(builder: (context) => const AppWrapper());
         
 
       default:

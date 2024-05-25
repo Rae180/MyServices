@@ -8,8 +8,8 @@ import 'package:start/core/constants/api_constants.dart';
 import 'package:start/core/errors/failures.dart';
 import 'package:start/core/utils/helpers/form_submission_state.dart';
 import 'package:start/core/utils/services/shared_preferences.dart';
-import 'package:start/features/home/model/category_model.dart';
-import 'package:start/features/home/model/service_model.dart';
+import 'package:start/features/user/home/model/category_model.dart';
+import 'package:start/features/user/home/model/service_model.dart';
 
 part 'signup_provider_event.dart';
 part 'signup_provider_state.dart';
@@ -63,7 +63,7 @@ class SignupProviderBloc
       emit(state.copyWith(formSubmissionState: FormSubmittingState()));
       final data = await BaseRepo.repoRequest(
         request: () async {
-       final data =    await client.multipart(
+          final data = await client.multipart(
               url: ApiConstants.signupprovider,
               jsonBody: {
                 "email": event.email,
@@ -72,17 +72,19 @@ class SignupProviderBloc
                 'last_name': event.lastName,
                 'c_password': event.REpassword,
                 'phone_num': event.phoneNumber,
-                'gender': state.gender == '0' ? 'male' :'female',
+                'gender': state.gender == '0' ? 'male' : 'female',
                 'main_address': event.address,
                 'birth_date': state.birthdaydate,
                 'service_id': state.selectService!.id,
                 'job_description': event.job,
                 'hourly_rate': event.hourly,
-                'fcm_device_token':'sadasdasda'
+                'fcm_device_token': 'sadasdasda'
               },
               file: event.userimageFile);
-              if (data['token'] != null){
-              PreferenceUtils.setString('token', data['token']);}
+          if (data['token'] != null) {
+            PreferenceUtils.setString('token', data['token']);
+            PreferenceUtils.setBool('provider', true);
+          }
           // List<CategoryModel> categories = [];
           // data['data'].forEach(
           //     (element) => categories.add(CategoryModel.fromJson(element)));

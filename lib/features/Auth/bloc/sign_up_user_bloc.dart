@@ -33,6 +33,8 @@ class SignUpUserBloc extends Bloc<SignUpUserEvent, SignUpUserState> {
               file: event.image);
           if (data['token'] != null) {
             PreferenceUtils.setString('token', data['token']);
+            PreferenceUtils.setBool(
+                'provider',false);
           }
 
           // List<CategoryModel> categories = [];

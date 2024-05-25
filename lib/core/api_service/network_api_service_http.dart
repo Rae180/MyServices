@@ -6,6 +6,7 @@ import 'package:start/core/api_service/base_Api_service.dart';
 import 'package:start/core/errors/exceptions.dart';
 import 'package:http/http.dart' as http;
 import 'package:start/core/utils/helpers/decode_response.dart';
+import 'package:start/core/utils/services/shared_preferences.dart';
 
 class NetworkApiServiceHttp implements BaseApiService{
   @override
@@ -51,6 +52,48 @@ class NetworkApiServiceHttp implements BaseApiService{
     }
   }
 
+ @override
+  Future getRequestAuth({required String url}) async{
+  try {
+    //    String? lan = PreferenceUtils.getString(
+    //   'LANGUAGE',
+    // );
+    // String lan = '';
+       String? token ;
+     token =  PreferenceUtils.getString('token');
+      print('url $url');
+
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          'api': '1.0.0',
+          'X-Requested-With': "XMLHttpRequest",
+          //"Locale": lan,
+          "Accept": "application/json",
+          if (token != null) 'Authorization': token,
+        },
+      );
+
+      print('status code ${response.statusCode}');
+      print('the body : ${response.body}');
+      final decodedResponse = DecodeResponse.decode(response);
+
+      return decodedResponse;
+    } on SocketException {
+      throw ExceptionSocket();
+    } on FormatException {
+      throw ExceptionFormat();
+    } on TimeoutException {
+      throw ExceptionTimeout();
+    } on HandshakeException {
+      throw ExceptionHandshake();
+    } on CustomException catch (e) {
+      throw CustomException(message: e.message);
+    } on Exception {
+      throw ExceptionOther();
+    }
+  }
 
 
   @override
@@ -183,12 +226,49 @@ class NetworkApiServiceHttp implements BaseApiService{
       throw ExceptionOther();
     }
   }
-
   @override
-  Future postlogout({required String url}) {
-    // TODO: implement postlogout
-    throw UnimplementedError();
+  Future postRequestAuth({required String url, required Map<String, dynamic> jsonBody}) async{
+    try {
+    //    String? lan = PreferenceUtils.getString(
+    //   'LANGUAGE',
+    // );
+    // lan ??= 'en';
+       String? token = PreferenceUtils.getString('token');
+      print('url $url');
+      print('the posted body ${jsonBody.toString()}');
+      final response =
+          await http.post(Uri.parse(url),
+              headers: {
+                "content-type": "application/json; charset=utf-8",
+                'api': '1.0.0',
+                'X-Requested-With': "XMLHttpRequest",
+              //  "Locale": lan,
+                "Accept": "application/json",
+              if (token != null) 'Authorization': token,
+              },
+              body: json.encode(jsonBody));
+
+      print('status code ${response.statusCode}');
+      print('the body is sisiisisisis : ${response.body}');
+      final decodedResponse = DecodeResponse.decode(response);
+
+      return decodedResponse;
+    } on SocketException {
+      throw ExceptionSocket();
+    } on FormatException {
+      throw ExceptionFormat();
+    } on TimeoutException {
+      throw ExceptionTimeout();
+    } on HandshakeException {
+      throw ExceptionHandshake();
+    } on CustomException catch (e) {
+      throw CustomException(message: e.message);
+    } on Exception {
+      throw ExceptionOther();
+    }
   }
+
+ 
 }
 
 
