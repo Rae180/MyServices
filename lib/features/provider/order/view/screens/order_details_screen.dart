@@ -13,10 +13,10 @@ import 'package:start/features/provider/order/bloc/details_order_bloc.dart';
 import 'package:start/features/user/home/home_bloc/Category_bloc/category_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
+class OrderDetailsProviderScreen extends StatelessWidget {
   static const routeName = 'Order_detials_Screen';
   final int id;
-  const OrderDetailsScreen({super.key, required this.id});
+  const OrderDetailsProviderScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {

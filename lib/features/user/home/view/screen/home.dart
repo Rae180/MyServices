@@ -9,7 +9,6 @@ import 'package:start/features/user/Profile/view/screen/Profie_screen.dart';
 import 'package:start/features/user/Settings/view/screen/Settings_screen.dart';
 import 'package:start/features/user/home/view/screen/Home_page_Screen.dart';
 
-
 class HomePage extends StatefulWidget {
   static const routeName = 'Home_page';
   const HomePage({super.key});
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     const OrdersScreen(),
     const SettingsScreen(),
   ];
- //Navigator.of(cotnext).push(MaterialPageRoute() => Categor() )
+  //Navigator.of(cotnext).push(MaterialPageRoute() => Categor() )
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,15 +40,17 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(
               Icons.home_outlined,
             ),
-            title: const Text('Home'),
+            title: Text(
+              AppLocalizations.of(context)!.home,
+            ),
           ),
           SalomonBottomBarItem(
             selectedColor: const Color.fromARGB(255, 143, 201, 101),
             icon: const Icon(
               Icons.favorite_border_outlined,
             ),
-            title: const Text(
-              'Favorites',
+            title: Text(
+              AppLocalizations.of(context)!.favorites,
             ),
           ),
           SalomonBottomBarItem(
@@ -57,8 +58,8 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(
               Icons.person_2_outlined,
             ),
-            title: const Text(
-              'Profile',
+            title: Text(
+              AppLocalizations.of(context)!.profile,
             ),
           ),
           SalomonBottomBarItem(
@@ -66,8 +67,8 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(
               Icons.request_page_outlined,
             ),
-            title: const Text(
-              'orders',
+            title: Text(
+              AppLocalizations.of(context)!.orders,
             ),
           ),
           SalomonBottomBarItem(
@@ -75,7 +76,9 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(
               Icons.settings_outlined,
             ),
-            title: const Text('Settings'),
+            title: Text(
+              AppLocalizations.of(context)!.settings,
+            ),
           ),
         ],
       ),

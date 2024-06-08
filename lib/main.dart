@@ -35,7 +35,7 @@ Future<void> setupInteractMessage() async {
   FirebaseMessaging.onMessageOpenedApp.listen((event) {
     if (event.data['type'] == 'New Request') {
       Navigator.of(navigatorKey.currentState!.context).pushNamed(
-          OrderDetailsScreen.routeName,
+          OrderDetailsProviderScreen.routeName,
           arguments: {'id': event.data['orderId'].toString()});
     }
   });
@@ -52,7 +52,7 @@ Future<void> setupInteractMessage() async {
               button: AppLocalizations.of(context)!.show,
               ontap: () {
                 Navigator.of(navigatorKey.currentState!.context)
-                    .pushReplacementNamed(OrderDetailsScreen.routeName,
+                    .pushReplacementNamed(OrderDetailsProviderScreen.routeName,
                         arguments: {'id': message.data['orderId'].toString()});
               },
             );

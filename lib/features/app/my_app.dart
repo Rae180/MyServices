@@ -10,6 +10,9 @@ import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/provider/home_provider/bloc/home_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
+import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
+import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
+import 'package:start/features/user/home/view/screen/Services_scree.dart';
 import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
 import 'package:start/features/localization/cubit/lacalization_cubit.dart';
@@ -65,7 +68,7 @@ class _MainAppState extends State<MainApp> {
             locale: state.locale,
             darkTheme: darkTheme,
             theme: lightTheme,
-            initialRoute: WelcomeScreen.routeName,
+            initialRoute: NotAcceptedYetOrders.routeName,
             onGenerateRoute: widget.appRouter.onGenerateRoute,
           );
         },

@@ -60,7 +60,14 @@
     "chargedPhoneMessage": "Charged you're phone for service",
     "stopServiceMessage": "Click stop when you don't want get assigned to a new service",
     "show":" Show",
-     "neworder":"New Order",
-     "directions":"directions"
-
+    "neworder":"New Order",
+    "directions":"directions",
+    "onlineState": "online",
+    "instant": "instant",
+    "nearby": "nearby",
+    "ratings": "Ratings",
+    "favorites": "favorites",
+    "profile": "profile",
+    "orders": "orders",
+    "settings": "settings"
 }

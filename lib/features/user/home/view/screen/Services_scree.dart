@@ -9,10 +9,10 @@ import 'package:start/features/user/home/view/widgets/Custom_service.dart';
 
 class ServicesScreen extends StatelessWidget {
   static const routeName = 'Services_Screen';
-  final int id;
+  final int? id;
   const ServicesScreen({
     Key? key,
-    required this.id,
+     this.id = 1,
   }) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class ServicesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => ServiceBloc(client: NetworkApiServiceHttp())
         ..add(
-          GetServices(id: id),
+          GetServices(id: id!),
         ),
       child: Scaffold(
         body: BlocBuilder<ServiceBloc, ServiceState>(
@@ -55,6 +55,7 @@ class ServicesScreen extends StatelessWidget {
                           ),
                           itemBuilder: ((context, index) {
                             return ServiceItem(
+                              id: state.services[index].id!,
                               name: state.services[index].name,
                               price: successState.services[index].price,
                               image: successState.services[index].image,
@@ -74,7 +75,7 @@ class ServicesScreen extends StatelessWidget {
                     message: errorState.message,
                     onPressed: () {
                       BlocProvider.of<ServiceBloc>(context).add(
-                        (GetServices(id: id)),
+                        (GetServices(id: id!)),
                       );
                     },
                   ),

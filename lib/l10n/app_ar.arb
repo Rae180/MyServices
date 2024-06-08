@@ -61,5 +61,15 @@
      "stopServiceMessage":"انقر فوق \"إيقاف\" عندما لا تريد أن يتم تعيينك لخدمة جديدة",
      "show":" عرض",
      "neworder":"طلب جديد",
-  "directions":"الاتجاهات"
+     "directions":"الاتجاهات",
+     "onlineState": "متصل الآن",
+     "instant": "فوري",
+     "nearby": "الأقرب",
+     "ratings": "التقييم",
+     "favorites": "المفضلة",
+     "profile": "الملف الشخصي",
+     "orders": "الطلبات",
+     "settings": "الضبط"
+
+  
 }

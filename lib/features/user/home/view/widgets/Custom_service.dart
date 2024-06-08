@@ -1,22 +1,34 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 import 'package:start/core/constants/api_constants.dart';
+import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
+
 
 class ServiceItem extends StatelessWidget {
+  final int id;
   final String? name;
   final String? image;
   final double? price;
   const ServiceItem({
-    super.key,
+    Key? key,
+    required this.id,
     required this.name,
     required this.image,
     required this.price,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ProvidersScreen(id: id),
+          ),
+        );
+      },
       child: Card(
         shape: RoundedRectangleBorder(
           side: const BorderSide(

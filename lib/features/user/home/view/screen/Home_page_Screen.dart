@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/api_service/network_api_service_http.dart';
@@ -33,10 +32,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         drawer: const Drawer(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LanguageItem(),
-              LogOutItem()
-            ],
+            children: [LanguageItem(), LogOutItem()],
           ),
         ),
         body: BlocBuilder<CategoryBloc, CategoryState>(
@@ -46,7 +42,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 return const LoadingWidget();
 
               case LoadedCategory:
-                print('here');
                 final successState = state as LoadedCategory;
 
                 return Scaffold(
@@ -60,12 +55,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             crossAxisCount: 2, // Number of columns
                             crossAxisSpacing: 10, // Spacing between columns
                             mainAxisSpacing: 10, // Spacing between rows
-                            childAspectRatio:
-                                1, // Aspect ratio of the children
+                            childAspectRatio: 1, // Aspect ratio of the children
                           ),
                           itemBuilder: (context, index) {
-                            print(
-                                'it is a successState  : ${successState.categories[index].name}');
                             return CategoryItem(
                               title: successState.categories[index].name,
                               id: successState.categories[index].id!,
