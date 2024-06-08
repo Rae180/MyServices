@@ -4,13 +4,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:start/core/constants/api_constants.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
+
 import 'package:start/features/user/home/view/screen/Services_scree.dart';
+
 
 class ServiceItem extends StatelessWidget {
   final int id;
   final String? name;
   final String? image;
-  final int? price;
+  final double? price;
   const ServiceItem({
     Key? key,
     required this.id,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:start/core/api_service/base_Api_service.dart';
 import 'package:start/core/api_service/base_repo.dart';
 import 'package:start/core/constants/api_constants.dart';
@@ -15,6 +16,8 @@ class SignUpUserBloc extends Bloc<SignUpUserEvent, SignUpUserState> {
   SignUpUserBloc({required this.client}) : super(SignUpUserInitial()) {
     on<SignUpUserevevnt>((event, emit) async {
       emit(LoadingState());
+      String? deviceToken =
+                      await FirebaseMessaging.instance.getToken();
       final data = await BaseRepo.repoRequest(
         request: () async {
           final data = await client.multipart(
@@ -28,7 +31,7 @@ class SignUpUserBloc extends Bloc<SignUpUserEvent, SignUpUserState> {
                 'phone_num': event.phoneNumber,
                 'gender': event.gender,
                 'main_address': event.address,
-                'fcm_device_token': 'sadasdasd'
+                'fcm_device_token': deviceToken
               },
               file: event.image);
           if (data['token'] != null) {

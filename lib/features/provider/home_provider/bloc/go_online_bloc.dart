@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:start/core/api_service/base_Api_service.dart';
 import 'package:start/core/api_service/base_repo.dart';
 import 'package:start/core/constants/api_constants.dart';
 import 'package:start/core/errors/failures.dart';
 import 'package:start/core/utils/services/shared_preferences.dart';
+import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
+import 'package:start/main.dart';
 
 part 'go_online_event.dart';
 part 'go_online_state.dart';
@@ -25,6 +28,7 @@ class GoOnlineBloc extends Bloc<GoOnlineEvent, GoOnlineState> {
           } else {
             PreferenceUtils.setBool('isonline', true);
           }
+          
         },
       );
 
@@ -33,7 +37,7 @@ class GoOnlineBloc extends Bloc<GoOnlineEvent, GoOnlineState> {
       },
           (_) => emit(state.copyWith(
                 providerOnlineState: ProviderOnlineState.successful,
-                isOnline: !state.isOnline,
+                isOnline: PreferenceUtils.getbool('isonline'),
               )));
     });
   }
