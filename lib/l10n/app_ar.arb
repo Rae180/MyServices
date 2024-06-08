@@ -58,6 +58,8 @@
     "startWork": "ابدأ العمل",
      "makeSureYouReadyForServices": "تأكد من استعدادك للخدمات",
      "chargedPhoneMessage": "يجب شحن هاتفك للبقاء متصلا بالخدمة",
-     "stopServiceMessage":"انقر فوق \"إيقاف\" عندما لا تريد أن يتم تعيينك لخدمة جديدة"
-  
+     "stopServiceMessage":"انقر فوق \"إيقاف\" عندما لا تريد أن يتم تعيينك لخدمة جديدة",
+     "show":" عرض",
+     "neworder":"طلب جديد",
+  "directions":"الاتجاهات"
 }

@@ -126,7 +126,7 @@ class _SignupScreenProviderState extends State<SignupScreenProvider> {
                   } else if (state is LoadedCategory) {
                     BlocProvider.of<SignupProviderBloc>(context)
                         .add(AddCategoriesevent(categories: state.categories));
-     
+
                     return Container(
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
@@ -615,7 +615,6 @@ class _SignupScreenProviderState extends State<SignupScreenProvider> {
                                                 color: Colors.black),
                                             onChanged:
                                                 (ServiceModel? newValue) {
-                                              
                                               BlocProvider.of<
                                                           SignupProviderBloc>(
                                                       context)

@@ -58,6 +58,9 @@
     "startWork": "Start Work",
     "makeSureYouReadyForServices": "Make sure you're ready for services",
     "chargedPhoneMessage": "Charged you're phone for service",
-    "stopServiceMessage": "Click stop when you don't want get assigned to a new service"
+    "stopServiceMessage": "Click stop when you don't want get assigned to a new service",
+    "show":" Show",
+     "neworder":"New Order",
+     "directions":"directions"
 
 }

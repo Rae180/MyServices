@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:start/core/api_service/network_api_service_http.dart';
 import 'package:start/core/managers/languages_manager.dart';
 import 'package:start/features/Auth/bloc/login_bloc.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen.dart';

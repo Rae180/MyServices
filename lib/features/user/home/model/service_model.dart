@@ -3,7 +3,7 @@ class ServiceModel {
   int? catogryId;
   String? name;
   String? image;
-  int? price;
+  double? price;
   String? createdAt;
   String? updatedAt;
 

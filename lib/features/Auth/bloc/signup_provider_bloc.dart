@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/api_service/base_Api_service.dart';
 import 'package:start/core/api_service/base_repo.dart';
@@ -61,6 +62,8 @@ class SignupProviderBloc
 
     on<SubmitSignupProviderevent>((event, emit) async {
       emit(state.copyWith(formSubmissionState: FormSubmittingState()));
+      String? deviceToken =
+                      await FirebaseMessaging.instance.getToken();
       final data = await BaseRepo.repoRequest(
         request: () async {
           final data = await client.multipart(
@@ -78,7 +81,7 @@ class SignupProviderBloc
                 'service_id': state.selectService!.id,
                 'job_description': event.job,
                 'hourly_rate': event.hourly,
-                'fcm_device_token': 'sadasdasda'
+                'fcm_device_token': deviceToken
               },
               file: event.userimageFile);
           if (data['token'] != null) {

@@ -6,7 +6,7 @@ import 'package:start/core/constants/api_constants.dart';
 class ServiceItem extends StatelessWidget {
   final String? name;
   final String? image;
-  final int? price;
+  final double? price;
   const ServiceItem({
     super.key,
     required this.name,

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:start/core/api_service/base_Api_service.dart';
 import 'package:start/core/api_service/base_repo.dart';
 import 'package:start/core/constants/api_constants.dart';
@@ -13,13 +14,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required this.client}) : super(LoginInitial()) {
     on<Loginevent>((event, emit) async {
       emit(LoadingState());
+      String? deviceToken =
+                      await FirebaseMessaging.instance.getToken();
       final data = await BaseRepo.repoRequest(
         request: () async {
           var data =
               await client.postRequest(url: ApiConstants.login, jsonBody: {
             "email": event.email,
             "password": event.password,
-            "fcm_device_token": "vnfngkdjkfjek"
+            "fcm_device_token": deviceToken
           });
           // List<CategoryModel> categories = [];
           // data['data'].forEach(
