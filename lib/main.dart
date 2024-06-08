@@ -8,7 +8,7 @@ import 'package:start/core/locator/service_locator.dart';
 import 'package:start/core/ui/notification_dialog.dart';
 import 'package:start/core/utils/services/shared_preferences.dart';
 import 'package:start/features/app/my_app.dart';
-import 'package:start/features/provider/order/view/screens/order_details_screen.dart';
+import 'package:start/features/provider/order/view/screens/order_details_provider_screen.dart';
 import 'package:start/firebase_options.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

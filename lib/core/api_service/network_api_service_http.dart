@@ -149,8 +149,8 @@ class NetworkApiServiceHttp implements BaseApiService {
       required String? attributeName,
       required List<File>? files}) async {
     try {
-      String? token = '';
-      //PreferenceUtils.getString('TOKEN');
+      String? token =
+      PreferenceUtils.getString('token');
       print('url $url');
       print('the posted body ${jsonBody.toString()}');
       var request = http.MultipartRequest(

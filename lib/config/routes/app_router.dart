@@ -4,7 +4,7 @@ import 'package:start/core/managers/string_manager.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen_Provider.dart';
 import 'package:start/features/app_wrapper/app_wrapper.dart';
-import 'package:start/features/provider/order/view/screens/order_details_screen.dart';
+import 'package:start/features/provider/order/view/screens/order_details_provider_screen.dart';
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
 import 'package:start/features/user/home/view/screen/Services_scree.dart';

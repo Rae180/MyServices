@@ -74,7 +74,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         return;
       }
 
-      final ImageTemporary = File(image.path);
+      final ImageTemporary = File(image!.path);
       setState(() => this.image = ImageTemporary);
       print(image);
     } on PlatformException catch (e) {
@@ -86,14 +86,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var items = ['cash', 'wallet'];
+    var _items = ['cash', 'wallet'];
     final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
     print(ModalRoute.of(context)?.settings.arguments);
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 
-    final providerId = routeArgs['providerId'];
+    final providerId = routeArgs?['providerId'];
 
     return BlocProvider(
       create: (context) => OrderBloc(client: NetworkApiServiceHttp()),
@@ -115,12 +115,12 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             appBar: AppBar(
               leading: IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back_ios_new_rounded,
                 ),
               ),
               centerTitle: true,
-              title: const Text('Orders'),
+              title: Text('Orders'),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
                   20,
@@ -133,21 +133,21 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 child: Center(
                   child: Column(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 20,
                       ),
                       DottedBorder(
-                        radius: const Radius.circular(
+                        radius: Radius.circular(
                           20,
                         ),
                         strokeWidth: 3,
-                        color: const Color.fromARGB(255, 142, 201, 84),
+                        color: Color.fromARGB(255, 142, 201, 84),
                         child: InkWell(
                           splashColor: Colors.black12,
                           onTap: () => showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: const Text(
+                              title: Text(
                                 'Chose one Option!',
                               ),
                               actions: <Widget>[
@@ -158,7 +158,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     TextButton(
                                       onPressed: () =>
                                           pickImage(ImageSource.camera),
-                                      child: const Column(
+                                      child: Column(
                                         children: [
                                           Icon(
                                             Icons.camera,
@@ -178,7 +178,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     TextButton(
                                       onPressed: () =>
                                           pickImage(ImageSource.gallery),
-                                      child: const Column(
+                                      child: Column(
                                         children: [
                                           Icon(
                                             Icons.photo_album_outlined,
@@ -209,7 +209,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             width: 200,
                             height: 200,
                             child: image == null
-                                ? const Icon(
+                                ? Icon(
                                     Icons.add_a_photo_outlined,
                                     color: Colors.blueGrey,
                                   )
@@ -222,7 +222,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 30,
                       ),
                       Padding(
@@ -230,7 +230,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: TextFormField(
                           controller: Descriptionecontroller,
                           decoration: InputDecoration(
-                            label: const Row(
+                            label: Row(
                               children: [
                                 Icon(
                                   Icons.description_outlined,
@@ -266,7 +266,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: TextFormField(
                           controller: AdressController,
                           decoration: InputDecoration(
-                            label: const Row(
+                            label: Row(
                               children: [
                                 Icon(
                                   Icons.location_city_outlined,
@@ -307,7 +307,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             enabled: false,
                             controller: DateController,
                             decoration: InputDecoration(
-                              label: const Row(
+                              label: Row(
                                 children: [
                                   Icon(
                                     Icons.date_range_outlined,
@@ -365,7 +365,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             enabled: false,
                             controller: MapController,
                             decoration: InputDecoration(
-                              label: const Row(
+                              label: Row(
                                 children: [
                                   Icon(
                                     Icons.map_outlined,
@@ -409,11 +409,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             ),
                           ),
                           child: DropdownButton<String>(
-                            padding: const EdgeInsets.all(14),
-                            items: items.map((String item) {
+                            padding: EdgeInsets.all(14),
+                            items: _items.map((String item) {
                               return DropdownMenuItem(
-                                value: item,
                                 child: Text(item),
+                                value: item,
                               );
                             }).toList(),
                             onChanged: (String? newValue) {
@@ -429,7 +429,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 12,
                       ),
                       ElevatedButton(
@@ -438,7 +438,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               _formKey.currentState!.validate();
                           FocusScope.of(context).unfocus();
 
-                          if (isValid) {
+                          if (isValid!) {
                             _formKey.currentState!.save();
                             BlocProvider.of<OrderBloc>(context).add(
                               OrderPostEvent(
@@ -454,18 +454,18 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             );
                           }
                         },
+                        child: Text('Book Now'),
                         style: ButtonStyle(
                           padding:
                               MaterialStateProperty.all<EdgeInsetsGeometry>(
-                            const EdgeInsets.symmetric(horizontal: 149, vertical: 12),
+                            EdgeInsets.symmetric(horizontal: 149, vertical: 12),
                           ),
                           backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 143, 201, 101),
+                            Color.fromARGB(255, 143, 201, 101),
                           ),
                         ),
-                        child: const Text('Book Now'),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 12,
                       ),
                     ],

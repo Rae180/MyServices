@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:start/core/ui/error_widget.dart';
 import 'package:start/core/ui/loading_widget.dart';
 import 'package:start/core/utils/helpers/launching_map.dart';
 import 'package:start/features/provider/order/bloc/details_order_bloc.dart';
-import 'package:start/features/user/home/home_bloc/Category_bloc/category_bloc.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderDetailsProviderScreen extends StatelessWidget {
