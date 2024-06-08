@@ -20,7 +20,9 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     on<OrderPostEvent>((event, emit) async {
       emit(LoadingOrder());
       final data = await BaseRepo.repoRequest(request: () async {
+
         final data = await client.multipart2(
+
           url: ApiConstants.PostOrder,
           jsonBody: {
             "provider_id": event.providerId,
@@ -32,8 +34,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             "address": event.adress,
             "type": event.type,
           },
+
           attributeName: 'image[]',
           files: [event.image],
+
         );
 
         data.fold((f) {
