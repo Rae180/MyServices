@@ -68,7 +68,7 @@ class _MainAppState extends State<MainApp> {
             locale: state.locale,
             darkTheme: darkTheme,
             theme: lightTheme,
-            initialRoute: NotAcceptedYetOrders.routeName,
+            initialRoute: WelcomeScreen.routeName,
             onGenerateRoute: widget.appRouter.onGenerateRoute,
           );
         },

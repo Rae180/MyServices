@@ -32,7 +32,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             "address": event.adress,
             "type": event.type,
           },
-          attributeName: 'image[]',
+          attributeName: 'images[]',
           files: [event.image],
         );
 

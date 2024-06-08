@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:start/core/api_service/base_Api_service.dart';
+import 'package:start/core/constants/api_constants.dart';
 import 'package:start/core/errors/exceptions.dart';
 import 'package:http/http.dart' as http;
 import 'package:start/core/utils/helpers/decode_response.dart';
@@ -155,7 +156,7 @@ class NetworkApiServiceHttp implements BaseApiService {
       print('the posted body ${jsonBody.toString()}');
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('${'ApiConstants.baseAppUrl'}$url'),
+        Uri.parse(url),
       );
       request = jsonToFormData(request, jsonBody);
       print('request ${request.fields.toString()}');
@@ -171,7 +172,7 @@ class NetworkApiServiceHttp implements BaseApiService {
 
       request.headers['X-Requested-With'] = "XMLHttpRequest";
       request.headers['content-type'] = "application/json; charset=utf-8";
-      request.headers['Authorization'] = "Bearer $token";
+      request.headers['Authorization'] = token!;
       final response = await request.send();
       final decodedResponse =
           DecodeResponse.decodeMultiplePartResponse(response);
