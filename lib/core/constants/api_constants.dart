@@ -25,5 +25,6 @@ class ApiConstants {
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
 
 static const test = "";
+static const test2 = "";
 
 }
