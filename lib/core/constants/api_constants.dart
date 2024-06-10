@@ -15,8 +15,10 @@ class ApiConstants {
       "${ApiConstants.baseAppUrl}provider/status";
   static const String updatelocationprovider =
       "${ApiConstants.baseAppUrl}provider/update_location";
+
   static const String getdetailsorder =
       "${ApiConstants.baseAppUrl}order/detalise/";
+
 
   static const String getProvidersService =
       "${ApiConstants.baseAppUrl}provider/service/";
