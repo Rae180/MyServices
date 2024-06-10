@@ -23,4 +23,7 @@ class ApiConstants {
       "${ApiConstants.baseAppUrl}provider/service/";
 
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
+
+static const test = "";
+
 }
