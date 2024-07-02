@@ -18,13 +18,16 @@ class ApiConstants {
   static const String getdetailsorder =
       "${ApiConstants.baseAppUrl}order/detalise/";
 
-
   static const String getProvidersService =
       "${ApiConstants.baseAppUrl}provider/service/";
 
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
 
-static const test = "";
-static const test2 = "";
-
+  static const test = "";
+  static const test2 = "";
+  static const String GetOrderDetailsDefualt =
+      "${ApiConstants.baseAppUrl}order/status/pending";
+  static const String GetOrderDetails =
+      "${ApiConstants.baseAppUrl}order/status";
+  static const String CancelOrder = "${ApiConstants.baseAppUrl}order/cancel/";
 }

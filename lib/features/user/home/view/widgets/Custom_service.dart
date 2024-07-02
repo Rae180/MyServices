@@ -12,7 +12,7 @@ class ServiceItem extends StatelessWidget {
   final int id;
   final String? name;
   final String? image;
-  final double? price;
+  final int price;
   const ServiceItem({
     Key? key,
     required this.id,

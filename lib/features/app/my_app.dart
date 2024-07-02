@@ -10,6 +10,7 @@ import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/provider/home_provider/bloc/home_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
+import 'package:start/features/user/Orders/view/widgets/Order_Tile_Not_Accepted.dart';
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
 import 'package:start/features/user/home/view/screen/Services_scree.dart';
@@ -17,6 +18,7 @@ import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
 import 'package:start/features/localization/cubit/lacalization_cubit.dart';
 import 'package:start/features/localization/localize_app_impl.dart';
+import 'package:start/features/user/order_details/view/screen/order_details_screen.dart';
 import 'package:start/main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

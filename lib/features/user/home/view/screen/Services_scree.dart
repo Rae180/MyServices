@@ -57,7 +57,7 @@ class ServicesScreen extends StatelessWidget {
                             return ServiceItem(
                               id: state.services[index].id!,
                               name: state.services[index].name,
-                              price: successState.services[index].price,
+                              price: successState.services[index].price!,
                               image: successState.services[index].image,
                             );
                           }),
