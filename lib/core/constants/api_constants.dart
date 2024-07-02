@@ -1,7 +1,6 @@
 class ApiConstants {
   static const String baseAppUrl = "http://10.0.2.2:8000/api/";
   static const String STORAGE_URL = "http://10.0.2.2:8000";
-
   static const String getCategory = "${baseAppUrl}category";
   static const String getServices = "${baseAppUrl}service/";
   static const String login = "${baseAppUrl}login";
@@ -15,6 +14,7 @@ class ApiConstants {
       "${ApiConstants.baseAppUrl}provider/status";
   static const String updatelocationprovider =
       "${ApiConstants.baseAppUrl}provider/update_location";
+
   static const String getdetailsorder =
       "${ApiConstants.baseAppUrl}order/detalise/";
 
@@ -22,4 +22,12 @@ class ApiConstants {
       "${ApiConstants.baseAppUrl}provider/service/";
 
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
+
+  static const test = "";
+  static const test2 = "";
+  static const String GetOrderDetailsDefualt =
+      "${ApiConstants.baseAppUrl}order/status/pending";
+  static const String GetOrderDetails =
+      "${ApiConstants.baseAppUrl}order/status";
+  static const String CancelOrder = "${ApiConstants.baseAppUrl}order/cancel/";
 }

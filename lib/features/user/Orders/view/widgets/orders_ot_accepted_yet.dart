@@ -16,7 +16,7 @@ class NotAcceptedYetOrders extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return OrdersNotAcceptedYetTile();
+        //   return OrdersNotAcceptedYetTile();
         },
         itemCount: 3,
       ),
