@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class NotificationDialog extends StatelessWidget {
-  final String image;
+  final String? image;
   final String message;
   final String button;
   final Function() ontap;
-  const NotificationDialog({
-    Key? key,
-    required this.image,
-    required this.message,
-    required this.button,
-    required this.ontap
-  }) : super(key: key);
+  const NotificationDialog(
+      {Key? key,
+       this.image,
+      required this.message,
+      required this.button,
+      required this.ontap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,8 @@ class NotificationDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(image),
-            Text(message
-            ),
+            if (image != null) Image.asset(image!),
+            Text(message),
             const SizedBox(
               height: 20,
             ),

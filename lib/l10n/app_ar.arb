@@ -69,7 +69,21 @@
      "favorites": "المفضلة",
      "profile": "الملف الشخصي",
      "orders": "الطلبات",
-     "settings": "الضبط"
+     "settings": "الضبط",
+     "servicename":"اسم الخدمة",
+     "type":"نوع",
+     "scheduleDate":"تاريخ الحجز",
+     "notes":"الملاحظات",
+     "paymentMethod":"طريقة الدفع",
+     "nameCustomer":"اسم الزبون",
+     "reject":"رفض",
+     "accept":"قبول",
+      "reschedule":"اعادة جدولة",
+    "areyousure":"هل انت متاكد؟",
+    "no":"لا",
+    "yes":"نعم",
+    "ok":"ok",
+    "doneorder":"لقد تم الأمر"
 
   
 }

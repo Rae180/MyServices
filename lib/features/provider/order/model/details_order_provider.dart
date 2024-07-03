@@ -10,10 +10,12 @@ class DetailsOrderProvider {
   String? address;
   String? longitude;
   String? latitude;
+  int? duration;
   String? createdAt;
   String? updatedAt;
   List<String>? imageUrls;
   User? user;
+  Provider? provider;
 
   DetailsOrderProvider(
       {this.id,
@@ -27,10 +29,12 @@ class DetailsOrderProvider {
       this.address,
       this.longitude,
       this.latitude,
+      this.duration,
       this.createdAt,
       this.updatedAt,
       this.imageUrls,
-      this.user});
+      this.user,
+      this.provider});
 
   DetailsOrderProvider.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -42,12 +46,42 @@ class DetailsOrderProvider {
     notes = json['notes'];
     paymentMethod = json['payment_method'];
     address = json['address'];
-    longitude = json['longitude'];
-    latitude = json['latitude'];
+    longitude = json['longitude'].toString();
+    latitude = json['latitude'].toString();
+    duration = json['duration'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     imageUrls = json['image_urls'].cast<String>();
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    provider = json['provider'] != null
+        ? Provider.fromJson(json['provider'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['provider_id'] = providerId;
+    data['type'] = type;
+    data['schedule_date'] = scheduleDate;
+    data['status'] = status;
+    data['notes'] = notes;
+    data['payment_method'] = paymentMethod;
+    data['address'] = address;
+    data['longitude'] = longitude;
+    data['latitude'] = latitude;
+    data['duration'] = duration;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['image_urls'] = imageUrls;
+    if (user != null) {
+      data['user'] = user!.toJson();
+    }
+    if (provider != null) {
+      data['provider'] = provider!.toJson();
+    }
+    return data;
   }
 }
 
@@ -62,7 +96,9 @@ class User {
   String? image;
   String? mainAddress;
   int? wallet;
+  String? taxOwed;
   int? isProvider;
+  int? block;
   String? createdAt;
   String? updatedAt;
 
@@ -77,7 +113,9 @@ class User {
       this.image,
       this.mainAddress,
       this.wallet,
+      this.taxOwed,
       this.isProvider,
+      this.block,
       this.createdAt,
       this.updatedAt});
 
@@ -92,8 +130,143 @@ class User {
     image = json['image'];
     mainAddress = json['main_address'];
     wallet = json['wallet'];
+    taxOwed = json['tax_owed'];
     isProvider = json['is_provider'];
+    block = json['Block'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['first_name'] = firstName;
+    data['last_name'] = lastName;
+    data['email'] = email;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['phone_num'] = phoneNum;
+    data['gender'] = gender;
+    data['image'] = image;
+    data['main_address'] = mainAddress;
+    data['wallet'] = wallet;
+    data['tax_owed'] = taxOwed;
+    data['is_provider'] = isProvider;
+    data['Block'] = block;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    return data;
+  }
+}
+
+class Provider {
+  int? id;
+  int? userId;
+  int? serviceId;
+  String? jobDescription;
+  String? birthDate;
+  String? status;
+  int? accStatus;
+  int? hourlyRate;
+  String? address;
+  String? longitude;
+  String? latitude;
+  String? createdAt;
+  String? updatedAt;
+  Service? service;
+
+  Provider(
+      {this.id,
+      this.userId,
+      this.serviceId,
+      this.jobDescription,
+      this.birthDate,
+      this.status,
+      this.accStatus,
+      this.hourlyRate,
+      this.address,
+      this.longitude,
+      this.latitude,
+      this.createdAt,
+      this.updatedAt,
+      this.service});
+
+  Provider.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    serviceId = json['service_id'];
+    jobDescription = json['job_description'];
+    birthDate = json['birth_date'];
+    status = json['status'];
+    accStatus = json['acc_status'];
+    hourlyRate = json['hourly_rate'];
+    address = json['address'];
+    longitude = json['longitude'];
+    latitude = json['latitude'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    service =
+        json['service'] != null ? Service.fromJson(json['service']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['service_id'] = serviceId;
+    data['job_description'] = jobDescription;
+    data['birth_date'] = birthDate;
+    data['status'] = status;
+    data['acc_status'] = accStatus;
+    data['hourly_rate'] = hourlyRate;
+    data['address'] = address;
+    data['longitude'] = longitude;
+    data['latitude'] = latitude;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (service != null) {
+      data['service'] = service!.toJson();
+    }
+    return data;
+  }
+}
+
+class Service {
+  int? id;
+  int? catogryId;
+  String? name;
+  String? image;
+  double? price;
+  String? createdAt;
+  String? updatedAt;
+
+  Service(
+      {this.id,
+      this.catogryId,
+      this.name,
+      this.image,
+      this.price,
+      this.createdAt,
+      this.updatedAt});
+
+  Service.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    catogryId = json['catogry_id'];
+    name = json['name'];
+    image = json['image'];
+    price = json['price'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['catogry_id'] = catogryId;
+    data['name'] = name;
+    data['image'] = image;
+    data['price'] = price;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    return data;
   }
 }

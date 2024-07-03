@@ -21,11 +21,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           print(token);
           var data = await client.getRequestAuth(url: ApiConstants.checkactiveaccountprovider);
           
-        //  if (data['success'] == '0') {
-         //emit(UnactiveAccount());
-          //}else{
+          if (data['success'] == '0') {
+         emit(UnactiveAccount());
+          }else{
             emit(AuthenticatedProviderState());
-          //}
+          }
           
         } else {
           emit(AuthenticatedUserState());

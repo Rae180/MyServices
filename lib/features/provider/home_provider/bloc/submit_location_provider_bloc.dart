@@ -24,19 +24,19 @@ class SubmitLocationProviderBloc
     on<StartSubmittingLocation>((event, emit) async {
       bool online = PreferenceUtils.getbool('isonline') ?? false;
       if (online) {
-        timer = Timer.periodic(const Duration(minutes: 1), (timer) async {
-          print('calling provider location');
-          GeoLoc? location = await LocationService.getLocationCoords();
-          if (location != null) {
-            await client.postRequestAuth(
-                url: ApiConstants.updatelocationprovider,
-                jsonBody: {
-                  "address": "empty",
-                  "longitude": location.lng,
-                  "latitude": location.lat
-                });
-          }
-        });
+        // timer = Timer.periodic(const Duration(minutes: 1), (timer) async {
+        //   print('calling provider location');
+        //   GeoLoc? location = await LocationService.getLocationCoords();
+        //   if (location != null) {
+        //     await client.postRequestAuth(
+        //         url: ApiConstants.updatelocationprovider,
+        //         jsonBody: {
+        //           "address": "empty",
+        //           "longitude": location.lng,
+        //           "latitude": location.lat
+        //         });
+        //   }
+        // });
       }
     });
 

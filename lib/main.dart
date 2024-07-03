@@ -40,7 +40,7 @@ Future<void> setupInteractMessage() async {
     }
   });
   FirebaseMessaging.onMessage.listen((message) {
-    print("jajkdjkashdjk ${message.data.toString()}");
+    print(message.data.toString());
     if (message.data['type'] == 'New Request') {
       showDialog(
           barrierDismissible: false,
@@ -54,6 +54,23 @@ Future<void> setupInteractMessage() async {
                 Navigator.of(navigatorKey.currentState!.context)
                     .pushReplacementNamed(OrderDetailsProviderScreen.routeName,
                         arguments: {'id': message.data['orderId'].toString()});
+              },
+            );
+          });
+    } else {
+      showDialog(
+          barrierDismissible: false,
+          context: navigatorKey.currentState!.context,
+          builder: (context) {
+            return NotificationDialog(
+              // image: 'assets/new.gif',
+              message: message.notification!.title!,
+              button: AppLocalizations.of(context)!.ok,
+              ontap: () {
+                Navigator.of(context).pop();
+                // Navigator.of(navigatorKey.currentState!.context)
+                //     .pushReplacementNamed(OrderDetailsProviderScreen.routeName,
+                //         arguments: {'id': message.data['orderId'].toString()});
               },
             );
           });

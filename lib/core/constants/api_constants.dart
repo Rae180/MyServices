@@ -17,14 +17,17 @@ class ApiConstants {
 
   static const String getdetailsorder =
       "${ApiConstants.baseAppUrl}order/detalise/";
-
+  static const String acceptorder = "${ApiConstants.baseAppUrl}order/accept/";
+  static const String rejectorder = "${ApiConstants.baseAppUrl}order/refuse/";
+  static const String rescheduleorder =
+      "${ApiConstants.baseAppUrl}order/reschedule/";
+  static const String acceptrescgeduleorder =
+      "${ApiConstants.baseAppUrl}order/accept-reschedule/";
+  static const String rejectrescgeduleorder =
+      "${ApiConstants.baseAppUrl}order/refuse-reschedule/";
 
   static const String getProvidersService =
       "${ApiConstants.baseAppUrl}provider/service/";
 
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
-
-static const test = "";
-static const test2 = "";
-
 }

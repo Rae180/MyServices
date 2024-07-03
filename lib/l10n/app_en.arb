@@ -69,5 +69,19 @@
     "favorites": "favorites",
     "profile": "profile",
     "orders": "orders",
-    "settings": "settings"
-}
+    "settings": "settings",
+    "servicename":"Service name",
+    "type":"type",
+    "scheduleDate":"Schedule Date",
+    "notes":"Notes",
+    "paymentMethod":"Payment Method",
+     "nameCustomer":"Name Customer",
+     "reject":"reject",
+     "accept":"accept",
+    "reschedule":"reschedule",
+    "areyousure":"Are You Sure?",
+    "no":"No",
+    "yes":"Yes",
+    "ok":"ok",
+    "doneorder":"it is done"
+  }
