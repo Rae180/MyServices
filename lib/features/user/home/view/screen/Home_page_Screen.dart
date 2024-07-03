@@ -6,6 +6,7 @@ import 'package:start/core/ui/language_item.dart';
 import 'package:start/core/ui/loading_widget.dart';
 import 'package:start/core/ui/logout_item.dart';
 import 'package:start/features/user/home/home_bloc/Category_bloc/category_bloc.dart';
+import 'package:start/features/user/home/view/screen/Close_Orders_Screen.dart';
 import 'package:start/features/user/home/view/widgets/Custom_grid.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -23,6 +24,17 @@ class _HomePageScreenState extends State<HomePageScreen> {
           CategoryBloc(client: NetworkApiServiceHttp())..add(GetCategory()),
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(CloesdOrdersScreen.routeName);
+              },
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ),
+            ),
+          ],
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
               20,

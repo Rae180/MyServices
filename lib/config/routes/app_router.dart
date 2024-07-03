@@ -5,8 +5,11 @@ import 'package:start/features/Auth/view/screens/Signup_Screen.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen_Provider.dart';
 import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/provider/order/view/screens/order_details_provider_screen.dart';
+import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';
+import 'package:start/features/user/Orders/view/widgets/Current_Order_Details.dart';
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
+import 'package:start/features/user/home/view/screen/Close_Orders_Screen.dart';
 import 'package:start/features/user/home/view/screen/Services_scree.dart';
 import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
@@ -50,8 +53,17 @@ class AppRouter {
       case ServicesScreen.routeName:
         return MaterialPageRoute(builder: (context) => const ServicesScreen());
       case NotAcceptedYetOrders.routeName:
-        return MaterialPageRoute(builder: (context) => const NotAcceptedYetOrders());
-      
+        return MaterialPageRoute(
+            builder: (context) => const NotAcceptedYetOrders());
+      case CloesdOrdersScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => const CloesdOrdersScreen());
+      // case CurrentOrderDetailsWidget.routeName:
+      //   return MaterialPageRoute(
+      //       builder: (context) => const CurrentOrderDetailsWidget());
+      case OrdersScreen.routeName:
+        return MaterialPageRoute(builder: (context) => const OrdersScreen());
+
       default:
         return unDefinedRoute();
     }
