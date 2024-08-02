@@ -7,14 +7,18 @@ class CloseOrdersHomeBlocState {
   List<Object> get props => [];
 }
 
-final class CloseOrdersHomeBlocInitial extends CloseOrdersHomeBlocState {}
-
-final class CloseOrdersHomeLoadingOrdersState
+final class PendingAndInprogressOrdersHomeBlocInitial
     extends CloseOrdersHomeBlocState {}
 
-final class CloseOrdersHomeLoadedState extends CloseOrdersHomeBlocState {
-  // final List<ClosedOrderHomeModel> closers;
+final class PendingAndInprogressOrdersHomeLoadingOrdersState
+    extends CloseOrdersHomeBlocState {}
 
+final class PendingAndInprogressOrdersHomeLoadedState
+    extends CloseOrdersHomeBlocState {
+  final bool isInPending;
+  final bool isInProgress;
+
+  PendingAndInprogressOrdersHomeLoadedState({required this.isInPending, required this.isInProgress});
   // CloseOrdersHomeLoadedState({required this.closers});
 }
 

@@ -10,18 +10,39 @@ final class DeatilsForOrderLoading extends DeatilsForOrderState {}
 
 final class DeatilsForOrderLoaded extends DeatilsForOrderState {
   final List<DetailsForOrder> orders;
+  final OrderFilterState selectedFilter;
 
-  DeatilsForOrderLoaded({required this.orders});
+  DeatilsForOrderLoaded({required this.orders,required this.selectedFilter});
 }
 
 enum OrderFilterState {
   pending,
   reservations,
-  canceled,
-  inprogress,
+  allCanceled,
+  inProgress,
   completed,
   paused
 }
+
+String getStatusString(OrderFilterState state) {
+  switch (state) {
+    case OrderFilterState.pending:
+      return 'pending';
+    case OrderFilterState.reservations:
+      return 'reservations';
+    case OrderFilterState.allCanceled:
+      return 'All canceled';
+    case OrderFilterState.inProgress:
+      return 'in progress';
+    case OrderFilterState.completed:
+      return 'completed';
+    case OrderFilterState.paused:
+      return 'pause';
+    default:
+      return '';
+  }
+}
+
 
 final class ChipSelected extends DeatilsForOrderState {
   final List<DetailsForOrder> orders;

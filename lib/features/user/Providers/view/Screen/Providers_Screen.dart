@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/core/api_service/network_api_service_http.dart';
 import 'package:start/core/ui/error_widget.dart';
 import 'package:start/core/ui/loading_widget.dart';
-import 'package:start/features/user/Providers/Providers_bloc/provider_service_bloc.dart';
+import 'package:start/features/user/Providers/Providers_bloc/Providers_service_bloc/provider_service_bloc.dart';
 import 'package:start/features/user/Providers/view/widgets/Provider_tile.dart';
 
 class ProvidersScreen extends StatefulWidget {
@@ -199,6 +199,7 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return ProviderTile(
+                              hourleyrate: sucessState.providers[index].hourlyRate,
                               providerId: sucessState.providers[index].providerId,
                               image: sucessState.providers[index].image,
                               name: sucessState.providers[index].firstName!,

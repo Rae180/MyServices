@@ -7,8 +7,4 @@ class CloseOrdersHomeBlocEvent {
   List<Object> get props => [];
 }
 
-class GetCloseOrders extends CloseOrdersHomeBlocEvent {
-  final int id;
-
-  GetCloseOrders({required this.id});
-}
+class FetchPendingAndInprogressOrders extends CloseOrdersHomeBlocEvent {}

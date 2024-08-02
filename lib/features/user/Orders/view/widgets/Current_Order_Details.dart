@@ -46,15 +46,29 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                         'ID\'s Order : $id',
                       ),
                       Container(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(1.0),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
+                                height: 300,
+                                width: 300,
+                                child: Image.network(
+                                  successState.order.imageUrls![index],
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                          itemCount: successState.order.imageUrls!.length,
+                        ),
                         height: 300,
                         padding: EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              'assets/waiting.jpg',
-                            ),
-                          ),
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(
                             20,
@@ -130,7 +144,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       ),
                       Text(
                         // providerName,
-                        successState.order.status!,
+                        successState.order.provider!.user!.firstName ?? '',
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
@@ -144,7 +158,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       ),
                       Text(
                         //phoneNumber.toString(),
-                        successState.order.type!,
+                        successState.order.provider!.user!.phoneNum!,
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 14,

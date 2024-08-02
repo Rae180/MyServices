@@ -8,6 +8,7 @@ import 'package:start/features/provider/order/view/screens/order_details_provide
 import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';
 import 'package:start/features/user/Orders/view/widgets/Current_Order_Details.dart';
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
+import 'package:start/features/user/Providers/view/Screen/Provider_Details._Screen.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
 import 'package:start/features/user/home/view/screen/Close_Orders_Screen.dart';
 import 'package:start/features/user/home/view/screen/Services_scree.dart';
@@ -63,6 +64,10 @@ class AppRouter {
       //       builder: (context) => const CurrentOrderDetailsWidget());
       case OrdersScreen.routeName:
         return MaterialPageRoute(builder: (context) => const OrdersScreen());
+
+      case ProviderDetailsScren.routeName:
+        return MaterialPageRoute(
+            builder: (context) => const ProviderDetailsScren());
 
       default:
         return unDefinedRoute();

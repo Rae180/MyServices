@@ -14,33 +14,11 @@ class DeatilsForOrderBloc
   final BaseApiService client;
   DeatilsForOrderBloc({required this.client})
       : super(DeatilsForOrderInitial()) {
-    // on<DetailsForOrderEvent>((event, emit) async {
-    //   print('details for bloc 1');
-
-    //   emit(DeatilsForOrderLoading());
-    //   final data = await BaseRepo.repoRequest(
-    //     request: () async {
-    //       // edit this
-    //       var data = await client.getRequestAuth(
-    //           url: ApiConstants.GetOrderDetailsDefualt);
-    //       // edit this
-    //       List<DetailsForOrder> details = [];
-    //       data['data'].forEach(
-    //           (element) => details.add(DetailsForOrder.fromJson(element)));
-    //       return details;
-    //     },
-    //   );
-    //   data.fold((f) {
-    //     emit(_mapFailureToState(f));
-    //   }, (data) {
-    //     emit(DeatilsForOrderLoaded(orders: data));
-    //   });
-    // });
     on<FilterOrdersByStatus>(((event, emit) async {
       emit(DeatilsForOrderLoading());
       final data = await BaseRepo.repoRequest(request: () async {
         var data = await client.getRequestAuth(
-          url: '${ApiConstants.GetOrderDetails}/${event.status.toString()}',
+          url: '${ApiConstants.GetOrderDetails}/${getStatusString(event.status)}',
         );
         List<DetailsForOrder> detailes = [];
         data['data'].forEach(
@@ -58,7 +36,7 @@ class DeatilsForOrderBloc
         if (data.isEmpty) {
           emit(DeatilsForOrderEmpty());
         } else {
-          emit(DeatilsForOrderLoaded(orders: data));
+          emit(DeatilsForOrderLoaded(orders: data,selectedFilter: event.status));
         }
       });
     }));

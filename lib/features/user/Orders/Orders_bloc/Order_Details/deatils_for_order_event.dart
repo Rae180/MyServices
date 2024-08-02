@@ -13,7 +13,7 @@ class GetDetailsCurrentOrder extends DetailsForOrderEvent {
 }
 
 class FilterOrdersByStatus extends DetailsForOrderEvent {
-  final String status;
+  final OrderFilterState status;
 
   FilterOrdersByStatus(this.status);
 }
