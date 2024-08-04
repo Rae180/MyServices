@@ -2,7 +2,7 @@ import 'dart:io';
 
 class Order {
   int? providerId;
-  File? image;
+  List<File?> image = [];
   String? type;
   String? scheduleDate;
   String? notes;
@@ -12,7 +12,7 @@ class Order {
   String? latitude;
 
   Order({
-    this.image,
+    required this.image,
     this.providerId,
     this.type,
     this.scheduleDate,
@@ -24,7 +24,10 @@ class Order {
   });
 
   Order.fromJson(Map<String, dynamic> json) {
-    image = json["images"];
+    image = (json["images"] as List<dynamic>?)
+            ?.map((item) => item as File?)
+            .toList() ??
+        [];
     providerId = json["provider_id"];
     type = json["type"];
     scheduleDate = json["schedule_date"];

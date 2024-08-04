@@ -36,11 +36,11 @@ class ProviderServiceBloc
   _mapFailureToState(Failure f) {
     switch (f.runtimeType) {
       case OfflineFailure:
-        return ErrorGetServices(message: 'No internet');
+        return ErrorGetProvidersService(messsage: 'No internet');
 
       case NetworkErrorFailure:
-        return ErrorGetServices(
-          message: (f as NetworkErrorFailure).message,
+        return ErrorGetProvidersService(
+          messsage: (f as NetworkErrorFailure).message,
         );
     }
     ;

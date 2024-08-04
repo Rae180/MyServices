@@ -23,7 +23,7 @@ class CurrentHomeScreen extends StatefulWidget {
 class _CurrentHomeScreenState extends State<CurrentHomeScreen> {
   @override
   void initState() {
-    BlocProvider.of<DeatilsForOrderBloc>(context).add(FilterOrdersByStatus("in progress"));
+    BlocProvider.of<DeatilsForOrderBloc>(context).add(FilterOrdersByStatus(OrderFilterState.inProgress));
     super.initState();
   }
   @override
@@ -77,7 +77,7 @@ class _CurrentHomeScreenState extends State<CurrentHomeScreen> {
                 message: errorState.message,
                 onPressed: () {
                   BlocProvider.of<DeatilsForOrderBloc>(context)
-                      .add(FilterOrdersByStatus("in progress"));
+                      .add(FilterOrdersByStatus(OrderFilterState.inProgress));
                 },
               ),
             );

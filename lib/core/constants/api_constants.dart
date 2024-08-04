@@ -54,4 +54,5 @@ class ApiConstants {
   static const String GetOrderDetails =
       "${ApiConstants.baseAppUrl}order/status";
   static const String CancelOrder = "${ApiConstants.baseAppUrl}order/cancel/";
+  static const String ProviderDetails = "${ApiConstants.baseAppUrl}provider/detalise/";
 }

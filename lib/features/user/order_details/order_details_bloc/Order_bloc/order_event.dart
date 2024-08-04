@@ -7,7 +7,7 @@ class OrderEvent {
 class OrderPostEvent extends OrderEvent {
   final int providerId;
   final String type;
-  final File image;
+  final List<File>? image;
   final String descreption;
   final DateTime dateTime;
   final String longtitude;
@@ -17,7 +17,7 @@ class OrderPostEvent extends OrderEvent {
 
   OrderPostEvent(
       {required this.providerId,
-      this.type = 'instant',
+      required this.type,
       required this.image,
       required this.adress,
       required this.descreption,

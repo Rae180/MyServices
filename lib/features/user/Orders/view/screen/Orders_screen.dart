@@ -24,22 +24,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
     setState(() {
       selectedFilter = filter;
     });
-    String fltredName = filter == OrderFilterState.canceled
+    String fltredName = filter == OrderFilterState.allCanceled
         ? "All canceled"
-        : filter == OrderFilterState.inprogress
+        : filter == OrderFilterState.inProgress
             ? "in progress"
             : describeEnum(filter);
 
-    context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(fltredName));
+    context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(filter));
   }
 
   Future<void> _refreshOrders(BuildContext context) async {
     BlocProvider.of<DeatilsForOrderBloc>(context)
-        .add(FilterOrdersByStatus(selectedFilter == OrderFilterState.canceled
-        ? "All canceled"
-        : selectedFilter == OrderFilterState.inprogress
-            ? "in progress"
-            :describeEnum(selectedFilter)));
+        .add(FilterOrdersByStatus(selectedFilter));
   }
 
   @override
@@ -56,7 +52,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           BlocProvider(
             create: (context) =>
                 DeatilsForOrderBloc(client: NetworkApiServiceHttp())
-                  ..add(FilterOrdersByStatus(defaultfilter)),
+                  ..add(FilterOrdersByStatus(selectedFilter)),
           ),
           BlocProvider(
             create: (context) => HandlingOrderBloc(NetworkApiServiceHttp()),
@@ -129,7 +125,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       message: errorState.message,
                       onPressed: () {
                         BlocProvider.of<DeatilsForOrderBloc>(context).add(
-                            FilterOrdersByStatus(describeEnum(selectedFilter)));
+                            FilterOrdersByStatus(selectedFilter));
                       },
                     ),
                   );

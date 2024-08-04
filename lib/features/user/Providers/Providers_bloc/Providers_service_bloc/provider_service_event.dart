@@ -12,3 +12,9 @@ class GetProvoiders extends ProviderServiceEvent {
 
   GetProvoiders({required this.id});
 }
+
+class SelectOrderType extends ProviderServiceEvent {
+  final ordersState orderType;
+
+  SelectOrderType({required this.orderType});
+}

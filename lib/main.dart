@@ -41,7 +41,7 @@ Future<void> setupInteractMessage() async {
         'id': event.data['orderId'].toString()
       }).then((value) => BlocProvider.of<DeatilsForOrderBloc>(
                   navigatorKey.currentState!.context)
-              .add(FilterOrdersByStatus("in progress")));
+              .add(FilterOrdersByStatus(OrderFilterState.inProgress)));
     }
   });
   FirebaseMessaging.onMessage.listen((message) {
@@ -62,7 +62,7 @@ Future<void> setupInteractMessage() async {
                       'id': message.data['orderId'].toString()
                     }).then((value) => BlocProvider.of<DeatilsForOrderBloc>(
                             navigatorKey.currentState!.context)
-                        .add(FilterOrdersByStatus("in progress")));
+                        .add(FilterOrdersByStatus(OrderFilterState.inProgress)));
               },
             );
           });

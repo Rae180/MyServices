@@ -219,7 +219,7 @@ class _CurrentOrderScreenState extends State<CurrentOrderScreen> {
                         BlocProvider.of<DetailsOrderBloc>(context)
                             .add(GetDetailsOrderEvent(id: widget.id));
                         BlocProvider.of<DeatilsForOrderBloc>(context)
-                            .add(FilterOrdersByStatus("in progress"));
+                            .add(FilterOrdersByStatus(OrderFilterState.inProgress));
                       }
                     },
                     builder: (context, state) {
@@ -484,7 +484,7 @@ class _CurrentOrderScreenState extends State<CurrentOrderScreen> {
                                           BlocProvider.of<DeatilsForOrderBloc>(
                                                   context)
                                               .add(FilterOrdersByStatus(
-                                                  "in progress")));
+                                                  OrderFilterState.inProgress)));
                                 },
                                 child: state is LoadingState
                                     ? const CircularProgressIndicator(

@@ -24,27 +24,17 @@ class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
     setState(() {
       selectedFilter = filter;
     });
-    String fltredName = filter == OrderFilterState.canceled
-        ? "All canceled"
-        : filter == OrderFilterState.inprogress
-            ? "in progress"
-            : describeEnum(filter);
 
-    context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(fltredName));
+    context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(filter));
   }
 
   Future<void> _refreshOrders(BuildContext context) async {
     BlocProvider.of<DeatilsForOrderBloc>(context)
-        .add(FilterOrdersByStatus(selectedFilter == OrderFilterState.canceled
-        ? "All canceled"
-        : selectedFilter == OrderFilterState.inprogress
-            ? "in progress"
-            :describeEnum(selectedFilter)));
+        .add(FilterOrdersByStatus(selectedFilter));
   }
 
   @override
   Widget build(BuildContext context) {
-    const String defaultfilter = 'pending';
     return Scaffold(
       appBar: AppBar(
         shape: RoundedRectangleBorder(
@@ -56,7 +46,7 @@ class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
           BlocProvider(
             create: (context) =>
                 DeatilsForOrderBloc(client: NetworkApiServiceHttp())
-                  ..add(FilterOrdersByStatus(defaultfilter)),
+                  ..add(FilterOrdersByStatus(selectedFilter)),
           ),
           BlocProvider(
             create: (context) => HandlingOrderBloc(NetworkApiServiceHttp()),
@@ -71,28 +61,30 @@ class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
                 child: Row(
                   children:
                       OrderFilterState.values.map((OrderFilterState filter) {
-                    return
-                    filter == OrderFilterState.inprogress? Container() : 
-                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: Builder(builder: (context) {
-                        return FilterChip(
-                          checkmarkColor: Colors.black,
-                          selectedColor: const Color.fromARGB(255, 143, 201, 50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            side: const BorderSide(
-                              color: Color.fromARGB(255, 144, 201, 100),
-                            ),
-                          ),
-                          selected: selectedFilter == filter,
-                          label: Text(describeEnum(filter)),
-                          onSelected: (bool selected) {
-                            _handleChipSelection(context, filter);
-                          },
-                        );
-                      }),
-                    );
+                    return filter == OrderFilterState.inProgress
+                        ? Container()
+                        : Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: Builder(builder: (context) {
+                              return FilterChip(
+                                checkmarkColor: Colors.black,
+                                selectedColor:
+                                    const Color.fromARGB(255, 143, 201, 50),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  side: const BorderSide(
+                                    color: Color.fromARGB(255, 144, 201, 100),
+                                  ),
+                                ),
+                                selected: selectedFilter == filter,
+                                label: Text(describeEnum(filter)),
+                                onSelected: (bool selected) {
+                                  _handleChipSelection(context, filter);
+                                },
+                              );
+                            }),
+                          );
                   }).toList(),
                 ),
               ),
@@ -130,8 +122,8 @@ class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
                     child: NetworkErrorWidget(
                       message: errorState.message,
                       onPressed: () {
-                        BlocProvider.of<DeatilsForOrderBloc>(context).add(
-                            FilterOrdersByStatus(describeEnum(selectedFilter)));
+                        BlocProvider.of<DeatilsForOrderBloc>(context)
+                            .add(FilterOrdersByStatus(selectedFilter));
                       },
                     ),
                   );

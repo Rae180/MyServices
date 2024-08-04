@@ -11,6 +11,10 @@ class LoadingOrder extends OrderState {}
 
 class OrderSucces extends OrderState {}
 
+class SubmittingOrder extends OrderState{}
+
+class SentOrder extends OrderState{}
+
 class OrderError extends OrderState {
   final String message;
   OrderError({

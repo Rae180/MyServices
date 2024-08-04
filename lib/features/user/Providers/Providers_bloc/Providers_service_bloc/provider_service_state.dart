@@ -18,3 +18,25 @@ final class ErrorGetProvidersService extends ProviderServiceState {
 
   ErrorGetProvidersService({required this.messsage});
 }
+
+final class GettingOrderType extends ProviderServiceState {}
+
+enum ordersState {
+  instant,
+  schedule,
+  online,
+  ratings,
+  nearby,
+}
+
+final class SuccessOrderType extends ProviderServiceState {
+  final ordersState selectedOrderType;
+
+  SuccessOrderType({required this.selectedOrderType});
+}
+
+final class ErrorGetOrderType extends ProviderServiceState {
+  final String message;
+
+  ErrorGetOrderType({required this.message});
+}

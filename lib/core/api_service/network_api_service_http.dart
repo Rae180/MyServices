@@ -74,9 +74,8 @@ class NetworkApiServiceHttp implements BaseApiService {
           'X-Requested-With': "XMLHttpRequest",
           //"Locale": lan,
           "Accept": "application/json",
-          if (token != null)
-            'Authorization': token,
-           //     'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNTJmOTM5ZGNkMzY3NjBlYjkyYjBkZTAyMDRhZjUzOWFlNzgxODIzNDJiMGIwMmUyNWIwYmMyYzdmYTRkZDlkN2JjOWQ1NDBiYjk4NDUwZWYiLCJpYXQiOjE3MTk2MTA3NjYsIm5iZiI6MTcxOTYxMDc2NiwiZXhwIjoxNzUxMTQ2NzY2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UkF5eNtJ7Wo_yOQiJnKII9jYaAu7DFRpT07C-zBgzfPvanXNX19MMlZL_LdeVJ6ZgnNdZwtsg7EMitB8oD_Lr9kyVvBW44WTuNtB7lYlZScsIgx6nq2ek9-KB2Jxygf-bYDO8ZqtughFXY818phbbgCMxUKRQvegZWDarNXAl2TFkLTNmy-lMmtKNqFn31XYr3hmCXkDUwgEX-zH-nzhyYSQpNZ0yUjqr3MgLE6XH_XKvs03FcEL--WEs8yZ5NKU6SLZtfcL61FVMZh3lITGYwBU4Uxp1QdCDivj0wj0VGkiQL1eQx7luzIm0CwHSXJtg_WpVtbqWaztAHSmnpROrE4l3iwO3SopG3ncSPKKlXZAsNmw9jjokjV6yFQyCcvHoDJHra6QrjDoOhS0n1f-0sSrgwNTS-seSIFdVBV9PO0zJ-ydA5ati0JOr_4ppiTrn2-yZUU9KY9TDjd_Q6HyXo9wnaTDcpe6vBVy23rm8gqqLaost6umI8TX-qWkAcJoJ0fYNthb-_UaydO5P8Se58pE9Kjim1gz_zR4YfGNckCDIHZS-LNt_0LCCEyGFJiKGGasJTq9fZT-xbsdzRxmvc98RDtCvg2bWFPgjt2sAMaUrzRMc7fKpiT6k7UhEjeKcEYKxqOij-Xt00GowRMR8BS6V8zp9Nd4qkMFKnZErfM',
+          if (token != null) 'Authorization': token,
+//                'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNTJmOTM5ZGNkMzY3NjBlYjkyYjBkZTAyMDRhZjUzOWFlNzgxODIzNDJiMGIwMmUyNWIwYmMyYzdmYTRkZDlkN2JjOWQ1NDBiYjk4NDUwZWYiLCJpYXQiOjE3MTk2MTA3NjYsIm5iZiI6MTcxOTYxMDc2NiwiZXhwIjoxNzUxMTQ2NzY2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UkF5eNtJ7Wo_yOQiJnKII9jYaAu7DFRpT07C-zBgzfPvanXNX19MMlZL_LdeVJ6ZgnNdZwtsg7EMitB8oD_Lr9kyVvBW44WTuNtB7lYlZScsIgx6nq2ek9-KB2Jxygf-bYDO8ZqtughFXY818phbbgCMxUKRQvegZWDarNXAl2TFkLTNmy-lMmtKNqFn31XYr3hmCXkDUwgEX-zH-nzhyYSQpNZ0yUjqr3MgLE6XH_XKvs03FcEL--WEs8yZ5NKU6SLZtfcL61FVMZh3lITGYwBU4Uxp1QdCDivj0wj0VGkiQL1eQx7luzIm0CwHSXJtg_WpVtbqWaztAHSmnpROrE4l3iwO3SopG3ncSPKKlXZAsNmw9jjokjV6yFQyCcvHoDJHra6QrjDoOhS0n1f-0sSrgwNTS-seSIFdVBV9PO0zJ-ydA5ati0JOr_4ppiTrn2-yZUU9KY9TDjd_Q6HyXo9wnaTDcpe6vBVy23rm8gqqLaost6umI8TX-qWkAcJoJ0fYNthb-_UaydO5P8Se58pE9Kjim1gz_zR4YfGNckCDIHZS-LNt_0LCCEyGFJiKGGasJTq9fZT-xbsdzRxmvc98RDtCvg2bWFPgjt2sAMaUrzRMc7fKpiT6k7UhEjeKcEYKxqOij-Xt00GowRMR8BS6V8zp9Nd4qkMFKnZErfM',
         },
       );
 
@@ -256,9 +255,8 @@ class NetworkApiServiceHttp implements BaseApiService {
             'X-Requested-With': "XMLHttpRequest",
             //  "Locale": lan,
             "Accept": "application/json",
-            if (token != null)
-              'Authorization': token,
-                 // 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNTJmOTM5ZGNkMzY3NjBlYjkyYjBkZTAyMDRhZjUzOWFlNzgxODIzNDJiMGIwMmUyNWIwYmMyYzdmYTRkZDlkN2JjOWQ1NDBiYjk4NDUwZWYiLCJpYXQiOjE3MTk2MTA3NjYsIm5iZiI6MTcxOTYxMDc2NiwiZXhwIjoxNzUxMTQ2NzY2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UkF5eNtJ7Wo_yOQiJnKII9jYaAu7DFRpT07C-zBgzfPvanXNX19MMlZL_LdeVJ6ZgnNdZwtsg7EMitB8oD_Lr9kyVvBW44WTuNtB7lYlZScsIgx6nq2ek9-KB2Jxygf-bYDO8ZqtughFXY818phbbgCMxUKRQvegZWDarNXAl2TFkLTNmy-lMmtKNqFn31XYr3hmCXkDUwgEX-zH-nzhyYSQpNZ0yUjqr3MgLE6XH_XKvs03FcEL--WEs8yZ5NKU6SLZtfcL61FVMZh3lITGYwBU4Uxp1QdCDivj0wj0VGkiQL1eQx7luzIm0CwHSXJtg_WpVtbqWaztAHSmnpROrE4l3iwO3SopG3ncSPKKlXZAsNmw9jjokjV6yFQyCcvHoDJHra6QrjDoOhS0n1f-0sSrgwNTS-seSIFdVBV9PO0zJ-ydA5ati0JOr_4ppiTrn2-yZUU9KY9TDjd_Q6HyXo9wnaTDcpe6vBVy23rm8gqqLaost6umI8TX-qWkAcJoJ0fYNthb-_UaydO5P8Se58pE9Kjim1gz_zR4YfGNckCDIHZS-LNt_0LCCEyGFJiKGGasJTq9fZT-xbsdzRxmvc98RDtCvg2bWFPgjt2sAMaUrzRMc7fKpiT6k7UhEjeKcEYKxqOij-Xt00GowRMR8BS6V8zp9Nd4qkMFKnZErfM',
+            if (token != null) 'Authorization': token,
+            //   'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNTJmOTM5ZGNkMzY3NjBlYjkyYjBkZTAyMDRhZjUzOWFlNzgxODIzNDJiMGIwMmUyNWIwYmMyYzdmYTRkZDlkN2JjOWQ1NDBiYjk4NDUwZWYiLCJpYXQiOjE3MTk2MTA3NjYsIm5iZiI6MTcxOTYxMDc2NiwiZXhwIjoxNzUxMTQ2NzY2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UkF5eNtJ7Wo_yOQiJnKII9jYaAu7DFRpT07C-zBgzfPvanXNX19MMlZL_LdeVJ6ZgnNdZwtsg7EMitB8oD_Lr9kyVvBW44WTuNtB7lYlZScsIgx6nq2ek9-KB2Jxygf-bYDO8ZqtughFXY818phbbgCMxUKRQvegZWDarNXAl2TFkLTNmy-lMmtKNqFn31XYr3hmCXkDUwgEX-zH-nzhyYSQpNZ0yUjqr3MgLE6XH_XKvs03FcEL--WEs8yZ5NKU6SLZtfcL61FVMZh3lITGYwBU4Uxp1QdCDivj0wj0VGkiQL1eQx7luzIm0CwHSXJtg_WpVtbqWaztAHSmnpROrE4l3iwO3SopG3ncSPKKlXZAsNmw9jjokjV6yFQyCcvHoDJHra6QrjDoOhS0n1f-0sSrgwNTS-seSIFdVBV9PO0zJ-ydA5ati0JOr_4ppiTrn2-yZUU9KY9TDjd_Q6HyXo9wnaTDcpe6vBVy23rm8gqqLaost6umI8TX-qWkAcJoJ0fYNthb-_UaydO5P8Se58pE9Kjim1gz_zR4YfGNckCDIHZS-LNt_0LCCEyGFJiKGGasJTq9fZT-xbsdzRxmvc98RDtCvg2bWFPgjt2sAMaUrzRMc7fKpiT6k7UhEjeKcEYKxqOij-Xt00GowRMR8BS6V8zp9Nd4qkMFKnZErfM',
           },
           body: json.encode(jsonBody));
 
