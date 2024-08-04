@@ -83,5 +83,25 @@
     "no":"No",
     "yes":"Yes",
     "ok":"ok",
-    "doneorder":"it is done"
+    "doneorder":"it is done",
+    "call":"Call",
+    "arrived":"Arrived",
+    "postponememt":"Postponement",
+    "endwork":"End Work",
+    "pause":"Pause",
+    "resumework":"Resume Work",
+    "addmaterials":"add materials",
+    "invoice":"invoice",
+     "numberorder":"Number Order",
+     "totaltime":"total working hours",
+     "totalhoursinvoice":"hours of work on the bill",
+     "total":"total",
+     "totalwithmaterial":"Total with material",
+     "idmaterial":"Id material",
+     "material":"material",
+     "price":"price",
+     "paid":"Paid"
+
+
+    
   }

@@ -9,15 +9,15 @@ import 'package:start/features/user/Orders/Orders_bloc/Handling_Order/bloc/handl
 import 'package:start/features/user/Orders/Orders_bloc/Order_Details/deatils_for_order_bloc.dart';
 import 'package:start/features/user/Orders/view/widgets/Order_Tile_Not_Accepted.dart';
 
-class OrdersScreen extends StatefulWidget {
+class OrdersScreenProvider extends StatefulWidget {
   static const String routeName = 'Orders_Screen';
-  const OrdersScreen({super.key});
+  const OrdersScreenProvider({super.key});
 
   @override
-  State<OrdersScreen> createState() => _OrdersScreenState();
+  State<OrdersScreenProvider> createState() => _OrdersScreenProviderState();
 }
 
-class _OrdersScreenState extends State<OrdersScreen> {
+class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
   OrderFilterState selectedFilter = OrderFilterState.pending; // Default filter
 
   void _handleChipSelection(BuildContext context, OrderFilterState filter) {
@@ -71,7 +71,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 child: Row(
                   children:
                       OrderFilterState.values.map((OrderFilterState filter) {
-                    return Padding(
+                    return
+                    filter == OrderFilterState.inprogress? Container() : 
+                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: Builder(builder: (context) {
                         return FilterChip(

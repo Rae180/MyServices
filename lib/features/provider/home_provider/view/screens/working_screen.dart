@@ -11,6 +11,8 @@ import 'package:start/core/ui/logout_item.dart';
 import 'package:start/features/provider/home_provider/bloc/go_online_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:start/features/provider/order/view/screens/filter_order_screen.dart';
+import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';
 
 class WorkingScreen extends StatelessWidget {
   const WorkingScreen({super.key});
@@ -20,32 +22,6 @@ class WorkingScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => GoOnlineBloc(client: NetworkApiServiceHttp()),
       child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () async {
-                  String? deviceToken =
-                      await FirebaseMessaging.instance.getToken();
-
-                  print(deviceToken);
-                },
-                icon: const Icon(Icons.abc))
-          ],
-          centerTitle: true,
-          title: AppText(
-            AppLocalizations.of(context)!.home,
-            fontSize: 25,
-          ),
-        ),
-        drawer: const Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              LogOutItem(),
-              LanguageItem(),
-            ],
-          ),
-        ),
         body: BlocBuilder<GoOnlineBloc, GoOnlineState>(
           builder: (context, state) {
             if (state.isOnline) {

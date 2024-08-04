@@ -80,7 +80,7 @@ class _OrderDetailsProviderScreenState
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) =>
+            create: (context) => 
                 DetailsOrderBloc(client: NetworkApiServiceHttp())
                   ..add(GetDetailsOrderEvent(id: widget.id)),
           ),
@@ -218,6 +218,7 @@ class _OrderDetailsProviderScreenState
                               // const SizedBox(
                               //   height: 4,
                               // ),
+                              if(state.data.imageUrls!= null)
                               SizedBox(
                                 height: 100,
                                 child: ListView.separated(

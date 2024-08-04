@@ -83,7 +83,32 @@
     "no":"لا",
     "yes":"نعم",
     "ok":"ok",
-    "doneorder":"لقد تم الأمر"
+    "doneorder":"لقد تم الأمر",
+    "call":"اتصال",
+    "arrived":"وصلت",
+    "postponememt":"تأجيل",
+    "endwork":"انهاء العمل",
+    "pause":"ايقاف",
+    "resumework":"استئناف العمل",
+    "addmaterials":"اضافة مواد",
+    "invoice":"الفاتورة",
+    "numberorder":"رقم الطلب",
+     "totaltime":"ساعات العمل الكلية",
+     "totalhoursinvoice":"ساعات العمل في الفاتورة",
+     "total":"الاجمالي",
+     "totalwithmaterial":"الاجمالي مع المواد",
+     "idmaterial":"رقم العنصر",
+     "material":"المادة",
+     "price":"السعر",
+     "paid":"تم الدفع "
+
+
+
+
+    
+
+
+
 
   
 }

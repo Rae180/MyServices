@@ -27,31 +27,31 @@ class DetailsForOrder {
         notes = json["notes"];
         paymentMethod = json["payment_method"];
         address = json["address"];
-        longitude = json["longitude"];
-        latitude = json["latitude"];
+        longitude = json["longitude"].toString();
+        latitude = json["latitude"].toString();
         createdAt = json["created_at"];
         updatedAt = json["updated_at"];
         imageUrls = json["image_urls"] ?? [];
     }
 
     Map<String, dynamic> toJson() {
-        final Map<String, dynamic> _data = <String, dynamic>{};
-        _data["id"] = id;
-        _data["user_id"] = userId;
-        _data["provider_id"] = providerId;
-        _data["type"] = type;
-        _data["schedule_date"] = scheduleDate;
-        _data["status"] = status;
-        _data["notes"] = notes;
-        _data["payment_method"] = paymentMethod;
-        _data["address"] = address;
-        _data["longitude"] = longitude;
-        _data["latitude"] = latitude;
-        _data["created_at"] = createdAt;
-        _data["updated_at"] = updatedAt;
+        final Map<String, dynamic> data = <String, dynamic>{};
+        data["id"] = id;
+        data["user_id"] = userId;
+        data["provider_id"] = providerId;
+        data["type"] = type;
+        data["schedule_date"] = scheduleDate;
+        data["status"] = status;
+        data["notes"] = notes;
+        data["payment_method"] = paymentMethod;
+        data["address"] = address;
+        data["longitude"] = longitude;
+        data["latitude"] = latitude;
+        data["created_at"] = createdAt;
+        data["updated_at"] = updatedAt;
         if(imageUrls != null) {
-            _data["image_urls"] = imageUrls;
+            data["image_urls"] = imageUrls;
         }
-        return _data;
+        return data;
     }
 }

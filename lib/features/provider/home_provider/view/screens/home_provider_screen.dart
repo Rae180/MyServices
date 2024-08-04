@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:start/features/provider/home_provider/bloc/home_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
-import 'package:start/features/provider/home_provider/view/screens/working_screen.dart';
+import 'package:start/features/provider/home_provider/view/screens/current_home_screen.dart';
+
 import 'package:start/main.dart';
 
 class HomeProviderPage extends StatefulWidget {
@@ -18,14 +19,13 @@ class HomeProviderPage extends StatefulWidget {
 class _HomeProviderPageState extends State<HomeProviderPage> {
   int _selectedIndex = 0;
 
-
-    @override
+  @override
   void initState() {
     print('jajhfjahsjhashfashfjsahfahfash');
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      PermissionStatus status = await  Permission.locationAlways.request();
+      PermissionStatus status = await Permission.locationAlways.request();
 
       if (status == PermissionStatus.granted) {
         print('starting submiting location');
@@ -45,7 +45,7 @@ class _HomeProviderPageState extends State<HomeProviderPage> {
         }
         return Scaffold(
           body: _selectedIndex == 0
-              ? const WorkingScreen()
+              ? const CurrentHomeScreen()
               : _selectedIndex == 1
                   ? Container(
                       child: const Center(

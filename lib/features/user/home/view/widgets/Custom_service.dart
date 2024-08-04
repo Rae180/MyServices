@@ -12,14 +12,14 @@ class ServiceItem extends StatelessWidget {
   final int id;
   final String? name;
   final String? image;
-  final int price;
+  final double price;
   const ServiceItem({
-    Key? key,
+    super.key,
     required this.id,
     required this.name,
     required this.image,
     required this.price,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
