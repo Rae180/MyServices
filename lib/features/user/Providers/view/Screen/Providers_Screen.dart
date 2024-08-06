@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/core/api_service/network_api_service_http.dart';
 import 'package:start/core/ui/error_widget.dart';
 import 'package:start/core/ui/loading_widget.dart';
+import 'package:start/features/user/Providers/Providers_bloc/Provider_Like/bloc/provider_like_bloc.dart';
 import 'package:start/features/user/Providers/Providers_bloc/Providers_service_bloc/provider_service_bloc.dart';
 import 'package:start/features/user/Providers/view/widgets/Provider_tile.dart';
 
@@ -31,9 +32,18 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProviderServiceBloc(client: NetworkApiServiceHttp())
-        ..add(GetProvoiders(id: widget.id!)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              ProviderServiceBloc(client: NetworkApiServiceHttp())
+                ..add(GetProvoiders(id: widget.id!)),
+        ),
+        BlocProvider(
+          create: (context) => ProviderLikeBloc(client: NetworkApiServiceHttp())
+            ..add(FetchFavoriteProviders()),
+        ),
+      ],
       child: Scaffold(
         body: BlocBuilder<ProviderServiceBloc, ProviderServiceState>(
           builder: (context, state) {
@@ -198,12 +208,36 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                       Expanded(
                         child: ListView.builder(
                           itemBuilder: (context, index) {
-                            return ProviderTile(
-                              hourleyrate: sucessState.providers[index].hourlyRate,
-                              providerId: sucessState.providers[index].providerId,
-                              image: sucessState.providers[index].image,
-                              name: sucessState.providers[index].firstName!,
-                              status: sucessState.providers[index].status!,
+                            final provider = sucessState.providers[index];
+                            return BlocBuilder<ProviderLikeBloc,
+                                ProviderLikeState>(
+                              builder: (context, Likestate) {
+                                bool isLiked = false;
+                                if (Likestate is FavoriteProvidersLoaded) {
+                                  isLiked = Likestate.favoriteProvider.any(
+                                      (fav) =>
+                                          fav.providerId ==
+                                          provider.providerId);
+                                }
+                                return ProviderTile(
+                                  hourleyrate: provider.hourlyRate,
+                                  providerId: provider.providerId,
+                                  image: provider.image,
+                                  name: provider.firstName!,
+                                  status: provider.status!,
+                                  isLiked: isLiked,
+                                  onLike: () {
+                                    context.read<ProviderLikeBloc>().add(
+                                        LikeProvider(
+                                            providerId: provider.providerId));
+                                  },
+                                  onUnlike: () {
+                                    context.read<ProviderLikeBloc>().add(
+                                        UnlikeProvider(
+                                            providerId: provider.providerId));
+                                  },
+                                );
+                              },
                             );
                           },
                           itemCount: sucessState.providers.length,

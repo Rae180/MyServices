@@ -17,4 +17,5 @@ abstract class BaseApiService {
     required String? attributeName,
     required List<File>? files,
   });
+  Future<dynamic> deleteRequest({required String url});
 }

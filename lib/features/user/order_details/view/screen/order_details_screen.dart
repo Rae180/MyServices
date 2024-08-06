@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,14 +85,20 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       print('Failed to pick image: $e');
     }
   }
-
-  var _selectedOption = 'wallet';
-  var _selectedType = 'schedule';
+  // String get _selectedOption => AppLocalizations.of(context)!.wallet;
 
   @override
   Widget build(BuildContext context) {
-    var items = ['cash', 'wallet'];
-    var types = ['instant', 'schedule'];
+    var _selectedType = AppLocalizations.of(context)!.schedule;
+    var _selectedOption = AppLocalizations.of(context)!.wallet;
+    var items = [
+      AppLocalizations.of(context)!.cash,
+      AppLocalizations.of(context)!.wallet
+    ];
+    var types = [
+      AppLocalizations.of(context)!.instant,
+      AppLocalizations.of(context)!.schedule
+    ];
     final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
     print(ModalRoute.of(context)?.settings.arguments);
@@ -125,7 +132,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 ),
               ),
               centerTitle: true,
-              title: const Text('Orders'),
+              title: Text(AppLocalizations.of(context)!.orders),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
                   20,
@@ -176,8 +183,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 onTap: () => showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    title: const Text(
-                                      'Chose one Option!',
+                                    title: Text(
+                                      AppLocalizations.of(context)!
+                                          .choseOneOption,
                                     ),
                                     actions: <Widget>[
                                       Row(
@@ -187,7 +195,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           TextButton(
                                             onPressed: () =>
                                                 pickImage(ImageSource.camera),
-                                            child: const Column(
+                                            child: Column(
                                               children: [
                                                 Icon(
                                                   Icons.camera,
@@ -196,7 +204,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                   size: 60,
                                                 ),
                                                 Text(
-                                                  'Camera',
+                                                  AppLocalizations.of(context)!
+                                                      .camera,
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                   ),
@@ -207,7 +216,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           TextButton(
                                             onPressed: () =>
                                                 pickImage(ImageSource.gallery),
-                                            child: const Column(
+                                            child: Column(
                                               children: [
                                                 Icon(
                                                   Icons.photo_album_outlined,
@@ -216,7 +225,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                   size: 60,
                                                 ),
                                                 Text(
-                                                  'Gallery',
+                                                  AppLocalizations.of(context)!
+                                                      .gallery,
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                   ),
@@ -262,13 +272,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: TextFormField(
                           controller: Descriptionecontroller,
                           decoration: InputDecoration(
-                            label: const Row(
+                            label:  Row(
                               children: [
                                 Icon(
                                   Icons.description_outlined,
                                 ),
                                 Text(
-                                  'Description',
+                                  AppLocalizations.of(context)!.description,
                                 ),
                               ],
                             ),
@@ -298,13 +308,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: TextFormField(
                           controller: AdressController,
                           decoration: InputDecoration(
-                            label: const Row(
+                            label:  Row(
                               children: [
                                 Icon(
                                   Icons.location_city_outlined,
                                 ),
                                 Text(
-                                  'Adress',
+                                  AppLocalizations.of(context)!.address,
                                 ),
                               ],
                             ),
@@ -339,13 +349,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             enabled: false,
                             controller: DateController,
                             decoration: InputDecoration(
-                              label: const Row(
+                              label:  Row(
                                 children: [
                                   Icon(
                                     Icons.date_range_outlined,
                                   ),
                                   Text(
-                                    'Date of Booking',
+                                    AppLocalizations.of(context)!.dateOfBooking,
                                   ),
                                 ],
                               ),
@@ -397,13 +407,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             enabled: false,
                             controller: MapController,
                             decoration: InputDecoration(
-                              label: const Row(
+                              label:  Row(
                                 children: [
                                   Icon(
                                     Icons.map_outlined,
                                   ),
                                   Text(
-                                    'Location',
+                                    AppLocalizations.of(context)!.location,
                                   ),
                                 ],
                               ),
@@ -533,7 +543,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             const Color.fromARGB(255, 143, 201, 101),
                           ),
                         ),
-                        child: const Text('Book Now'),
+                        child:  Text(AppLocalizations.of(context)!.bookNow),
                       ),
                       const SizedBox(
                         height: 12,

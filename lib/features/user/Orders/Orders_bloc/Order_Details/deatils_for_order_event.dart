@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'deatils_for_order_bloc.dart';
 
 class DetailsForOrderEvent {
@@ -15,7 +16,9 @@ class GetDetailsCurrentOrder extends DetailsForOrderEvent {
 class FilterOrdersByStatus extends DetailsForOrderEvent {
   final OrderFilterState status;
 
-  FilterOrdersByStatus(this.status);
+  FilterOrdersByStatus(
+    this.status,
+  );
 }
 
 class UpdateOrdersEvent extends DetailsForOrderEvent {

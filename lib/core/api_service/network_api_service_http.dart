@@ -279,6 +279,43 @@ class NetworkApiServiceHttp implements BaseApiService {
       throw ExceptionOther();
     }
   }
+
+  Future deleteRequest({required String url}) async {
+    try {
+      String? token = PreferenceUtils.getString('token');
+      print('url $url');
+      print(token);
+
+      final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          'api': '1.0.0',
+          'X-Requested-With': "XMLHttpRequest",
+          "Accept": "application/json",
+          if (token != null) 'Authorization': token,
+        },
+      );
+
+      print('status code ${response.statusCode}');
+      print('the body : ${response.body}');
+      final decodedResponse = DecodeResponse.decode(response);
+
+      return decodedResponse;
+    } on SocketException {
+      throw ExceptionSocket();
+    } on FormatException {
+      throw ExceptionFormat();
+    } on TimeoutException {
+      throw ExceptionTimeout();
+    } on HandshakeException {
+      throw ExceptionHandshake();
+    } on CustomException catch (e) {
+      throw CustomException(message: e.message);
+    } on Exception {
+      throw ExceptionOther();
+    }
+  }
 }
 
 jsonToFormData(http.MultipartRequest request, Map<String, dynamic> data) {

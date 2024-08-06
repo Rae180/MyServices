@@ -12,7 +12,7 @@ final class DeatilsForOrderLoaded extends DeatilsForOrderState {
   final List<DetailsForOrder> orders;
   final OrderFilterState selectedFilter;
 
-  DeatilsForOrderLoaded({required this.orders,required this.selectedFilter});
+  DeatilsForOrderLoaded({required this.orders, required this.selectedFilter});
 }
 
 enum OrderFilterState {
@@ -22,6 +22,25 @@ enum OrderFilterState {
   inProgress,
   completed,
   paused
+}
+
+String getStatusStringForChips(OrderFilterState state,BuildContext context) {
+  switch (state) {
+    case OrderFilterState.pending:
+      return AppLocalizations.of(context)!.pending;
+    case OrderFilterState.reservations:
+      return AppLocalizations.of(context)!.reservations;
+    case OrderFilterState.allCanceled:
+      return AppLocalizations.of(context)!.allCanceled;
+    case OrderFilterState.inProgress:
+      return AppLocalizations.of(context)!.inprogress;
+    case OrderFilterState.completed:
+      return AppLocalizations.of(context)!.completed;
+    case OrderFilterState.paused:
+      return AppLocalizations.of(context)!.paused;
+    default:
+      return '';
+  }
 }
 
 String getStatusString(OrderFilterState state) {
@@ -42,7 +61,6 @@ String getStatusString(OrderFilterState state) {
       return '';
   }
 }
-
 
 final class ChipSelected extends DeatilsForOrderState {
   final List<DetailsForOrder> orders;

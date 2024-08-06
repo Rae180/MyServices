@@ -26,7 +26,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
       selectedFilter = filter;
     });
     //String fltredName = describeEnum(filter);
-    context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(filter));
+    context
+        .read<DeatilsForOrderBloc>()
+        .add(FilterOrdersByStatus(filter));
   }
 
   Future<void> _refreshOrders(BuildContext context) async {
@@ -49,9 +51,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
           body: MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) =>
-                    DeatilsForOrderBloc(client: NetworkApiServiceHttp())
-                      ..add(FilterOrdersByStatus(navState.selectedChip)),
+                create: (context) => DeatilsForOrderBloc(
+                    client: NetworkApiServiceHttp())
+                  ..add(FilterOrdersByStatus(navState.selectedChip)),
               ),
               BlocProvider(
                 create: (context) => HandlingOrderBloc(NetworkApiServiceHttp()),
@@ -89,7 +91,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                     ),
                                   ),
                                   selected: selectedFilter == filter,
-                                  label: Text(getStatusString(filter)),
+                                  label: Text(
+                                      getStatusStringForChips(filter, context)),
                                   onSelected: (bool selected) {
                                     _handleChipSelection(context, filter);
                                   },
@@ -116,7 +119,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             itemBuilder: (context, index) {
                               return OrdersNotAcceptedYetTile(
                                 numberOfOrder: successState.orders[index].id!,
-                                serviceName: successState.orders[index].type,
+                                orderType: successState.orders[index].type,
                                 dateTime:
                                     successState.orders[index].scheduleDate,
                               );
@@ -136,8 +139,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         child: NetworkErrorWidget(
                           message: errorState.message,
                           onPressed: () {
-                            BlocProvider.of<DeatilsForOrderBloc>(context)
-                                .add(FilterOrdersByStatus(selectedFilter));
+                            BlocProvider.of<DeatilsForOrderBloc>(context).add(
+                                FilterOrdersByStatus(selectedFilter));
                           },
                         ),
                       );

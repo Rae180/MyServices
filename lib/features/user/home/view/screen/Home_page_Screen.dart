@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/api_service/network_api_service_http.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/core/ui/error_widget.dart';
 import 'package:start/core/ui/language_item.dart';
 import 'package:start/core/ui/loading_widget.dart';
@@ -113,7 +114,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                           size: 40, color: Colors.white),
                                       SizedBox(height: 10),
                                       Text(
-                                        'Pending Orders',
+                                        AppLocalizations.of(context)!
+                                            .pendingOrders,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -149,7 +151,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                           size: 40, color: Colors.white),
                                       SizedBox(height: 10),
                                       Text(
-                                        'In Progress Orders',
+                                        AppLocalizations.of(context)!
+                                            .inProgressOrders,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
