@@ -10,6 +10,7 @@ import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/provider/home_provider/bloc/home_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
+import 'package:start/features/user/Orders/Orders_bloc/Order_Details/deatils_for_order_bloc.dart';
 import 'package:start/features/user/Orders/view/widgets/Order_Tile_Not_Accepted.dart';
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
@@ -57,7 +58,12 @@ class _MainAppState extends State<MainApp> {
         BlocProvider(
           create: (context) =>
               SubmitLocationProviderBloc(client: NetworkApiServiceHttp()),
-        )
+        ),
+         BlocProvider(
+          create: (context) => DeatilsForOrderBloc(client: NetworkApiServiceHttp()),
+          child: Container(),
+         )
+
       ],
       child: BlocBuilder<LacalizationCubit, LacalizationState>(
         builder: (context, state) {

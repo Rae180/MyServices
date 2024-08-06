@@ -28,6 +28,22 @@ class ApiConstants {
 
   static const String getProvidersService =
       "${ApiConstants.baseAppUrl}provider/service/";
+  static const String arriveorder =
+      "${ApiConstants.baseAppUrl}completedorder/providerarrived/";
+  static const String startWork =
+      "${ApiConstants.baseAppUrl}completedorder/startwork/";
+  static const String pausework =
+      "${ApiConstants.baseAppUrl}completedorder/pausework/";
+  static const String resumework =
+      "${ApiConstants.baseAppUrl}completedorder/resumework/";
+  static const String endwork =
+      "${ApiConstants.baseAppUrl}completedorder/endwork/";
+  static const String postpomentorder =
+      "${ApiConstants.baseAppUrl}order/postponement/";
+  static const String additem =
+      "${ApiConstants.baseAppUrl}completedorder/additems/";
+  static const String paid =
+      "${ApiConstants.baseAppUrl}completedorder/cash/";
 
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
 

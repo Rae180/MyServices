@@ -5,6 +5,7 @@ class DetailsOrderProvider {
   String? type;
   String? scheduleDate;
   String? status;
+  String? inprogressstatus;
   String? notes;
   String? paymentMethod;
   String? address;
@@ -16,6 +17,7 @@ class DetailsOrderProvider {
   List<String>? imageUrls;
   User? user;
   Provider? provider;
+  Completeorder? complateOrder;
 
   DetailsOrderProvider(
       {this.id,
@@ -24,6 +26,7 @@ class DetailsOrderProvider {
       this.type,
       this.scheduleDate,
       this.status,
+      this.inprogressstatus,
       this.notes,
       this.paymentMethod,
       this.address,
@@ -34,7 +37,8 @@ class DetailsOrderProvider {
       this.updatedAt,
       this.imageUrls,
       this.user,
-      this.provider});
+      this.provider,
+      this.complateOrder});
 
   DetailsOrderProvider.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -43,6 +47,7 @@ class DetailsOrderProvider {
     type = json['type'];
     scheduleDate = json['schedule_date'];
     status = json['status'];
+    inprogressstatus = json['inprogress_status'];
     notes = json['notes'];
     paymentMethod = json['payment_method'];
     address = json['address'];
@@ -51,11 +56,15 @@ class DetailsOrderProvider {
     duration = json['duration'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    imageUrls = json['image_urls'].cast<String>();
+    if (json['image_urls'] != null) {
+      imageUrls = json['image_urls'].cast<String>();
+    }
     user = json['user'] != null ? User.fromJson(json['user']) : null;
-    provider = json['provider'] != null
-        ? Provider.fromJson(json['provider'])
+    complateOrder = json['completeorder'] != null
+        ? Completeorder.fromJson(json['completeorder'])
         : null;
+    provider =
+        json['provider'] != null ? Provider.fromJson(json['provider']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -66,6 +75,7 @@ class DetailsOrderProvider {
     data['type'] = type;
     data['schedule_date'] = scheduleDate;
     data['status'] = status;
+    data['inprogress_status'] = inprogressstatus;
     data['notes'] = notes;
     data['payment_method'] = paymentMethod;
     data['address'] = address;
@@ -77,6 +87,9 @@ class DetailsOrderProvider {
     data['image_urls'] = imageUrls;
     if (user != null) {
       data['user'] = user!.toJson();
+    }
+    if (complateOrder != null) {
+      data['completeorder'] = complateOrder!.toJson();
     }
     if (provider != null) {
       data['provider'] = provider!.toJson();
@@ -270,3 +283,148 @@ class Service {
     return data;
   }
 }
+
+
+
+class Completeorder {
+  int? id;
+  int? orderId;
+  String? startWork;
+  String? pauseWork;
+  String? resumeWork;
+  String? endWork;
+  int? totalWorkHours;
+  Null rate;
+  Null comment;
+  Null complaint;
+  String? createdAt;
+  String? updatedAt;
+  Bill? bill;
+
+  Completeorder(
+      {this.id,
+      this.orderId,
+      this.startWork,
+      this.pauseWork,
+      this.resumeWork,
+      this.endWork,
+      this.totalWorkHours,
+      this.rate,
+      this.comment,
+      this.complaint,
+      this.createdAt,
+      this.updatedAt,
+      this.bill});
+
+  Completeorder.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    orderId = json['order_id'];
+    startWork = json['start_work'];
+    pauseWork = json['pause_work'];
+    resumeWork = json['resume_work'];
+    endWork = json['end_work'];
+    totalWorkHours = json['total_work_hours'];
+    rate = json['rate'];
+    comment = json['comment'];
+    complaint = json['complaint'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    bill = json['bill'] != null ? Bill.fromJson(json['bill']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['order_id'] = orderId;
+    data['start_work'] = startWork;
+    data['pause_work'] = pauseWork;
+    data['resume_work'] = resumeWork;
+    data['end_work'] = endWork;
+    data['total_work_hours'] = totalWorkHours;
+    data['rate'] = rate;
+    data['comment'] = comment;
+    data['complaint'] = complaint;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (bill != null) {
+      data['bill'] = bill!.toJson();
+    }
+    return data;
+  }
+}
+
+class Bill {
+  int? id;
+  int? completedOrderId;
+  int? workHours;
+  double? total;
+  double? totalWithItem;
+  String? createdAt;
+  String? updatedAt;
+ List<Item>? items;
+
+  Bill({
+    this.id,
+    this.completedOrderId,
+    this.workHours,
+    this.total,
+    this.totalWithItem,
+    this.createdAt,
+    this.updatedAt,
+    this.items
+  });
+
+  Bill.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    completedOrderId = json['completed_order_id'];
+    workHours = json['work_hours'];
+    total = json['total'].toDouble();
+    totalWithItem = json['total_with_item'].toDouble();
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    if (json['items'] != null) {
+      items = <Item>[];
+      json['items'].forEach((v) {
+        items!.add( Item.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['completed_order_id'] = completedOrderId;
+    data['work_hours'] = workHours;
+    data['total'] = total;
+    data['total_with_item'] = totalWithItem;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (items != null) {
+      data['items'] = items!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Item {
+  int? id;
+  String? item;
+  String? price;
+  Item(this.item, this.price,this.id);
+
+  Item.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    item = json['item'];
+    price = json['price'].toString();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['item'] = item;
+    data['price'] = price;
+    return data;
+  }
+}
+
+
+
