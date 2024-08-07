@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/api_service/network_api_service_http.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/core/ui/error_widget.dart';
 import 'package:start/core/ui/language_item.dart';
 import 'package:start/core/ui/loading_widget.dart';
@@ -104,17 +105,18 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(16.0),
+                                child:  Padding(
+                                  padding: const EdgeInsets.all(16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.pending,
+                                      const Icon(Icons.pending,
                                           size: 40, color: Colors.white),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       Text(
-                                        'Pending Orders',
-                                        style: TextStyle(
+                                        AppLocalizations.of(context)!
+                                            .pendingOrders,
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -140,17 +142,18 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(16.0),
+                                child:  Padding(
+                                  padding: const EdgeInsets.all(16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.work,
+                                      const Icon(Icons.work,
                                           size: 40, color: Colors.white),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       Text(
-                                        'In Progress Orders',
-                                        style: TextStyle(
+                                        AppLocalizations.of(context)!
+                                            .inProgressOrders,
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,

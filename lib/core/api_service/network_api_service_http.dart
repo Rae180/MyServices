@@ -323,6 +323,8 @@ class NetworkApiServiceHttp implements BaseApiService {
       throw ExceptionOther();
     }
   }
+
+  
 }
 
 jsonToFormData(http.MultipartRequest request, Map<String, dynamic> data) {

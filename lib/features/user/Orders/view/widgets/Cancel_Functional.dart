@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:start/core/api_service/network_api_service_http.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/features/user/Orders/Orders_bloc/Handling_Order/bloc/handling_order_bloc.dart';
 import 'package:start/features/user/Orders/Orders_bloc/Order_Details/deatils_for_order_bloc.dart';
 import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';
@@ -29,7 +30,7 @@ class CancelFunctionWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
-                'Are you sure you want to cancel the order ?',
+                AppLocalizations.of(context)!.areyousureCancel,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -49,7 +50,7 @@ class CancelFunctionWidget extends StatelessWidget {
                     // Navigator.of(context)
                     //     .popAndPushNamed(NotAcceptedYetOrders.routeName);
                     Navigator.of(context).popUntil((route) => route.isFirst);
-                    
+
                     // Navigator.of(context)
                     //     .pushReplacementNamed(OrdersScreen.routeName);
                   },

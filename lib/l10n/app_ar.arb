@@ -109,12 +109,45 @@
     "doYouWantToDeleteAccount" : "هل انت متأكد انك تريد حذف حسابك؟",
     "delete":"حذف",
      "businessexhibition":"معرض الاعمال",
-     "addpost":"اضافة بوست"
- 
-    
-
-
-
-
-  
+     "addpost":"اضافة بوست",
+    "pendingOrders":"الطلبات المعلقة",
+    "inProgressOrders":"الطلبات الجارية",
+    "pending":"معلقة",
+    "reservations":"الحجوزات",
+    "allCanceled":"الملغاة",
+    "inprogress":"الجارية",
+    "completed":"المكتملة",
+    "paused":"المتوقفة",
+    "choseOneOption":"اختر خيار",
+    "camera":"كاميرا",
+    "gallery":"الاستديو",
+    "description":"الوصف",
+    "address":"العنوان",
+    "dateOfBooking":"تاريخ الحجز",
+    "location":"الموقع",
+    "wallet":"المحفظة",
+    "cash":"كاش",
+    "schedule":"مجدول",
+    "instant":"فوري",
+    "bookNow":"احجز الآن",
+    "details":"تفاصيل",
+    "jobDescreption":"وصف العمل",
+    "status":"الحالة",
+    "noImageAvailable":"لا يوجد صور متاحة لعرضها",
+    "idsorder":"الرقم التعريفي للطلب",
+    "dateandTime":"الوقت و التاريخ",
+    "provider":"مزود الخدمة",
+    "providerPhoneNum":"رقم الموبايل لمزود الخدمة",
+    "back":"رجوع",
+    "areyousureCancel":"هل انت متاكد من انك ترغب في الغاء الطلب ؟",
+    "thebill":"الفاتورة",
+    "workhours":"ساعات العمل",
+    "total":"اجمالي ساعات العمل",
+    "totalPrice":"السعر الاجمالي",
+    "totalWithItems":"الاجمالي مع الادوات المستخدمة",
+    "items":"الادوات المستخدمة",
+    "theItem":"الغرض",
+    "thePrice":"السعر",
+    "numberOfOrder":"رقم الطلب",
+    "orderType":"نوع الطلب"
 }

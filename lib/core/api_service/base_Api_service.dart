@@ -20,4 +20,5 @@ abstract class BaseApiService {
   Future<dynamic> delete ({
     required String url,
   });
+  
 }

@@ -6,16 +6,17 @@ import 'package:start/features/user/Orders/Orders_bloc/Handling_Order/bloc/handl
 import 'package:start/features/user/Orders/Orders_bloc/Order_Details/deatils_for_order_bloc.dart';
 import 'package:start/features/user/Orders/model/Details_For_Order.dart';
 import 'package:start/features/user/Orders/view/widgets/Current_Order_Details.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrdersNotAcceptedYetTile extends StatelessWidget {
   final int? numberOfOrder;
-  final String? serviceName;
+  final String? orderType;
   final String? dateTime;
 
   const OrdersNotAcceptedYetTile(
       {super.key,
       required this.numberOfOrder,
-      required this.serviceName,
+      required this.orderType,
       required this.dateTime});
   @override
   Widget build(BuildContext context) {
@@ -34,10 +35,13 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Number of order : $numberOfOrder'),
-                  Text('Service Name : $serviceName',
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  Text('Date Time : $dateTime'),
+                  Text(
+                      '${AppLocalizations.of(context)!.numberOfOrder} : $numberOfOrder'),
+                  Text(
+                      '${AppLocalizations.of(context)!.orderType} : $orderType',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                      '${AppLocalizations.of(context)!.dateandTime} : $dateTime'),
                 ],
               ),
             ],
@@ -55,8 +59,8 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
                     );
                   });
             },
-            icon: const Icon(
-              Icons.access_alarms_outlined,
+            icon: Icon(
+              Icons.info_outline,
               color: Color.fromARGB(255, 143, 201, 101),
             ),
           ),
