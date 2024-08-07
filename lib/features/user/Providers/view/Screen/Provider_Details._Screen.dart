@@ -11,9 +11,9 @@ class ProviderDetailsScren extends StatelessWidget {
   static const String routeName = 'Providers_Details_Screen';
   final int? providerId;
   const ProviderDetailsScren({
-    Key? key,
+    super.key,
     this.providerId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ProviderDetailsScren extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_new_outlined,
             ),
           ),
@@ -37,13 +37,13 @@ class ProviderDetailsScren extends StatelessWidget {
               20,
             ),
           ),
-          title: Text('data'),
+          title: const Text('data'),
         ),
         body: BlocBuilder<ProviderDetailsBloc, ProviderDetailsState>(
             builder: (context, state) {
           switch (state.runtimeType) {
             case ProviderDetailsLoading:
-              return LoadingWidget();
+              return const LoadingWidget();
               break;
             case ProviderDetailsLoaded:
               final successState = state as ProviderDetailsLoaded;
@@ -52,20 +52,20 @@ class ProviderDetailsScren extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     CircleAvatar(
+                      maxRadius: 70,
                       child: Image.network(
                           successState.providerDetails.user!.image!),
-                      maxRadius: 70,
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'First Name : ',
                         ),
                         SizedBox(
@@ -74,16 +74,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.user!.firstName!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Last Name : ',
                         ),
                         SizedBox(
@@ -92,16 +92,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.user!.lastName!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Job descreption : ',
                         ),
                         SizedBox(
@@ -110,16 +110,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.jobDescription!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Email : ',
                         ),
                         SizedBox(
@@ -128,16 +128,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.user!.email!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Phone number : ',
                         ),
                         SizedBox(
@@ -146,16 +146,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.user!.phoneNum!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Adress : ',
                         ),
                         SizedBox(
@@ -164,16 +164,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.user!.gender!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Status : ',
                         ),
                         SizedBox(
@@ -182,16 +182,16 @@ class ProviderDetailsScren extends StatelessWidget {
                         Text(successState.providerDetails.status!)
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black,
                       thickness: 1,
                     ),
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
-                        Text(
+                        const Text(
                           'Hourly Rate : ',
                         ),
                         SizedBox(
@@ -218,7 +218,7 @@ class ProviderDetailsScren extends StatelessWidget {
               );
               break;
             default:
-              return SizedBox();
+              return const SizedBox();
           }
         }),
       ),

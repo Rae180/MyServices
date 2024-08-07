@@ -100,7 +100,17 @@
      "idmaterial":"Id material",
      "material":"material",
      "price":"price",
-     "paid":"Paid"
+     "paid":"Paid",
+     "galleryLabel": "Gallery",
+    "cameraLabel": "Camera",
+    "status":"status",
+    "gender":"Gender",
+    "deleteAccount":"deleteAccount",
+     "doYouWantToDeleteAccount" : "Are you sure you want to delete your account?",
+    "delete":"delete",
+    "businessexhibition":"Business exhibition",
+    "addpost":"Add Post"
+
 
 
     

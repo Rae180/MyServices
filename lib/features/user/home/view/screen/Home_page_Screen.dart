@@ -47,7 +47,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               onPressed: () {
                 Navigator.of(context).pushNamed(CloesdOrdersScreen.routeName);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.notifications,
                 color: Colors.black,
               ),
@@ -75,14 +75,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     //   return const LoadingWidget();
 
                     case PendingAndInprogressOrdersHomeLoadedState:
-                      final successState =
-                          state as PendingAndInprogressOrdersHomeLoadedState;
+                      state as PendingAndInprogressOrdersHomeLoadedState;
                       print('ui:${state.isInPending}');
                       print(state.isInProgress);
                       if (state.isInPending == false &&
                           state.isInProgress == false) {
-                        return SizedBox.shrink();
-                      } else {
+                        return const SizedBox.shrink();
+                      } else if (state.isInPending == true &&
+                          state.isInProgress == true) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -104,8 +104,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -140,8 +140,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
@@ -162,6 +162,83 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               ),
                             ),
                           ],
+                        );
+                      } else if (state.isInPending == true) {
+                        return GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<NavigationBloc>(context)
+                                .add(NavigateToPage(3));
+                            BlocProvider.of<NavigationBloc>(context).add(
+                                SelectFilterChip(OrderFilterState.pending));
+                            // Navigator.pushReplacement(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => HomePage()),
+                            // );
+                          },
+                          child: Card(
+                            color: Colors.blueAccent,
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(Icons.pending,
+                                      size: 40, color: Colors.white),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    'Pending Orders',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return GestureDetector(
+                          onTap: () {
+                            print('pressing');
+                            BlocProvider.of<NavigationBloc>(context)
+                                .add(NavigateToPage(3));
+                            BlocProvider.of<NavigationBloc>(context).add(
+                              SelectFilterChip(OrderFilterState.inProgress),
+                            );
+                          },
+                          child: Card(
+                            color: Colors.orangeAccent,
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(Icons.work,
+                                      size: 40, color: Colors.white),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    'In Progress Orders',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         );
                       }
                       break;

@@ -13,13 +13,13 @@ import 'package:start/features/user/Orders/view/widgets/Re-Reschedule.dart';
 class CurrentOrderDetailsWidget extends StatelessWidget {
   static const String routeName = '/Current_Order_Details';
   final int? id;
-  final HandlingOrderBloc handlingOrderBloc;
+ final HandlingOrderBloc handlingOrderBloc;
 
   const CurrentOrderDetailsWidget({
-    Key? key,
+    super.key,
     this.id,
     required this.handlingOrderBloc,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
           if (state is GettingDetailsById) {
             return const Center(child: LoadingWidget());
           } else if (state is SuccessGettingOrderDetailsById) {
-            final successState = state as SuccessGettingOrderDetailsById;
+            final successState = state;
             return Dialog(
               child: SingleChildScrollView(
                 child: Container(
@@ -45,14 +45,23 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         'ID\'s Order : $id',
                       ),
+                      if(successState.order.imageUrls != null)
                       Container(
+                        height: 300,
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(
+                            20,
+                          ),
+                        ),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.all(1.0),
                               child: Container(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                   horizontal: 4,
                                 ),
                                 height: 300,
@@ -66,19 +75,11 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                           },
                           itemCount: successState.order.imageUrls!.length,
                         ),
-                        height: 300,
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(
-                            20,
-                          ),
-                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'Descreption',
                       ),
                       Padding(
@@ -88,78 +89,78 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                         child: Text(
                           // descreption,
                           successState.order.notes!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'Adress',
                       ),
                       Text(
                         // adress,
                         successState.order.address!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'Date & Time',
                       ),
                       Text(
                         // datetime,
                         successState.order.scheduleDate!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'Payment',
                       ),
                       Text(
                         // payment,
                         successState.order.paymentMethod!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'Provider',
                       ),
                       Text(
                         // providerName,
                         successState.order.provider!.user!.firstName ?? '',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
-                      Text(
+                      const Text(
                         'Provider\'s Phone Number',
                       ),
                       Text(
                         //phoneNumber.toString(),
                         successState.order.provider!.user!.phoneNum!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
@@ -174,7 +175,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                 backgroundColor: Colors.black12,
                               ),
                               onPressed: () {},
-                              child: Text(
+                              child: const Text(
                                 'Back',
                                 style: TextStyle(
                                   color: Colors.white,
@@ -215,7 +216,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                       );
                                     });
                               },
-                              child: Text(
+                              child: const Text(
                                 'Cancel',
                                 style: TextStyle(
                                   color: Colors.white,
@@ -231,7 +232,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
               ),
             );
           } else if (state is ErrorGettingDetailsOrderDetailsById) {
-            final errorState = state as ErrorGettingDetailsOrderDetailsById;
+            final errorState = state;
             return Center(
               child: NetworkErrorWidget(
                 message: errorState.message,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/core/ui/language_item.dart';
-
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:start/features/user/Favorites/view/Screen/Favorites_screen.dart';
 import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';

@@ -8,8 +8,8 @@ class DetailsForOrder {
   String? notes;
   String? paymentMethod;
   String? address;
-  int? longitude;
-  int? latitude;
+  double? longitude;
+  double? latitude;
   int? duration;
   int? notificationSent;
   String? createdAt;
@@ -46,8 +46,8 @@ class DetailsForOrder {
     notes = json["notes"];
     paymentMethod = json["payment_method"];
     address = json["address"];
-    longitude = json["longitude"];
-    latitude = json["latitude"];
+    longitude = json["longitude"].toDouble();
+    latitude = json["latitude"].toDouble();
     duration = json["duration"];
     notificationSent = json["notification_sent"];
     createdAt = json["created_at"];
@@ -60,29 +60,29 @@ class DetailsForOrder {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["user_id"] = userId;
-    _data["provider_id"] = providerId;
-    _data["type"] = type;
-    _data["schedule_date"] = scheduleDate;
-    _data["status"] = status;
-    _data["notes"] = notes;
-    _data["payment_method"] = paymentMethod;
-    _data["address"] = address;
-    _data["longitude"] = longitude;
-    _data["latitude"] = latitude;
-    _data["duration"] = duration;
-    _data["notification_sent"] = notificationSent;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["user_id"] = userId;
+    data["provider_id"] = providerId;
+    data["type"] = type;
+    data["schedule_date"] = scheduleDate;
+    data["status"] = status;
+    data["notes"] = notes;
+    data["payment_method"] = paymentMethod;
+    data["address"] = address;
+    data["longitude"] = longitude;
+    data["latitude"] = latitude;
+    data["duration"] = duration;
+    data["notification_sent"] = notificationSent;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
     if (imageUrls != null) {
-      _data["image_urls"] = imageUrls;
+      data["image_urls"] = imageUrls;
     }
     if (provider != null) {
-      _data["provider"] = provider?.toJson();
+      data["provider"] = provider?.toJson();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -140,27 +140,27 @@ class Provider {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["user_id"] = userId;
-    _data["service_id"] = serviceId;
-    _data["job_description"] = jobDescription;
-    _data["birth_date"] = birthDate;
-    _data["status"] = status;
-    _data["acc_status"] = accStatus;
-    _data["hourly_rate"] = hourlyRate;
-    _data["address"] = address;
-    _data["longitude"] = longitude;
-    _data["latitude"] = latitude;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["user_id"] = userId;
+    data["service_id"] = serviceId;
+    data["job_description"] = jobDescription;
+    data["birth_date"] = birthDate;
+    data["status"] = status;
+    data["acc_status"] = accStatus;
+    data["hourly_rate"] = hourlyRate;
+    data["address"] = address;
+    data["longitude"] = longitude;
+    data["latitude"] = latitude;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
     if (service != null) {
-      _data["service"] = service?.toJson();
+      data["service"] = service?.toJson();
     }
     if (user != null) {
-      _data["user"] = user?.toJson();
+      data["user"] = user?.toJson();
     }
-    return _data;
+    return data;
   }
 }
 
@@ -217,23 +217,23 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["first_name"] = firstName;
-    _data["last_name"] = lastName;
-    _data["email"] = email;
-    _data["email_verified_at"] = emailVerifiedAt;
-    _data["phone_num"] = phoneNum;
-    _data["gender"] = gender;
-    _data["image"] = image;
-    _data["main_address"] = mainAddress;
-    _data["wallet"] = wallet;
-    _data["tax_owed"] = taxOwed;
-    _data["is_provider"] = isProvider;
-    _data["Block"] = block;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["first_name"] = firstName;
+    data["last_name"] = lastName;
+    data["email"] = email;
+    data["email_verified_at"] = emailVerifiedAt;
+    data["phone_num"] = phoneNum;
+    data["gender"] = gender;
+    data["image"] = image;
+    data["main_address"] = mainAddress;
+    data["wallet"] = wallet;
+    data["tax_owed"] = taxOwed;
+    data["is_provider"] = isProvider;
+    data["Block"] = block;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    return data;
   }
 }
 
@@ -266,14 +266,14 @@ class Service {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["id"] = id;
-    _data["catogry_id"] = catogryId;
-    _data["name"] = name;
-    _data["image"] = image;
-    _data["price"] = price;
-    _data["created_at"] = createdAt;
-    _data["updated_at"] = updatedAt;
-    return _data;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["catogry_id"] = catogryId;
+    data["name"] = name;
+    data["image"] = image;
+    data["price"] = price;
+    data["created_at"] = createdAt;
+    data["updated_at"] = updatedAt;
+    return data;
   }
 }

@@ -24,7 +24,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           url: ApiConstants.PostOrder,
           jsonBody: {
             "provider_id": event.providerId,
-            "schedule_date": event.dateTime,
+            if (event.type != 'instant') "schedule_date": event.dateTime,
             "notes": event.descreption,
             "longitude": event.longtitude,
             "latitude": event.latitude,

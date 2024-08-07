@@ -100,11 +100,17 @@
      "idmaterial":"رقم العنصر",
      "material":"المادة",
      "price":"السعر",
-     "paid":"تم الدفع "
-
-
-
-
+     "paid":"تم الدفع ",
+     "galleryLabel": "معرض",
+    "cameraLabel": "كاميرا",
+    "gender":"الجنس",
+    "status":"الحالة",
+    "deleteAccount":"حذف الحساب",
+    "doYouWantToDeleteAccount" : "هل انت متأكد انك تريد حذف حسابك؟",
+    "delete":"حذف",
+     "businessexhibition":"معرض الاعمال",
+     "addpost":"اضافة بوست"
+ 
     
 
 

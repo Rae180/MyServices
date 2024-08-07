@@ -20,7 +20,7 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(8),
@@ -30,13 +30,13 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Number of order : $numberOfOrder'),
                   Text('Service Name : $serviceName',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                   Text('Date Time : $dateTime'),
                 ],
               ),
@@ -55,7 +55,7 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
                     );
                   });
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.access_alarms_outlined,
               color: Color.fromARGB(255, 143, 201, 101),
             ),

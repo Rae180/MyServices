@@ -10,32 +10,36 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final BaseApiService client;
   AuthBloc({required this.client}) : super(AuthInitial()) {
-    on<AppStarted>((event, emit) async{
+    on<AppStarted>((event, emit) async {
       String? token = PreferenceUtils.getString('token');
       if (token == null) {
         emit(UnauthenticatedState());
       } else {
         bool provider = PreferenceUtils.getbool('provider')!;
 
-        if (provider)  {
+        if (provider) {
           print(token);
-          var data = await client.getRequestAuth(url: ApiConstants.checkactiveaccountprovider);
-          
+          var data = await client.getRequestAuth(
+              url: ApiConstants.checkactiveaccountprovider);
+
           if (data['success'] == '0') {
-         emit(UnactiveAccount());
-          }else{
+            emit(UnactiveAccount());
+          } else {
             emit(AuthenticatedProviderState());
           }
-          
         } else {
           emit(AuthenticatedUserState());
         }
       }
     });
-    on<LogOutEvent>((event, emit) async{
+    on<LogOutEvent>((event, emit) async {
       await client.getRequestAuth(url: ApiConstants.logout);
-     PreferenceUtils.removeValue('token');
-     emit(UnauthenticatedState());
+      PreferenceUtils.removeValue('token');
+      emit(UnauthenticatedState());
+    });
+    on<DeleteEvent>((event, emit) {
+      PreferenceUtils.removeValue('token');
+      emit(UnauthenticatedState());
     });
   }
 }

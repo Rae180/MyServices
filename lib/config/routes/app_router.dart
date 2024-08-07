@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/core/managers/string_manager.dart';
@@ -5,6 +6,8 @@ import 'package:start/features/Auth/view/screens/Signup_Screen.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen_Provider.dart';
 import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/provider/order/view/screens/order_details_provider_screen.dart';
+import 'package:start/features/provider/profile/view/screens/profile_provider.dart';
+import 'package:start/features/provider/profile/view/widgets/details_profile.dart';
 import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';
 import 'package:start/features/user/Orders/view/widgets/Current_Order_Details.dart';
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
@@ -43,6 +46,9 @@ class AppRouter {
             builder: (context) => OrderDetailsProviderScreen(
                   id: id,
                 ));
+      case UserDetailsPage.routeName:
+      final args = routeSettings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(builder: (context) => UserDetailsPage(userData: args['data'],));
       case ProvidersScreen.routeName:
         return MaterialPageRoute(builder: (context) => const ProvidersScreen());
       case OrderDetailsScreen.routeName:

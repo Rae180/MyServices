@@ -196,6 +196,50 @@ class NetworkApiServiceHttp implements BaseApiService {
   }
 
   @override
+  Future delete({
+    required String url,
+  }) async {
+    try {
+      //    String? lan = PreferenceUtils.getString(
+      //   'LANGUAGE',
+      // );
+      // lan ??= 'en';
+       String? token = PreferenceUtils.getString('token');
+      print('url $url');
+    
+      final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+          'api': '1.0.0',
+          'X-Requested-With': "XMLHttpRequest",
+          //  "Locale": lan,
+          "Accept": "application/json",
+         if (token != null) 'Authorization': token,
+        },
+      );
+
+      print('status code ${response.statusCode}');
+      print('the body is sisiisisisis : ${response.body}');
+      final decodedResponse = DecodeResponse.decode(response);
+
+      return decodedResponse;
+    } on SocketException {
+      throw ExceptionSocket();
+    } on FormatException {
+      throw ExceptionFormat();
+    } on TimeoutException {
+      throw ExceptionTimeout();
+    } on HandshakeException {
+      throw ExceptionHandshake();
+    } on CustomException catch (e) {
+      throw CustomException(message: e.message);
+    } on Exception {
+      throw ExceptionOther();
+    }
+  }
+
+  @override
   Future postRequest(
       {required String url, required Map<String, dynamic> jsonBody}) async {
     try {
