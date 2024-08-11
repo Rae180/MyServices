@@ -40,8 +40,8 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                 ..add(GetProvoiders(id: widget.id!)),
         ),
         BlocProvider(
-          create: (context) => ProviderLikeBloc(client: NetworkApiServiceHttp())
-            ..add(FetchFavoriteProviders()),
+          create: (context) =>
+              ProviderLikeBloc(client: NetworkApiServiceHttp()),
         ),
       ],
       child: Scaffold(
@@ -212,13 +212,8 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                             return BlocBuilder<ProviderLikeBloc,
                                 ProviderLikeState>(
                               builder: (context, Likestate) {
-                                bool isLiked = false;
-                                if (Likestate is FavoriteProvidersLoaded) {
-                                  isLiked = Likestate.favoriteProvider.any(
-                                      (fav) =>
-                                          fav.providerId ==
-                                          provider.providerId);
-                                }
+                                bool isLiked = provider.isFav!;
+
                                 return ProviderTile(
                                   hourleyrate: provider.hourlyRate,
                                   providerId: provider.providerId,
@@ -230,11 +225,17 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                                     context.read<ProviderLikeBloc>().add(
                                         LikeProvider(
                                             providerId: provider.providerId));
+                                    BlocProvider.of<ProviderServiceBloc>(
+                                            context)
+                                        .add(GetProvoiders(id: widget.id!));
                                   },
                                   onUnlike: () {
                                     context.read<ProviderLikeBloc>().add(
                                         UnlikeProvider(
                                             providerId: provider.providerId));
+                                    BlocProvider.of<ProviderServiceBloc>(
+                                            context)
+                                        .add(GetProvoiders(id: widget.id!));
                                   },
                                 );
                               },

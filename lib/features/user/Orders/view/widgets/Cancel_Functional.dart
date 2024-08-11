@@ -12,11 +12,13 @@ import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.d
 class CancelFunctionWidget extends StatelessWidget {
   final int? id;
   final HandlingOrderBloc handlingOrderBloc;
-  const CancelFunctionWidget({
-    Key? key,
-    required this.id,
-    required this.handlingOrderBloc,
-  }) : super(key: key);
+  final DeatilsForOrderBloc deatilsForOrderBloc;
+  const CancelFunctionWidget(
+      {Key? key,
+      required this.id,
+      required this.handlingOrderBloc,
+      required this.deatilsForOrderBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class CancelFunctionWidget extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color.fromARGB(255, 143, 201, 101),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     handlingOrderBloc.add(
                       CancelOrderRequested(
                         id.toString(),
@@ -51,8 +53,12 @@ class CancelFunctionWidget extends StatelessWidget {
                     //     .popAndPushNamed(NotAcceptedYetOrders.routeName);
                     Navigator.of(context).popUntil((route) => route.isFirst);
 
+                    await Future.delayed(Duration(seconds: 2));
+
                     // Navigator.of(context)
                     //     .pushReplacementNamed(OrdersScreen.routeName);
+                    deatilsForOrderBloc
+                        .add(FilterOrdersByStatus(OrderFilterState.pending));
                   },
                   child: Text(
                     'Yes',

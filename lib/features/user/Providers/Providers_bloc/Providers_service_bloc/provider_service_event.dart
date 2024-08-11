@@ -14,7 +14,7 @@ class GetProvoiders extends ProviderServiceEvent {
 }
 
 class SelectOrderType extends ProviderServiceEvent {
-  final ordersState orderType;
+  final ProviderStatus orderType;
 
   SelectOrderType({required this.orderType});
 }

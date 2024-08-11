@@ -15,7 +15,7 @@ class ProviderTile extends StatefulWidget {
   final bool isLiked;
   final VoidCallback onLike;
   final VoidCallback onUnlike;
-   ProviderTile(
+  ProviderTile(
       {required this.providerId,
       required this.image,
       required this.name,
@@ -73,7 +73,8 @@ class _ProviderTileState extends State<ProviderTile> {
           Row(
             children: [
               AnimatedReactButton(
-                reactColor: widget.isLiked ? Colors.red : Colors.grey,
+                defaultColor: widget.isLiked ? Colors.red : Colors.grey,
+                reactColor: widget.isLiked ? Colors.grey : Colors.red,
                 onPressed: () {
                   if (widget.isLiked) {
                     widget.onUnlike();

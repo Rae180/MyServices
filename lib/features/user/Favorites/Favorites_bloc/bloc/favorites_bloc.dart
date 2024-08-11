@@ -57,19 +57,28 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         var response = await client.deleteRequest(
             url: '${ApiConstants.like}${event.providerId}');
         print('API response: $response');
-        return FavoriteProvideres.fromJson(response['data']);
+        if (response['data'] != null) {
+          return FavoriteProvideres.fromJson(response['data']);
+        } else {
+          return null;
+        }
       });
       data.fold((f) {
         emit(_mapFailureToState(f));
       }, (provider) async {
-        emit(UnFavoriteProvider(favProvider: provider));
-        // Fetch updated favorites list
-        final updatedFavorites =
-            await client.getRequestAuth(url: ApiConstants.faves);
-        emit(FavoritesLoaded(
-            favoriteproviders: (updatedFavorites['data'] as List)
-                .map((provider) => FavoriteProvideres.fromJson(provider))
-                .toList()));
+        if (provider == null) {
+          add(GetFavorites());
+        } else {
+          emit(UnFavoriteProvider(favProvider: provider));
+
+          // Fetch updated favorites list
+          final updatedFavorites =
+              await client.getRequestAuth(url: ApiConstants.faves);
+          emit(FavoritesLoaded(
+              favoriteproviders: (updatedFavorites['data'] as List)
+                  .map((provider) => FavoriteProvideres.fromJson(provider))
+                  .toList()));
+        }
       });
     });
   }

@@ -18,11 +18,15 @@ final class ErrorFavorites extends FavoritesState {
   ErrorFavorites({required this.message});
 }
 
+final class FavoriteProviderAdding extends FavoritesState {}
+
 final class FavoritingProvider extends FavoritesState {
   final FavoriteProvideres favProvider;
 
   FavoritingProvider({required this.favProvider});
 }
+
+final class FavoriteProviderRemoving extends FavoritesState {}
 
 final class UnFavoriteProvider extends FavoritesState {
   final FavoriteProvideres favProvider;

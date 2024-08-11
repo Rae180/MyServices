@@ -13,6 +13,7 @@ import 'package:start/features/user/home/home_bloc/Category_bloc/category_bloc.d
 import 'package:start/features/user/home/home_bloc/Close_Orders_Bloc/bloc/close_orders_home_bloc_bloc.dart';
 import 'package:start/features/user/home/home_bloc/Navigator/bloc/navigation_bloc.dart';
 import 'package:start/features/user/home/view/screen/Close_Orders_Screen.dart';
+import 'package:start/features/user/home/view/screen/Search_Screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
 import 'package:start/features/user/home/view/widgets/Custom_grid.dart';
 
@@ -43,6 +44,39 @@ class _HomePageScreenState extends State<HomePageScreen> {
       ],
       child: Scaffold(
         appBar: AppBar(
+          title: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed(SearchScreen.routeName);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.search, color: Colors.grey),
+                  SizedBox(width: 8.0),
+                  Flexible(
+                    child: Text(
+                      'Search for providers and more ...',
+                      style: TextStyle(color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           actions: [
             IconButton(
               onPressed: () {

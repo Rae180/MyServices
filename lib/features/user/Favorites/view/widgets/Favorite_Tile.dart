@@ -62,7 +62,8 @@ class _FavoriteTileState extends State<FavoriteTile> {
           Row(
             children: [
               AnimatedReactButton(
-                reactColor: widget.isLiked ? Colors.red : Colors.grey,
+                defaultColor: Colors.red,
+                reactColor: widget.isLiked ? Colors.grey : Colors.red,
                 onPressed: () {
                   if (widget.isLiked) {
                     widget.onUnlike();

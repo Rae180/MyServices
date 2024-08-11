@@ -44,23 +44,24 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               }
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  bool isLiked = state.favoriteproviders.any((fav) =>
-                      fav.providerId ==
-                      state.favoriteproviders[index].providerId);
+                  final provider = state.favoriteproviders[index];
+
                   return FavoriteTile(
-                    status: state.favoriteproviders[index].status!,
-                    hourleyrate: state.favoriteproviders[index].hourlyRate,
-                    image: state.favoriteproviders[index].providerImage,
-                    name: state.favoriteproviders[index].providerFirstName!,
-                    providerId: state.favoriteproviders[index].providerId,
-                    isLiked: isLiked,
+                    status: provider.status!,
+                    hourleyrate: provider.hourlyRate,
+                    image: provider.providerImage,
+                    name: provider.providerFirstName!,
+                    providerId: provider.providerId,
+                    isLiked: true,
                     onLike: () {
-                      context.read<FavoritesBloc>().add(LikingProvider(
-                          state.favoriteproviders[index].providerId!));
+                      context
+                          .read<FavoritesBloc>()
+                          .add(LikingProvider(provider.providerId!));
                     },
                     onUnlike: () {
-                      context.read<FavoritesBloc>().add(UnLikingProvider(
-                          state.favoriteproviders[index].providerId!));
+                      context
+                          .read<FavoritesBloc>()
+                          .add(UnLikingProvider(provider.providerId!));
                     },
                   );
                 },

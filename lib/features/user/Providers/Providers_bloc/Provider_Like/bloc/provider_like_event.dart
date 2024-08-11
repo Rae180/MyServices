@@ -14,4 +14,3 @@ class UnlikeProvider extends ProviderLikeEvent {
   UnlikeProvider({required this.providerId});
 }
 
-class FetchFavoriteProviders extends ProviderLikeEvent {}

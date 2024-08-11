@@ -10,7 +10,10 @@ import 'package:start/features/user/Orders/view/widgets/Current_Order_Details.da
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
 import 'package:start/features/user/Providers/view/Screen/Provider_Details._Screen.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
+import 'package:start/features/user/Settings/Settings_bloc/Addig_new_Suggest_bloc/bloc/adding_new_suggest_bloc.dart';
+import 'package:start/features/user/Settings/view/screen/Adding_new_Suggest_Screen.dart';
 import 'package:start/features/user/home/view/screen/Close_Orders_Screen.dart';
+import 'package:start/features/user/home/view/screen/Search_Screen.dart';
 import 'package:start/features/user/home/view/screen/Services_scree.dart';
 import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
@@ -68,6 +71,16 @@ class AppRouter {
       case ProviderDetailsScren.routeName:
         return MaterialPageRoute(
             builder: (context) => const ProviderDetailsScren());
+      case SearchScreen.routeName:
+        return MaterialPageRoute(builder: (context) => SearchScreen());
+
+      case AddingNewSuggestScreen.routeName:
+        final addingnewsuggest =
+            routeSettings.arguments as AddingNewSuggestBloc;
+        return MaterialPageRoute(
+            builder: (context) => AddingNewSuggestScreen(
+                  addingNewSuggestBloc: addingnewsuggest,
+                ));
 
       default:
         return unDefinedRoute();

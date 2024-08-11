@@ -16,12 +16,14 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
   static const String routeName = '/Current_Order_Details';
   final int? id;
   final HandlingOrderBloc handlingOrderBloc;
+  final DeatilsForOrderBloc deatilsForOrderBloc;
 
-  const CurrentOrderDetailsWidget({
-    Key? key,
-    this.id,
-    required this.handlingOrderBloc,
-  }) : super(key: key);
+  const CurrentOrderDetailsWidget(
+      {Key? key,
+      this.id,
+      required this.handlingOrderBloc,
+      required this.deatilsForOrderBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -306,14 +308,22 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                   backgroundColor: Colors.red,
                                 ),
                                 onPressed: () {
+                                  final detailsfororder =
+                                      BlocProvider.of<DeatilsForOrderBloc>(
+                                          context);
                                   showDialog(
                                       context: context,
                                       builder: (context) {
                                         return CancelFunctionWidget(
                                           handlingOrderBloc: handlingOrderBloc,
                                           id: id,
+                                          deatilsForOrderBloc: detailsfororder,
                                         );
                                       });
+                                  //     .then((_) {
+                                  //   detailsfororder.add(FilterOrdersByStatus(
+                                  //       OrderFilterState.pending));
+                                  // });
                                 },
                                 child: Text(
                                   AppLocalizations.of(context)!.cancel,

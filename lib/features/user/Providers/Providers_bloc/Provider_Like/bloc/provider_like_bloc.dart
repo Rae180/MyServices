@@ -14,12 +14,12 @@ part 'provider_like_state.dart';
 
 class ProviderLikeBloc extends Bloc<ProviderLikeEvent, ProviderLikeState> {
   final BaseApiService client;
-  final List<FavoriteProvideres> likedProviders = [];
 
   ProviderLikeBloc({
     required this.client,
   }) : super(ProviderLikeInitial()) {
     on<LikeProvider>((event, emit) async {
+      emit(ProviderLiking());
       final data = await BaseRepo.repoRequest(request: () async {
         var response = await client.postRequestAuth(
           url: '${ApiConstants.like}${event.providerId}',
@@ -30,11 +30,9 @@ class ProviderLikeBloc extends Bloc<ProviderLikeEvent, ProviderLikeState> {
       data.fold((f) {
         emit(_mapFailureToState(f));
       }, (message) {
-        likedProviders.add(FavoriteProvideres(providerId: event.providerId));
         emit(
           ProviderLiked(message: message),
         );
-        emit(FavoriteProvidersLoaded(favoriteProvider: likedProviders));
       });
     });
 
@@ -50,28 +48,7 @@ class ProviderLikeBloc extends Bloc<ProviderLikeEvent, ProviderLikeState> {
       data.fold((f) {
         emit(_mapFailureToState(f));
       }, (message) {
-        likedProviders
-            .removeWhere((provider) => provider.providerId == event.providerId);
-        emit(FavoriteProvidersLoaded(favoriteProvider: likedProviders));
         emit(ProviderUnliked(message: message));
-      });
-    });
-
-    on<FetchFavoriteProviders>((event, emit) async {
-      emit(ProviderLiking());
-      final data = await BaseRepo.repoRequest(request: () async {
-        final response = await client.getRequestAuth(url: ApiConstants.faves);
-        return response['data']; // Return the list directly
-      });
-      data.fold((f) {
-        emit(_mapFailureToState(f));
-      }, (favorites) {
-        List<FavoriteProvideres> favoriteProviders = (favorites as List)
-            .map((provider) => FavoriteProvideres.fromJson(provider))
-            .toList();
-        likedProviders.clear();
-        likedProviders.addAll(favoriteProviders);
-        emit(FavoriteProvidersLoaded(favoriteProvider: favoriteProviders));
       });
     });
   }

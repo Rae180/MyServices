@@ -103,7 +103,7 @@ class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
                         itemBuilder: (context, index) {
                           return OrdersNotAcceptedYetTile(
                             numberOfOrder: successState.orders[index].id!,
-                            serviceName: successState.orders[index].type,
+                            orderType: successState.orders[index].type,
                             dateTime: successState.orders[index].scheduleDate,
                           );
                         },

@@ -42,8 +42,7 @@ class ApiConstants {
       "${ApiConstants.baseAppUrl}order/postponement/";
   static const String additem =
       "${ApiConstants.baseAppUrl}completedorder/additems/";
-  static const String paid =
-      "${ApiConstants.baseAppUrl}completedorder/cash/";
+  static const String paid = "${ApiConstants.baseAppUrl}completedorder/cash/";
 
   static const String PostOrder = "${ApiConstants.baseAppUrl}order";
 
@@ -59,4 +58,6 @@ class ApiConstants {
   static const String like = "${ApiConstants.baseAppUrl}favorite/";
   static const String faves = "${ApiConstants.baseAppUrl}favorite";
   static const String profiley = "${ApiConstants.baseAppUrl}profile";
+  static const String searchquery = "${ApiConstants.baseAppUrl}search";
+  static const String addSugest = "${ApiConstants.baseAppUrl}suggest";
 }

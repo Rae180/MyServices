@@ -50,12 +50,15 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
             onPressed: () {
               final handlingOrderbloc =
                   BlocProvider.of<HandlingOrderBloc>(context);
+              final detailsfororder =
+                  BlocProvider.of<DeatilsForOrderBloc>(context);
               showDialog(
                   context: context,
                   builder: (context) {
                     return CurrentOrderDetailsWidget(
                       handlingOrderBloc: handlingOrderbloc,
                       id: numberOfOrder,
+                      deatilsForOrderBloc: detailsfororder,
                     );
                   });
             },

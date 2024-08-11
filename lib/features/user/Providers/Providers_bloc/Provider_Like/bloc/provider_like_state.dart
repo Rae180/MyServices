@@ -24,8 +24,4 @@ final class ProviderErrorLike extends ProviderLikeState {
   ProviderErrorLike({required this.messege});
 }
 
-class FavoriteProvidersLoaded extends ProviderLikeState {
-  final List<FavoriteProvideres> favoriteProvider;
 
-  FavoriteProvidersLoaded({required this.favoriteProvider});
-}
