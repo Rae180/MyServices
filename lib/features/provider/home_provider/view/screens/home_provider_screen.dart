@@ -2,6 +2,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:start/features/notification/view/screens/notification_screen.dart';
 import 'package:start/features/provider/home_provider/bloc/home_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/view/screens/current_home_screen.dart';
@@ -48,12 +49,8 @@ class _HomeProviderPageState extends State<HomeProviderPage> {
           body: _selectedIndex == 0
               ? const CurrentHomeScreen()
               : _selectedIndex == 1
-                  ? Container(
-                      child: const Center(
-                        child: Text("NOTIFICATIONS"),
-                      ),
-                    )
-                  : ProfileProvider(),
+                  ? const NotificationScreen()
+                  : const ProfileProvider(),
           bottomNavigationBar: FlashyTabBar(
             selectedIndex: _selectedIndex,
             showElevation: true,

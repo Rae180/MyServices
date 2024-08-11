@@ -69,7 +69,7 @@ class AppRouter {
       //   return MaterialPageRoute(
       //       builder: (context) => const CurrentOrderDetailsWidget());
       case OrdersScreen.routeName:
-        return MaterialPageRoute(builder: (context) => const OrdersScreen());
+        return MaterialPageRoute(builder: (context) =>  OrdersScreen());
 
       case ProviderDetailsScren.routeName:
         return MaterialPageRoute(

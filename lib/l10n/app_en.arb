@@ -149,5 +149,11 @@
     "theItem":"The item",
     "thePrice":"The Price",
     "numberOfOrder":"Number of Order",
-    "orderType":"Order Type"
+    "orderType":"Order Type",
+    "notificatons":"Notificatios",
+    "empty":"You have No Notifications Yet.",
+        "taxowed":"tax owed",
+        "transactions":"Transactions",
+    "amount":"amount"
+    
   }

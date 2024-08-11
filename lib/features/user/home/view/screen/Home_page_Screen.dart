@@ -60,12 +60,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
             ),
           ),
         ),
-        drawer: const Drawer(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [LanguageItem(), LogOutItem()],
-          ),
-        ),
+        // drawer: const Drawer(
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [LanguageItem(), LogOutItem()],
+        //   ),
+        // ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -91,8 +91,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               onTap: () {
                                 BlocProvider.of<NavigationBloc>(context)
                                     .add(NavigateToPage(3));
-                                BlocProvider.of<NavigationBloc>(context).add(
-                                    SelectFilterChip(OrderFilterState.pending));
+                                BlocProvider.of<DeatilsForOrderBloc>(context)
+                                    .add(SelectFilterChip(
+                                        OrderFilterState.pending));
                                 // Navigator.pushReplacement(
                                 //   context,
                                 //   MaterialPageRoute(
@@ -105,7 +106,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child:  Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -132,7 +133,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 print('pressing');
                                 BlocProvider.of<NavigationBloc>(context)
                                     .add(NavigateToPage(3));
-                                BlocProvider.of<NavigationBloc>(context).add(
+                                BlocProvider.of<DeatilsForOrderBloc>(context)
+                                    .add(
                                   SelectFilterChip(OrderFilterState.inProgress),
                                 );
                               },
@@ -142,7 +144,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child:  Padding(
+                                child: Padding(
                                   padding: const EdgeInsets.all(16.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -171,7 +173,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           onTap: () {
                             BlocProvider.of<NavigationBloc>(context)
                                 .add(NavigateToPage(3));
-                            BlocProvider.of<NavigationBloc>(context).add(
+                            BlocProvider.of<DeatilsForOrderBloc>(context).add(
                                 SelectFilterChip(OrderFilterState.pending));
                             // Navigator.pushReplacement(
                             //   context,
@@ -212,7 +214,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             print('pressing');
                             BlocProvider.of<NavigationBloc>(context)
                                 .add(NavigateToPage(3));
-                            BlocProvider.of<NavigationBloc>(context).add(
+                            BlocProvider.of<DeatilsForOrderBloc>(context).add(
                               SelectFilterChip(OrderFilterState.inProgress),
                             );
                           },
@@ -268,24 +270,28 @@ class _HomePageScreenState extends State<HomePageScreen> {
                     case LoadedCategory:
                       final successState = state as LoadedCategory;
 
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        child: GridView.builder(
-                          itemCount: successState.categories.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // Number of columns
-                            crossAxisSpacing: 10, // Spacing between columns
-                            mainAxisSpacing: 10, // Spacing between rows
-                            childAspectRatio: 1, // Aspect ratio of the children
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 100.0),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          child: GridView.builder(
+                            itemCount: successState.categories.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2, // Number of columns
+                              crossAxisSpacing: 10, // Spacing between columns
+                              mainAxisSpacing: 10, // Spacing between rows
+                              childAspectRatio:
+                                  .85, // Aspect ratio of the children
+                            ),
+                            itemBuilder: (context, index) {
+                              return CategoryItem(
+                                title: successState.categories[index].name,
+                                id: successState.categories[index].id!,
+                                imagePath: successState.categories[index].image,
+                              );
+                            },
                           ),
-                          itemBuilder: (context, index) {
-                            return CategoryItem(
-                              title: successState.categories[index].name,
-                              id: successState.categories[index].id!,
-                              imagePath: successState.categories[index].image,
-                            );
-                          },
                         ),
                       );
                       break;
@@ -306,6 +312,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   }
                 },
               ),
+              const SizedBox(
+                height: 200,
+              )
             ],
           ),
         ),

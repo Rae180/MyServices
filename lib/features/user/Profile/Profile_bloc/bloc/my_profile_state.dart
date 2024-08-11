@@ -2,17 +2,21 @@ part of 'my_profile_bloc.dart';
 
 class MyProfileState {}
 
+final class ProfileInitial extends MyProfileState {}
 
-final class LoadingMyProfile extends MyProfileState {}
+class LoadingState extends MyProfileState {}
 
-final class LoadedMyProfile extends MyProfileState {
-  final MyProfile profile;
+class SuccessLoadedProfile extends MyProfileState {
+  final MyProfile profileModel;
 
-  LoadedMyProfile({required this.profile});
+  SuccessLoadedProfile({required this.profileModel});
 }
 
-final class ErrorMyProfile extends MyProfileState {
-  final String message;
+class ErrorState extends MyProfileState {
+  final String error;
 
-  ErrorMyProfile({required this.message});
+  ErrorState({required this.error});
 }
+
+class SuccessUpdateState extends MyProfileState{}
+class SuccessdelelteState extends MyProfileState{}

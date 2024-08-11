@@ -13,10 +13,6 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
           currentPage: event.pageIndex, selectedChip: state.selectedChip));
       print('emit');
     });
-    on<SelectFilterChip>((event, emit) {
-        print('SelectFilterChip event: ${event.chipIndex}');
-      emit(NavigationState(
-          currentPage: state.currentPage, selectedChip: event.chipIndex));
-    });
+    
   }
 }

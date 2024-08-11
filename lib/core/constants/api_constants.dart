@@ -61,4 +61,6 @@ class ApiConstants {
   static const String like = "${ApiConstants.baseAppUrl}favorite/";
   static const String faves = "${ApiConstants.baseAppUrl}favorite";
   static const String profiley = "${ApiConstants.baseAppUrl}profile";
+  static const String notifications = "${ApiConstants.baseAppUrl}notifications";
+  static const String alltransactions = "${ApiConstants.baseAppUrl}alltransactions";
 }

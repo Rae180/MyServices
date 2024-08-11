@@ -16,6 +16,7 @@ import 'package:start/features/provider/profile/bloc/profile_bloc.dart';
 import 'package:start/features/provider/profile/view/screens/post_screen.dart';
 import 'package:start/features/provider/profile/view/widgets/details_profile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:start/features/wallet/view/screens/wallet_screen.dart';
 
 class ProfileProvider extends StatelessWidget {
   const ProfileProvider({super.key});
@@ -81,11 +82,25 @@ class ProfileProvider extends StatelessWidget {
                       ),
                     ),
                     ProfileItem(
+                        icon: Icons.wallet,
+                        text: AppLocalizations.of(context)!.wallet,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => TransactionPage()));
+                        }),
+                    ProfileItem(
+                        icon: Icons.work_history,
+                        text: AppLocalizations.of(context)!.orders,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const OrdersScreenProvider()));
+                        }),
+                    ProfileItem(
                         icon: Icons.post_add,
                         text: AppLocalizations.of(context)!.businessexhibition,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => PostList()));
+                              builder: (context) => const PostList()));
                         }),
                     const LanguageItem(),
                     BlocProvider.value(
@@ -93,13 +108,7 @@ class ProfileProvider extends StatelessWidget {
                       child: const DeleteAccountItem(),
                     ),
                     const LogOutItem(),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const OrdersScreenProvider()));
-                        },
-                        child: const Text('order'))
+                    
                   ],
                 ),
               );

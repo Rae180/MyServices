@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/ui/app_dialog.dart';
 import 'package:start/core/ui/profile_item.dart';
 import 'package:start/features/Auth/bloc/auth_bloc.dart';
-
+import 'package:start/features/Auth/view/screens/Auth.dart';
 
 class LogOutItem extends StatelessWidget {
   const LogOutItem({super.key});
@@ -32,18 +32,20 @@ class LogOutItem extends StatelessWidget {
                 cancelButtonText: AppLocalizations.of(context)?.cancel ?? "",
                 nextButtonText: AppLocalizations.of(context)?.logout ?? "",
                 nextButtonFunction: () async {
-                 // PreferenceUtils.setBool('isonline', false);
-                  BlocProvider.of<AuthBloc>(context)
-                      .add(LogOutEvent());
-                   
-                  Navigator.pop(context);
+                  // PreferenceUtils.setBool('isonline', false);
+                  BlocProvider.of<AuthBloc>(context).add(LogOutEvent());
+
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AuthScreen()),
+                      (route) => false);
                 },
                 cancelButtonFunction: () {
                   Navigator.pop(context);
                 },
               );
             },
-             barrierDismissible: false,
+            barrierDismissible: false,
           );
         });
   }

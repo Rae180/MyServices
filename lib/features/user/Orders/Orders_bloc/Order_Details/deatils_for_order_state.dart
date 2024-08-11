@@ -14,6 +14,14 @@ final class DeatilsForOrderLoaded extends DeatilsForOrderState {
 
   DeatilsForOrderLoaded({required this.orders, required this.selectedFilter});
 }
+final class SelectOrderLoaded extends DeatilsForOrderState {
+
+  final OrderFilterState selectedFilter;
+
+  SelectOrderLoaded({ required this.selectedFilter});
+}
+
+
 
 enum OrderFilterState {
   pending,

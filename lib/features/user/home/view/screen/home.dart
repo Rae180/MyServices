@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/core/ui/language_item.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:start/features/notification/view/screens/notification_screen.dart';
 import 'package:start/features/user/Favorites/view/Screen/Favorites_screen.dart';
 import 'package:start/features/user/Orders/view/screen/Orders_screen.dart';
 import 'package:start/features/user/Profile/view/screen/Profie_screen.dart';
@@ -19,14 +20,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _currenIndex = 0;
+  final _currenIndex = 0;
 
   final List<Widget> _pages = [
     const HomePageScreen(),
     const FavoritesScreen(),
-    const ProfileScreen(),
-    const OrdersScreen(),
-    const SettingsScreen(),
+    const NotificationScreen(),
+    OrdersScreen(),
+    const ProfileUser(),
   ];
   //Navigator.of(cotnext).push(MaterialPageRoute() => Categor() )
   @override
@@ -66,10 +67,10 @@ class _HomePageState extends State<HomePage> {
                 SalomonBottomBarItem(
                   selectedColor: const Color.fromARGB(255, 143, 201, 101),
                   icon: const Icon(
-                    Icons.person_2_outlined,
+                    Icons.notifications,
                   ),
                   title: Text(
-                    AppLocalizations.of(context)!.profile,
+                    AppLocalizations.of(context)!.notificatons,
                   ),
                 ),
                 SalomonBottomBarItem(
@@ -84,10 +85,10 @@ class _HomePageState extends State<HomePage> {
                 SalomonBottomBarItem(
                   selectedColor: const Color.fromARGB(255, 143, 201, 101),
                   icon: const Icon(
-                    Icons.settings_outlined,
+                    Icons.person_2_outlined,
                   ),
                   title: Text(
-                    AppLocalizations.of(context)!.settings,
+                    AppLocalizations.of(context)!.profile,
                   ),
                 ),
               ],

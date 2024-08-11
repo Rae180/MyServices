@@ -12,7 +12,8 @@ import 'package:start/features/user/home/home_bloc/Navigator/bloc/navigation_blo
 
 class OrdersScreen extends StatefulWidget {
   static const String routeName = 'Orders_Screen';
-  const OrdersScreen({super.key});
+  OrderFilterState? select;
+  OrdersScreen({super.key, this.select});
 
   @override
   State<OrdersScreen> createState() => _OrdersScreenState();
@@ -22,13 +23,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
   OrderFilterState selectedFilter = OrderFilterState.pending; // Default filter
 
   void _handleChipSelection(BuildContext context, OrderFilterState filter) {
-    setState(() {
-      selectedFilter = filter;
-    });
+    selectedFilter = filter;
+    setState(() {});
+    print(selectedFilter);
+    print(filter);
     //String fltredName = describeEnum(filter);
-    context
-        .read<DeatilsForOrderBloc>()
-        .add(FilterOrdersByStatus(filter));
+    context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(filter));
   }
 
   Future<void> _refreshOrders(BuildContext context) async {
@@ -38,10 +38,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final String defaultfilter = 'pending';
     return BlocBuilder<NavigationBloc, NavigationState>(
       builder: (context, navState) {
-        // final  defaultfilter = navState.selectedChip;
         return Scaffold(
           appBar: AppBar(
             shape: RoundedRectangleBorder(
@@ -51,9 +49,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
           body: MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => DeatilsForOrderBloc(
-                    client: NetworkApiServiceHttp())
-                  ..add(FilterOrdersByStatus(navState.selectedChip)),
+                create: (context) =>
+                    DeatilsForOrderBloc(client: NetworkApiServiceHttp())
+                      ..add(FilterOrdersByStatus(navState.selectedChip)),
               ),
               BlocProvider(
                 create: (context) => HandlingOrderBloc(NetworkApiServiceHttp()),
@@ -68,14 +66,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     child:
                         BlocBuilder<DeatilsForOrderBloc, DeatilsForOrderState>(
                       builder: (context, state) {
-                        OrderFilterState selectedFilter =
-                            OrderFilterState.pending;
-                        if (state is DeatilsForOrderLoaded) {
+                        // OrderFilterState selectedFilter =
+                        //     OrderFilterState.pending;
+                        if (state is SelectOrderLoaded) {
                           selectedFilter = state.selectedFilter;
                         }
                         return Row(
-                          children: OrderFilterState.values
-                              .map((OrderFilterState filter) {
+                          children: OrderFilterState.values.map((filter) {
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 5.0),
@@ -83,10 +80,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                 return FilterChip(
                                   checkmarkColor: Colors.black,
                                   selectedColor:
-                                      Color.fromARGB(255, 143, 201, 50),
+                                      const Color.fromARGB(255, 143, 201, 50),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                       color: Color.fromARGB(255, 144, 201, 100),
                                     ),
                                   ),
@@ -108,10 +105,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 BlocBuilder<DeatilsForOrderBloc, DeatilsForOrderState>(
                   builder: (context, state) {
                     if (state is DeatilsForOrderLoading) {
-                      return Center(child: const LoadingWidget());
+                      return const Center(child: LoadingWidget());
                     } else if (state is DeatilsForOrderLoaded) {
                       print('success');
-                      final successState = state as DeatilsForOrderLoaded;
+                      final successState = state;
                       return Expanded(
                         child: RefreshIndicator(
                           onRefresh: () => _refreshOrders(context),
@@ -129,18 +126,18 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         ),
                       );
                     } else if (state is DeatilsForOrderEmpty) {
-                      return Center(
+                      return const Center(
                         child: Text('No Orders available'),
                       );
                     } else if (state is DetailsForOrderError) {
                       print('error');
-                      final errorState = state as DetailsForOrderError;
+                      final errorState = state;
                       return Center(
                         child: NetworkErrorWidget(
                           message: errorState.message,
                           onPressed: () {
-                            BlocProvider.of<DeatilsForOrderBloc>(context).add(
-                                FilterOrdersByStatus(selectedFilter));
+                            BlocProvider.of<DeatilsForOrderBloc>(context)
+                                .add(FilterOrdersByStatus(selectedFilter));
                           },
                         ),
                       );

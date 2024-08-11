@@ -16,6 +16,8 @@ class DeatilsForOrderBloc
   final BaseApiService client;
   DeatilsForOrderBloc({required this.client})
       : super(DeatilsForOrderInitial()) {
+    on<SelectFilterChip>(
+        (event, emit) => emit(SelectOrderLoaded(selectedFilter: event.status)));
     on<FilterOrdersByStatus>(((event, emit) async {
       emit(DeatilsForOrderLoading());
       final data = await BaseRepo.repoRequest(request: () async {
@@ -26,7 +28,6 @@ class DeatilsForOrderBloc
         List<DetailsForOrder> detailes = [];
         data['data'].forEach(
             (element) => detailes.add(DetailsForOrder.fromJson(element)));
-        
 
         return detailes;
       });

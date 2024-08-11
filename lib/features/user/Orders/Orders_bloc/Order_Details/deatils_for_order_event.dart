@@ -20,6 +20,13 @@ class FilterOrdersByStatus extends DetailsForOrderEvent {
     this.status,
   );
 }
+class SelectFilterChip extends DetailsForOrderEvent {
+  final OrderFilterState status;
+
+  SelectFilterChip(
+    this.status,
+  );
+}
 
 class UpdateOrdersEvent extends DetailsForOrderEvent {
   final List<DetailsForOrder> orders;

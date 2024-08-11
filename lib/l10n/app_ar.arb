@@ -149,5 +149,10 @@
     "theItem":"الغرض",
     "thePrice":"السعر",
     "numberOfOrder":"رقم الطلب",
-    "orderType":"نوع الطلب"
+    "orderType":"نوع الطلب",
+    "notificatons":"الأشعارات",
+    "empty":"ليس لديك إشعارات حتى الآن.",
+    "taxowed":"الضريبة المستحقة",
+    "transactions":"المعاملات",
+    "amount":"المبلغ"
 }

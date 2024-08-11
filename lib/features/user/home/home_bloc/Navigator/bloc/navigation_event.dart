@@ -7,7 +7,3 @@ class NavigateToPage extends NavigationEvent {
   NavigateToPage(this.pageIndex);
 }
 
-class SelectFilterChip extends NavigationEvent {
-  final OrderFilterState chipIndex;
-  SelectFilterChip(this.chipIndex);
-}
