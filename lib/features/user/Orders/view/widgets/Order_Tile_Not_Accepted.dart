@@ -21,7 +21,7 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
         borderRadius: BorderRadius.circular(8),
@@ -31,7 +31,7 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

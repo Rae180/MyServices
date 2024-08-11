@@ -54,7 +54,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       emit(FavoritesLoading());
       print('Unliking provider with ID: ${event.providerId}');
       final data = await BaseRepo.repoRequest(request: () async {
-        var response = await client.deleteRequest(
+        var response = await client.delete(
             url: '${ApiConstants.like}${event.providerId}');
         print('API response: $response');
         if (response['data'] != null) {

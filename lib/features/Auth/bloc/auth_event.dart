@@ -7,3 +7,4 @@ part of 'auth_bloc.dart';
 class AppStarted extends AuthEvent {}
 
 class LogOutEvent extends AuthEvent {}
+class DeleteEvent extends AuthEvent {}

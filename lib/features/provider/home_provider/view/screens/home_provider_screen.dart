@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:start/features/provider/home_provider/bloc/home_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/bloc/submit_location_provider_bloc.dart';
 import 'package:start/features/provider/home_provider/view/screens/current_home_screen.dart';
+import 'package:start/features/provider/profile/view/screens/profile_provider.dart';
 
 import 'package:start/main.dart';
 
@@ -52,11 +53,7 @@ class _HomeProviderPageState extends State<HomeProviderPage> {
                         child: Text("NOTIFICATIONS"),
                       ),
                     )
-                  : Container(
-                      child: const Center(
-                        child: Text("SETTINGS"),
-                      ),
-                    ),
+                  : ProfileProvider(),
           bottomNavigationBar: FlashyTabBar(
             selectedIndex: _selectedIndex,
             showElevation: true,

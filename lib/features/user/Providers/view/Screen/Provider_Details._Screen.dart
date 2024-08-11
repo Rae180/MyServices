@@ -14,9 +14,9 @@ class ProviderDetailsScren extends StatelessWidget {
   static const String routeName = 'Providers_Details_Screen';
   final int? providerId;
   const ProviderDetailsScren({
-    Key? key,
+    super.key,
     this.providerId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ProviderDetailsScren extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_new_outlined,
             ),
           ),
@@ -192,7 +192,7 @@ class ProviderDetailsScren extends StatelessWidget {
                     }),
               );
             default:
-              return SizedBox();
+              return const SizedBox();
           }
         }),
       ),

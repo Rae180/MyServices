@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 class DetailsForOrder {
     int? id;
     int? userId;
@@ -10,8 +12,8 @@ class DetailsForOrder {
     String? notes;
     String? paymentMethod;
     String? address;
-    int? longitude;
-    int? latitude;
+    Double? longitude;
+    Double? latitude;
     int? duration;
     int? notificationSent;
     int? cashConfirmed;
@@ -36,8 +38,8 @@ class DetailsForOrder {
         notes = json["notes"];
         paymentMethod = json["payment_method"];
         address = json["address"];
-        longitude = json["longitude"];
-        latitude = json["latitude"];
+        longitude = json["longitude"].toDouble();
+        latitude = json["latitude"].toDouble();
         duration = json["duration"];
         notificationSent = json["notification_sent"];
         cashConfirmed = json["cash_confirmed"];

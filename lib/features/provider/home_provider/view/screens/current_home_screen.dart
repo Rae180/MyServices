@@ -46,21 +46,14 @@ class _CurrentHomeScreenState extends State<CurrentHomeScreen> {
           fontSize: 25,
         ),
       ),
-      drawer: Drawer(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const LogOutItem(),
-            const LanguageItem(),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const OrdersScreenProvider()));
-                },
-                child: const Text('order'))
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+           
+      //     ],
+      //   ),
+      // ),
       body: BlocBuilder<DeatilsForOrderBloc, DeatilsForOrderState>(
         builder: (context, state) {
           if (state is DeatilsForOrderLoading) {

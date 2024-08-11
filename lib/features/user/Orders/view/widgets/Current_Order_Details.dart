@@ -35,7 +35,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
           if (state is GettingDetailsById) {
             return const Center(child: LoadingWidget());
           } else if (state is SuccessGettingOrderDetailsById) {
-            final successState = state as SuccessGettingOrderDetailsById;
+            final successState = state;
             return Dialog(
               child: SingleChildScrollView(
                 child: Container(
@@ -49,38 +49,39 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         '${AppLocalizations.of(context)!.idsorder} : $id',
                       ),
-                      Container(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(1.0),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 4,
+                      if (successState.order.imagePaths != null)
+                        Container(
+                          height: 300,
+                          padding: const EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(
+                              20,
+                            ),
+                          ),
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                  ),
+                                  height: 300,
+                                  width: 300,
+                                  child: Image.network(
+                                    '${ApiConstants.STORAGE_URL}${successState.order.imagePaths![index]}',
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                                height: 300,
-                                width: 300,
-                                child: Image.network(
-                                  '${ApiConstants.STORAGE_URL}${successState.order.imagePaths![index]}',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            );
-                          },
-                          itemCount: 2,
-                          //successState.order.imageUrls!.length,
-                        ),
-                        height: 300,
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(
-                            20,
+                              );
+                            },
+                            itemCount: 2,
+                            //successState.order.imageUrls!.length,
                           ),
                         ),
-                      ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -93,13 +94,13 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                         child: Text(
                           // descreption,
                           successState.order.notes!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -108,12 +109,12 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         // adress,
                         successState.order.address!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -122,12 +123,12 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         // datetime,
                         successState.order.scheduleDate!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -136,12 +137,12 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         // payment,
                         successState.order.paymentMethod!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -150,12 +151,12 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         // providerName,
                         successState.order.provider!.user!.firstName ?? '',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -341,7 +342,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
               ),
             );
           } else if (state is ErrorGettingDetailsOrderDetailsById) {
-            final errorState = state as ErrorGettingDetailsOrderDetailsById;
+            final errorState = state;
             return Center(
               child: NetworkErrorWidget(
                 message: errorState.message,
