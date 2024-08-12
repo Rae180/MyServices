@@ -17,6 +17,8 @@ import 'package:start/features/provider/profile/view/widgets/details_profile.dar
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:start/features/user/Profile/Profile_bloc/bloc/my_profile_bloc.dart';
 import 'package:start/features/user/Profile/view/widgets/user_details_widget.dart';
+import 'package:start/features/user/Settings/Settings_bloc/Addig_new_Suggest_bloc/bloc/adding_new_suggest_bloc.dart';
+import 'package:start/features/user/Settings/view/screen/Adding_new_Suggest_Screen.dart';
 import 'package:start/features/wallet/view/screens/wallet_screen.dart';
 
 class ProfileUser extends StatelessWidget {
@@ -83,9 +85,22 @@ class ProfileUser extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ProfileItem(icon: Icons.wallet, text: AppLocalizations.of(context)!.wallet, onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=> TransactionPage()));
-                    }),
+                    ProfileItem(
+                        icon: Icons.wallet,
+                        text: AppLocalizations.of(context)!.wallet,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => TransactionPage()));
+                        }),
+                    ProfileItem(
+                      icon: Icons.add,
+                      text: AppLocalizations.of(context)!.addingNewSuggest,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          AddingNewSuggestScreen.routeName,
+                        );
+                      },
+                    ),
                     const LanguageItem(),
                     BlocProvider.value(
                       value: BlocProvider.of<MyProfileBloc>(context),

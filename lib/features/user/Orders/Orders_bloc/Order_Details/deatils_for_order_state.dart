@@ -64,7 +64,7 @@ String getStatusString(OrderFilterState state) {
     case OrderFilterState.completed:
       return 'completed';
     case OrderFilterState.paused:
-      return 'pause';
+      return 'paused';
     default:
       return '';
   }

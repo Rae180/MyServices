@@ -12,8 +12,10 @@ import 'package:start/features/user/home/home_bloc/Navigator/bloc/navigation_blo
 
 class OrdersScreen extends StatefulWidget {
   static const String routeName = 'Orders_Screen';
-  OrderFilterState? select;
-  OrdersScreen({super.key, this.select});
+  //OrderFilterState? select;
+  const OrdersScreen({
+    super.key,
+  });
 
   @override
   State<OrdersScreen> createState() => _OrdersScreenState();
@@ -21,12 +23,13 @@ class OrdersScreen extends StatefulWidget {
 
 class _OrdersScreenState extends State<OrdersScreen> {
   OrderFilterState selectedFilter = OrderFilterState.pending; // Default filter
-
+  bool isone = true;
   void _handleChipSelection(BuildContext context, OrderFilterState filter) {
     selectedFilter = filter;
     setState(() {});
     print(selectedFilter);
     print(filter);
+
     //String fltredName = describeEnum(filter);
     context.read<DeatilsForOrderBloc>().add(FilterOrdersByStatus(filter));
   }
@@ -49,10 +52,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
           body: MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) =>
-                    DeatilsForOrderBloc(client: NetworkApiServiceHttp())
-                      ..add(FilterOrdersByStatus(navState.selectedChip)),
-              ),
+                  create: (context) =>
+                      DeatilsForOrderBloc(client: NetworkApiServiceHttp())),
               BlocProvider(
                 create: (context) => HandlingOrderBloc(NetworkApiServiceHttp()),
               ),
@@ -70,7 +71,16 @@ class _OrdersScreenState extends State<OrdersScreen> {
                         //     OrderFilterState.pending;
                         if (state is SelectOrderLoaded) {
                           selectedFilter = state.selectedFilter;
+                          
                         }
+                        if (isone) {
+                           isone = false;
+                          BlocProvider.of<DeatilsForOrderBloc>(context)
+                              .add(FilterOrdersByStatus(navState.selectedChip));
+                         
+                          //setState(() {});
+                        }
+
                         return Row(
                           children: OrderFilterState.values.map((filter) {
                             return Padding(
@@ -114,11 +124,16 @@ class _OrdersScreenState extends State<OrdersScreen> {
                           onRefresh: () => _refreshOrders(context),
                           child: ListView.builder(
                             itemBuilder: (context, index) {
-                              return OrdersNotAcceptedYetTile(
-                                numberOfOrder: successState.orders[index].id!,
-                                orderType: successState.orders[index].type,
-                                dateTime:
-                                    successState.orders[index].scheduleDate,
+                              return BlocProvider.value(
+                                value: BlocProvider.of<DeatilsForOrderBloc>(
+                                    context),
+                                child: OrdersNotAcceptedYetTile(
+                                  numberOfOrder: successState.orders[index].id!,
+                                  orderType: successState.orders[index].type,
+                                  dateTime:
+                                      successState.orders[index].scheduleDate,
+                                  selectedFilter: selectedFilter,
+                                ),
                               );
                             },
                             itemCount: successState.orders.length,

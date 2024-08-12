@@ -21,16 +21,40 @@ final class ErrorGetProvidersService extends ProviderServiceState {
 
 final class GettingOrderType extends ProviderServiceState {}
 
-enum ordersState {
-  instant,
-  schedule,
+enum ProviderStatus {
   online,
-  ratings,
-  nearby,
+  highest_rated,
+  the_closest,
+}
+
+String getStatusStringForChips(ProviderStatus state, BuildContext context) {
+  switch (state) {
+    case ProviderStatus.online:
+      return AppLocalizations.of(context)!.onlineState;
+    case ProviderStatus.highest_rated:
+      return AppLocalizations.of(context)!.highestRate;
+    case ProviderStatus.the_closest:
+      return AppLocalizations.of(context)!.closest;
+    default:
+      return '';
+  }
+}
+
+String getStatusString(ProviderStatus state) {
+  switch (state) {
+    case ProviderStatus.online:
+      return 'online';
+    case ProviderStatus.highest_rated:
+      return 'highest_rated';
+    case ProviderStatus.the_closest:
+      return 'the_closest';
+    default:
+      return '';
+  }
 }
 
 final class SuccessOrderType extends ProviderServiceState {
-  final ordersState selectedOrderType;
+  final ProviderStatus selectedOrderType;
 
   SuccessOrderType({required this.selectedOrderType});
 }

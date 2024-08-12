@@ -46,8 +46,14 @@ class DeatilsForOrderBloc
               orders: data, selectedFilter: event.status));
         }
       });
+      
     }));
+    
+
+    
   }
+
+  
   _mapFailureToState(Failure f) {
     switch (f.runtimeType) {
       case OfflineFailure:
@@ -64,4 +70,6 @@ class DeatilsForOrderBloc
         );
     }
   }
+
+  
 }

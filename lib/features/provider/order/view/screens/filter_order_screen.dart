@@ -105,6 +105,7 @@ class _OrdersScreenProviderState extends State<OrdersScreenProvider> {
                             numberOfOrder: successState.orders[index].id!,
                             orderType: successState.orders[index].type,
                             dateTime: successState.orders[index].scheduleDate,
+                            selectedFilter: selectedFilter,
                           );
                         },
                         itemCount: successState.orders.length,

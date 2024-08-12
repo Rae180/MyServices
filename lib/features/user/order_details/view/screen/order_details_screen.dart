@@ -12,6 +12,7 @@ import 'package:start/core/api_service/network_api_service_http.dart';
 import 'package:start/features/user/order_details/order_details_bloc/Order_bloc/order_bloc.dart';
 
 import 'package:start/features/user/order_details/view/widgets/the_map.dart';
+import 'package:start/main.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   static const routeName = 'order_details_screen';
@@ -34,7 +35,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   var lat;
   var lng;
   List<File>? images = [];
-
+  bool isloading = false;
   var dateTime = DateTime.now();
 
   Future<DateTime?> ShowDate() => showDatePicker(
@@ -85,23 +86,27 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       print('Failed to pick image: $e');
     }
   }
+
   // String get _selectedOption => AppLocalizations.of(context)!.wallet;
+  var selectedType =
+      AppLocalizations.of(navigatorKey.currentState!.context)!.schedule;
+  var selectedOption =
+      AppLocalizations.of(navigatorKey.currentState!.context)!.wallet;
+  var items = [
+    AppLocalizations.of(navigatorKey.currentState!.context)!.cash,
+    AppLocalizations.of(navigatorKey.currentState!.context)!.wallet
+  ];
+  var types = [
+    AppLocalizations.of(navigatorKey.currentState!.context)!.instant,
+    AppLocalizations.of(navigatorKey.currentState!.context)!.schedule
+  ];
 
   @override
   Widget build(BuildContext context) {
-    var _selectedType = AppLocalizations.of(context)!.schedule;
-    var _selectedOption = AppLocalizations.of(context)!.wallet;
-    var items = [
-      AppLocalizations.of(context)!.cash,
-      AppLocalizations.of(context)!.wallet
-    ];
-    var types = [
-      AppLocalizations.of(context)!.instant,
-      AppLocalizations.of(context)!.schedule
-    ];
     final hours = dateTime.hour.toString().padLeft(2, '0');
     final minutes = dateTime.minute.toString().padLeft(2, '0');
-    print(ModalRoute.of(context)?.settings.arguments);
+    print(
+        ModalRoute.of(navigatorKey.currentState!.context)?.settings.arguments);
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 
@@ -126,7 +131,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 icon: const Icon(
                   Icons.arrow_back_ios_new_rounded,
                 ),
@@ -154,13 +161,13 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           children: [
                             ...images!.map(
                               (image) => Padding(
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 child: image != null
                                     ? DottedBorder(
                                         strokeWidth: 3,
                                         color: const Color.fromARGB(
                                             255, 142, 201, 84),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 200,
                                           width: 200,
                                           child: Image.file(
@@ -197,7 +204,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 pickImage(ImageSource.camera),
                                             child: Column(
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons.camera,
                                                   color: Color.fromARGB(
                                                       255, 143, 201, 101),
@@ -206,7 +213,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 Text(
                                                   AppLocalizations.of(context)!
                                                       .camera,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
                                                 ),
@@ -218,7 +225,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 pickImage(ImageSource.gallery),
                                             child: Column(
                                               children: [
-                                                Icon(
+                                                const Icon(
                                                   Icons.photo_album_outlined,
                                                   color: Color.fromARGB(
                                                       255, 143, 201, 101),
@@ -227,7 +234,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 Text(
                                                   AppLocalizations.of(context)!
                                                       .gallery,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
                                                 ),
@@ -272,9 +279,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: TextFormField(
                           controller: Descriptionecontroller,
                           decoration: InputDecoration(
-                            label:  Row(
+                            label: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.description_outlined,
                                 ),
                                 Text(
@@ -308,9 +315,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                         child: TextFormField(
                           controller: AdressController,
                           decoration: InputDecoration(
-                            label:  Row(
+                            label: Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.location_city_outlined,
                                 ),
                                 Text(
@@ -339,48 +346,50 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          radius: 20,
-                          splashColor: Colors.black12,
-                          onTap: pickDateTime,
-                          child: TextFormField(
-                            enabled: false,
-                            controller: DateController,
-                            decoration: InputDecoration(
-                              label:  Row(
-                                children: [
-                                  Icon(
-                                    Icons.date_range_outlined,
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!.dateOfBooking,
-                                  ),
-                                ],
-                              ),
-                              labelStyle: TextStyle(
-                                color: Colors.grey[800],
-                              ),
-                              fillColor: const Color.fromARGB(8, 0, 0, 0),
-                              filled: true,
-                              border: OutlineInputBorder(
+                      if (selectedType == "schedule")
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: InkWell(
+                            radius: 20,
+                            splashColor: Colors.black12,
+                            onTap: pickDateTime,
+                            child: TextFormField(
+                              enabled: false,
+                              controller: DateController,
+                              decoration: InputDecoration(
+                                label: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.date_range_outlined,
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .dateOfBooking,
+                                    ),
+                                  ],
+                                ),
+                                labelStyle: TextStyle(
+                                  color: Colors.grey[800],
+                                ),
+                                fillColor: const Color.fromARGB(8, 0, 0, 0),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    borderSide: BorderSide.none),
+                                focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide.none),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25.0),
-                                borderSide: const BorderSide(
-                                    color: Color.fromARGB(255, 143, 201, 101),
-                                    width: 2.0),
+                                  borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 143, 201, 101),
+                                      width: 2.0),
+                                ),
                               ),
-                            ),
-                            cursorColor: Colors.greenAccent,
-                            style: const TextStyle(
-                              color: Colors.black,
+                              cursorColor: Colors.greenAccent,
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
-                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
@@ -407,9 +416,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             enabled: false,
                             controller: MapController,
                             decoration: InputDecoration(
-                              label:  Row(
+                              label: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.map_outlined,
                                   ),
                                   Text(
@@ -461,11 +470,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             onChanged: (String? newValue) {
                               print('Selected: $newValue');
                               setState(() {
-                                _selectedOption = newValue!;
+                                selectedOption = newValue!;
                               });
-                              print('Selecting: $_selectedOption');
+                              print('Selecting: $selectedOption');
                             },
-                            value: _selectedOption,
+                            value: selectedOption,
                             borderRadius: BorderRadius.circular(20),
                             underline: Container(),
                           ),
@@ -496,11 +505,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             onChanged: (String? newValue) {
                               print('Selected: $newValue');
                               setState(() {
-                                _selectedType = newValue!;
+                                selectedType = newValue!;
                               });
-                              print('Selecting: $_selectedType');
+                              print('Selecting: $selectedType');
                             },
-                            value: _selectedType,
+                            value: selectedType,
                             borderRadius: BorderRadius.circular(20),
                             underline: Container(),
                           ),
@@ -511,6 +520,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          setState(() {
+                            isloading = true;
+                          });
                           final bool isValid =
                               _formKey.currentState!.validate();
                           FocusScope.of(context).unfocus();
@@ -520,7 +532,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             _formKey.currentState!.save();
                             BlocProvider.of<OrderBloc>(context).add(
                               OrderPostEvent(
-                                  type: _selectedType,
+                                  type: selectedType,
                                   providerId: providerId,
                                   image: images!,
                                   adress: AdressController.text.trim(),
@@ -529,7 +541,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                   dateTime: dateTime,
                                   longtitude: lng.toString(),
                                   latitude: lat.toString(),
-                                  payment: _selectedOption),
+                                  payment: selectedOption),
                             );
                           }
                         },
@@ -543,7 +555,14 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                             const Color.fromARGB(255, 143, 201, 101),
                           ),
                         ),
-                        child:  Text(AppLocalizations.of(context)!.bookNow),
+                        child: isloading
+                            ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : Text(
+                                AppLocalizations.of(context)!.bookNow,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                       ),
                       const SizedBox(
                         height: 12,

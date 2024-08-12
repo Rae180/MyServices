@@ -12,12 +12,13 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
   final int? numberOfOrder;
   final String? orderType;
   final String? dateTime;
-
+  final OrderFilterState selectedFilter;
   const OrdersNotAcceptedYetTile(
       {super.key,
       required this.numberOfOrder,
       required this.orderType,
-      required this.dateTime});
+      required this.dateTime,
+      required this.selectedFilter});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +40,7 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
                       '${AppLocalizations.of(context)!.numberOfOrder} : $numberOfOrder'),
                   Text(
                       '${AppLocalizations.of(context)!.orderType} : $orderType',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                   Text(
                       '${AppLocalizations.of(context)!.dateandTime} : $dateTime'),
                 ],
@@ -50,16 +51,21 @@ class OrdersNotAcceptedYetTile extends StatelessWidget {
             onPressed: () {
               final handlingOrderbloc =
                   BlocProvider.of<HandlingOrderBloc>(context);
+              final detailsfororder =
+                  BlocProvider.of<DeatilsForOrderBloc>(context);
               showDialog(
-                  context: context,
-                  builder: (context) {
-                    return CurrentOrderDetailsWidget(
-                      handlingOrderBloc: handlingOrderbloc,
-                      id: numberOfOrder,
-                    );
-                  });
+                      context: context,
+                      builder: (context) {
+                        return CurrentOrderDetailsWidget(
+                          handlingOrderBloc: handlingOrderbloc,
+                          id: numberOfOrder,
+                          deatilsForOrderBloc: detailsfororder,
+                        );
+                      })
+                  .then((value) => BlocProvider.of<DeatilsForOrderBloc>(context)
+                      .add(FilterOrdersByStatus(selectedFilter)));
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.info_outline,
               color: Color.fromARGB(255, 143, 201, 101),
             ),

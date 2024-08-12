@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/core/managers/string_manager.dart';
@@ -13,7 +12,10 @@ import 'package:start/features/user/Orders/view/widgets/Current_Order_Details.da
 import 'package:start/features/user/Orders/view/widgets/orders_ot_accepted_yet.dart';
 import 'package:start/features/user/Providers/view/Screen/Provider_Details._Screen.dart';
 import 'package:start/features/user/Providers/view/Screen/Providers_Screen.dart';
+import 'package:start/features/user/Settings/Settings_bloc/Addig_new_Suggest_bloc/bloc/adding_new_suggest_bloc.dart';
+import 'package:start/features/user/Settings/view/screen/Adding_new_Suggest_Screen.dart';
 import 'package:start/features/user/home/view/screen/Close_Orders_Screen.dart';
+import 'package:start/features/user/home/view/screen/Search_Screen.dart';
 import 'package:start/features/user/home/view/screen/Services_scree.dart';
 import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
@@ -47,8 +49,11 @@ class AppRouter {
                   id: id,
                 ));
       case UserDetailsPage.routeName:
-      final args = routeSettings.arguments as Map<String, dynamic>;
-        return MaterialPageRoute(builder: (context) => UserDetailsPage(userData: args['data'],));
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (context) => UserDetailsPage(
+                  userData: args['data'],
+                ));
       case ProvidersScreen.routeName:
         return MaterialPageRoute(builder: (context) => const ProvidersScreen());
       case OrderDetailsScreen.routeName:
@@ -69,11 +74,17 @@ class AppRouter {
       //   return MaterialPageRoute(
       //       builder: (context) => const CurrentOrderDetailsWidget());
       case OrdersScreen.routeName:
-        return MaterialPageRoute(builder: (context) =>  OrdersScreen());
+        return MaterialPageRoute(builder: (context) => OrdersScreen());
 
       case ProviderDetailsScren.routeName:
         return MaterialPageRoute(
             builder: (context) => const ProviderDetailsScren());
+      case SearchScreen.routeName:
+        return MaterialPageRoute(builder: (context) => SearchScreen());
+
+      case AddingNewSuggestScreen.routeName:
+        return MaterialPageRoute(
+            builder: (context) => const AddingNewSuggestScreen());
 
       default:
         return unDefinedRoute();

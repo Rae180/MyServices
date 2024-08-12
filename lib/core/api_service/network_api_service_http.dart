@@ -53,6 +53,43 @@ class NetworkApiServiceHttp implements BaseApiService {
     }
   }
 
+  Future getRequest2(
+      {required String url, Map<String, String>? parameters}) async {
+    try {
+      final uri = Uri.parse(url);
+
+      var request = http.Request('GET', uri);
+      request.body = json.encode(parameters);
+      request.headers.addAll({
+        "Content-Type": "application/json; charset=utf-8",
+        'api': '1.0.0',
+        'X-Requested-With': "XMLHttpRequest",
+        "Accept": "application/json",
+      });
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        final responseBody = await response.stream.bytesToString();
+        return json.decode(responseBody);
+      } else {
+        throw Exception('Failed to load data: ${response.reasonPhrase}');
+      }
+    } on SocketException {
+      throw ExceptionSocket();
+    } on FormatException {
+      throw ExceptionFormat();
+    } on TimeoutException {
+      throw ExceptionTimeout();
+    } on HandshakeException {
+      throw ExceptionHandshake();
+    } on CustomException catch (e) {
+      throw CustomException(message: e.message);
+    } on Exception {
+      throw ExceptionOther();
+    }
+  }
+
   @override
   Future getRequestAuth({required String url}) async {
     try {

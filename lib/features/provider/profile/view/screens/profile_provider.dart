@@ -16,6 +16,8 @@ import 'package:start/features/provider/profile/bloc/profile_bloc.dart';
 import 'package:start/features/provider/profile/view/screens/post_screen.dart';
 import 'package:start/features/provider/profile/view/widgets/details_profile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:start/features/user/Settings/Settings_bloc/Addig_new_Suggest_bloc/bloc/adding_new_suggest_bloc.dart';
+import 'package:start/features/user/Settings/view/screen/Adding_new_Suggest_Screen.dart';
 import 'package:start/features/wallet/view/screens/wallet_screen.dart';
 
 class ProfileProvider extends StatelessWidget {
@@ -93,8 +95,18 @@ class ProfileProvider extends StatelessWidget {
                         text: AppLocalizations.of(context)!.orders,
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const OrdersScreenProvider()));
+                              builder: (context) =>
+                                  const OrdersScreenProvider()));
                         }),
+                    ProfileItem(
+                      icon: Icons.add,
+                      text: AppLocalizations.of(context)!.addingNewSuggest,
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          AddingNewSuggestScreen.routeName,
+                        );
+                      },
+                    ),
                     ProfileItem(
                         icon: Icons.post_add,
                         text: AppLocalizations.of(context)!.businessexhibition,
@@ -108,7 +120,6 @@ class ProfileProvider extends StatelessWidget {
                       child: const DeleteAccountItem(),
                     ),
                     const LogOutItem(),
-                    
                   ],
                 ),
               );

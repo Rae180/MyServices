@@ -16,12 +16,13 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
   static const String routeName = '/Current_Order_Details';
   final int? id;
   final HandlingOrderBloc handlingOrderBloc;
+  final DeatilsForOrderBloc deatilsForOrderBloc;
 
-  const CurrentOrderDetailsWidget({
-    super.key,
-    this.id,
-    required this.handlingOrderBloc,
-  });
+  const CurrentOrderDetailsWidget(
+      {super.key,
+      this.id,
+      required this.handlingOrderBloc,
+      required this.deatilsForOrderBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         '${AppLocalizations.of(context)!.idsorder} : $id',
                       ),
-                      if (successState.order.imagePaths != null)
+                      if (successState.order.imagePaths != null && successState.order.imagePaths!.isNotEmpty)
                         Container(
                           height: 300,
                           padding: const EdgeInsets.all(3),
@@ -75,7 +76,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                 ),
                               );
                             },
-                            itemCount: 2,
+                            itemCount: successState.order.imagePaths!.length,
                             //successState.order.imageUrls!.length,
                           ),
                         ),
@@ -163,25 +164,25 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                       Text(
                         //phoneNumber.toString(),
                         successState.order.provider!.user!.phoneNum ?? '',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       if (successState.order.status == 'completed') ...[
-                        Divider(
+                        const Divider(
                           color: Colors.black38,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 4,
                         ),
                         Text(
                           AppLocalizations.of(context)!.thebill,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 7,
                         ),
                         Text(
@@ -191,12 +192,12 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                           // providerName,
                           successState.order.completeorder!.bill!.workHours
                               .toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Text(
@@ -206,12 +207,12 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                           // providerName,
                           successState.order.completeorder!.bill!.total
                               .toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Text(
@@ -221,18 +222,18 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                           // providerName,
                           successState.order.completeorder!.bill!.totalWithItem
                               .toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Text(
                           AppLocalizations.of(context)!.items,
                         ),
-                        Container(
+                        SizedBox(
                           height: 100,
                           width: MediaQuery.of(context).size.width / 2,
                           child: ListView.builder(
@@ -240,7 +241,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                             itemBuilder: ((context, index) {
                               return Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 100,
                                     width: 100,
                                     child: Column(
@@ -250,7 +251,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                         Text(
                                           successState.order.completeorder!
                                               .bill!.items![index].item!,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.grey,
                                             fontSize: 14,
                                           ),
@@ -263,7 +264,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                           successState.order.completeorder!
                                               .bill!.items![index].price
                                               .toString(),
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.grey,
                                             fontSize: 14,
                                           ),
@@ -278,7 +279,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                 .order.completeorder!.bill!.items!.length,
                           ),
                         ),
-                        Divider(
+                        const Divider(
                           color: Colors.black38,
                         ),
                       ],
@@ -296,7 +297,7 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                               },
                               child: Text(
                                 AppLocalizations.of(context)!.back,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
@@ -307,18 +308,26 @@ class CurrentOrderDetailsWidget extends StatelessWidget {
                                   backgroundColor: Colors.red,
                                 ),
                                 onPressed: () {
+                                  final detailsfororder =
+                                      BlocProvider.of<DeatilsForOrderBloc>(
+                                          context);
                                   showDialog(
                                       context: context,
                                       builder: (context) {
                                         return CancelFunctionWidget(
                                           handlingOrderBloc: handlingOrderBloc,
                                           id: id,
+                                          deatilsForOrderBloc: detailsfororder,
                                         );
                                       });
+                                  //     .then((_) {
+                                  //   detailsfororder.add(FilterOrdersByStatus(
+                                  //       OrderFilterState.pending));
+                                  // });
                                 },
                                 child: Text(
                                   AppLocalizations.of(context)!.cancel,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
