@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_react_button/animated_react_button.dart';
 import 'package:start/core/constants/api_constants.dart';
+import 'package:start/features/user/Providers/view/Screen/Provider_Details._Screen.dart';
+import 'package:start/features/user/order_details/view/screen/order_details_screen.dart';
 
 class FavoriteTile extends StatefulWidget {
   final int? providerId;
@@ -41,12 +43,24 @@ class _FavoriteTileState extends State<FavoriteTile> {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                backgroundImage: widget.image != null
-                    ? NetworkImage(
-                        '${ApiConstants.STORAGE_URL}${widget.image!}')
-                    : AssetImage('assets/profile.jpg') as ImageProvider,
-                radius: 24,
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => ProviderDetailsScren(
+                            providerId: widget.providerId,
+                          )),
+                    ),
+                  );
+                  print('the id in the circle avatr is :${widget.providerId}');
+                },
+                child: CircleAvatar(
+                  backgroundImage: widget.image != null
+                      ? NetworkImage(
+                          '${ApiConstants.STORAGE_URL}${widget.image!}')
+                      : AssetImage('assets/profile.jpg') as ImageProvider,
+                  radius: 24,
+                ),
               ),
               SizedBox(width: 16),
               Column(
@@ -72,6 +86,20 @@ class _FavoriteTileState extends State<FavoriteTile> {
                   }
                 },
                 showSplash: true,
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    OrderDetailsScreen.routeName,
+                    arguments: {
+                      'providerId': widget.providerId,
+                    },
+                  );
+                },
+                icon: Icon(
+                  Icons.add_outlined,
+                  color: Colors.green,
+                ),
               ),
             ],
           ),

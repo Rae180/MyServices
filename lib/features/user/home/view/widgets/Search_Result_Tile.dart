@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:start/core/constants/api_constants.dart';
+import 'package:start/features/user/Providers/view/Screen/Provider_Details._Screen.dart';
+import 'package:start/features/user/order_details/view/screen/order_details_screen.dart';
 
 class SearchResultTile extends StatelessWidget {
+  final int id;
   final String firstName;
   final String lastName;
   final String status;
@@ -12,6 +15,7 @@ class SearchResultTile extends StatelessWidget {
 
   const SearchResultTile({
     Key? key,
+    required this.id,
     required this.firstName,
     required this.lastName,
     required this.status,
@@ -29,10 +33,22 @@ class SearchResultTile extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundImage:
-                  NetworkImage('${ApiConstants.STORAGE_URL}${imageUrl}'),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: ((context) => ProviderDetailsScren(
+                          providerId: id,
+                        )),
+                  ),
+                );
+                print('the id in the circle avatr is :${id}');
+              },
+              child: CircleAvatar(
+                radius: 30,
+                backgroundImage:
+                    NetworkImage('${ApiConstants.STORAGE_URL}${imageUrl}'),
+              ),
             ),
             SizedBox(width: 16.0),
             Expanded(
@@ -74,6 +90,20 @@ class SearchResultTile extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      OrderDetailsScreen.routeName,
+                      arguments: {
+                        'providerId': id,
+                      },
+                    );
+                  },
+                  icon: Icon(
+                    Icons.add_outlined,
+                    color: Colors.green,
+                  ),
+                )
               ],
             ),
           ],
