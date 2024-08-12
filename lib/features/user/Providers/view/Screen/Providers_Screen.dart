@@ -25,6 +25,8 @@ class ProvidersScreen extends StatefulWidget {
 }
 
 class _ProvidersScreenState extends State<ProvidersScreen> {
+  Set<ProviderStatus> selectedStatues = {};
+
   bool isSelected1 = false;
   bool isSelected2 = false;
   bool isSelected3 = false;
@@ -45,6 +47,7 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
         ),
       ],
       child: Scaffold(
+        
         body: BlocBuilder<ProviderServiceBloc, ProviderServiceState>(
           builder: (context, state) {
             switch (state.runtimeType) {
@@ -98,14 +101,24 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                                     color: Color.fromARGB(255, 144, 201, 100),
                                   ),
                                 ),
-                                selected: isSelected1,
+                                selected: selectedStatues
+                                    .contains(ProviderStatus.online),
                                 label: Text(
                                   AppLocalizations.of(context)!.onlineState,
                                 ),
                                 onSelected: (value) {
                                   setState(() {
-                                    isSelected1 = !isSelected1;
+                                    if (value) {
+                                      selectedStatues
+                                          .add(ProviderStatus.online);
+                                    } else {
+                                      selectedStatues
+                                          .remove(ProviderStatus.online);
+                                    }
                                   });
+                                  context.read<ProviderServiceBloc>().add(
+                                      SelectOrderType(
+                                          orderType: selectedStatues));
                                 },
                               ),
                               SizedBox(
@@ -128,14 +141,24 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                                     color: Color.fromARGB(255, 144, 201, 100),
                                   ),
                                 ),
-                                selected: isSelected2,
+                                selected: selectedStatues
+                                    .contains(ProviderStatus.the_closest),
                                 label: Text(
-                                  AppLocalizations.of(context)!.instant,
+                                  AppLocalizations.of(context)!.closest,
                                 ),
                                 onSelected: (value) {
                                   setState(() {
-                                    isSelected2 = !isSelected2;
+                                    if (value) {
+                                      selectedStatues
+                                          .add(ProviderStatus.the_closest);
+                                    } else {
+                                      selectedStatues
+                                          .remove(ProviderStatus.the_closest);
+                                    }
                                   });
+                                  context.read<ProviderServiceBloc>().add(
+                                      SelectOrderType(
+                                          orderType: selectedStatues));
                                 },
                               ),
                               SizedBox(
@@ -158,44 +181,24 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                                     color: Color.fromARGB(255, 144, 201, 100),
                                   ),
                                 ),
-                                selected: isSelected3,
+                                selected: selectedStatues
+                                    .contains(ProviderStatus.highest_rated),
                                 label: Text(
-                                  AppLocalizations.of(context)!.nearby,
+                                  AppLocalizations.of(context)!.highestRate,
                                 ),
                                 onSelected: (value) {
                                   setState(() {
-                                    isSelected3 = !isSelected3;
+                                    if (value) {
+                                      selectedStatues
+                                          .add(ProviderStatus.highest_rated);
+                                    } else {
+                                      selectedStatues
+                                          .remove(ProviderStatus.highest_rated);
+                                    }
                                   });
-                                },
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              FilterChip(
-                                checkmarkColor: Colors.black,
-                                selectedColor:
-                                    Color.fromARGB(255, 143, 201, 50),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    30,
-                                  ),
-                                  side: BorderSide(
-                                    color: Color.fromARGB(255, 144, 201, 100),
-                                  ),
-                                ),
-                                avatarBorder: CircleBorder(
-                                  side: BorderSide(
-                                    color: Color.fromARGB(255, 144, 201, 100),
-                                  ),
-                                ),
-                                selected: isSelected4,
-                                label: Text(
-                                  AppLocalizations.of(context)!.ratings,
-                                ),
-                                onSelected: (value) {
-                                  setState(() {
-                                    isSelected4 = !isSelected4;
-                                  });
+                                  context.read<ProviderServiceBloc>().add(
+                                      SelectOrderType(
+                                          orderType: selectedStatues));
                                 },
                               ),
                               SizedBox(
@@ -225,17 +228,31 @@ class _ProvidersScreenState extends State<ProvidersScreen> {
                                     context.read<ProviderLikeBloc>().add(
                                         LikeProvider(
                                             providerId: provider.providerId));
-                                    BlocProvider.of<ProviderServiceBloc>(
-                                            context)
-                                        .add(GetProvoiders(id: widget.id!));
+                                    if (selectedStatues.isEmpty) {
+                                      BlocProvider.of<ProviderServiceBloc>(
+                                              context)
+                                          .add(GetProvoiders(id: widget.id!));
+                                    } else {
+                                      BlocProvider.of<ProviderServiceBloc>(
+                                              context)
+                                          .add(SelectOrderType(
+                                              orderType: selectedStatues));
+                                    }
                                   },
                                   onUnlike: () {
                                     context.read<ProviderLikeBloc>().add(
                                         UnlikeProvider(
                                             providerId: provider.providerId));
-                                    BlocProvider.of<ProviderServiceBloc>(
-                                            context)
-                                        .add(GetProvoiders(id: widget.id!));
+                                    if (selectedStatues.isEmpty) {
+                                      BlocProvider.of<ProviderServiceBloc>(
+                                              context)
+                                          .add(GetProvoiders(id: widget.id!));
+                                    } else {
+                                      BlocProvider.of<ProviderServiceBloc>(
+                                              context)
+                                          .add(SelectOrderType(
+                                              orderType: selectedStatues));
+                                    }
                                   },
                                 );
                               },

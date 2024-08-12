@@ -5,6 +5,7 @@ import 'package:start/core/api_service/base_Api_service.dart';
 import 'package:start/core/api_service/base_repo.dart';
 import 'package:start/core/constants/api_constants.dart';
 import 'package:start/core/errors/failures.dart';
+import 'package:start/core/utils/services/location_service.dart';
 import 'package:start/features/user/Providers/model/Provider_Service.dart';
 import 'package:start/features/user/home/home_bloc/service_bloc/service_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -36,7 +37,7 @@ class ProviderServiceBloc
     });
     on<SelectOrderType>((event, emit) async {
       emit(LoadingProvidersService());
-      final url = _buildFilterUrl(event.orderType);
+      final url = await _buildFilterUrl(event.orderType);
       final data = await BaseRepo.repoRequest(request: () async {
         var data = await client.getRequestAuth(url: url);
         List<ProviderService> providers = [];
@@ -67,15 +68,23 @@ _mapFailureToState(Failure f) {
   ;
 }
 
-String _buildFilterUrl(ProviderStatus status) {
-  final baseUrl = 'http://127.0.0.1:8000/api/filter';
-  final params = {
-    'online': status == ProviderStatus.online ? 'true' : 'false',
-    'highest_rated': status == ProviderStatus.highest_rated ? 'true' : 'false',
-    'the_closest': status == ProviderStatus.the_closest ? 'true' : 'false',
-    'latitude': '40.7570',
-    'longitude': '-73.9755',
-  };
+Future<String> _buildFilterUrl(Set<ProviderStatus> statuses) async {
+  final baseUrl = 'http://10.0.2.2:8000/api/filter';
+  final params = <String, String>{};
+  GeoLoc? location = await LocationService.getLocationCoords();
+
+  if (statuses.contains(ProviderStatus.online)) {
+    params['online'] = 'true';
+  }
+  if (statuses.contains(ProviderStatus.highest_rated)) {
+    params['highest_rated'] = 'true';
+  }
+  if (statuses.contains(ProviderStatus.the_closest)) {
+    params['the_closest'] = 'true';
+    params['latitude'] = location!.lat.toString();
+    params['longitude'] = location.lng.toString();
+  }
+
   final queryString =
       params.entries.map((e) => '${e.key}=${e.value}').join('&');
   return '$baseUrl?$queryString';
