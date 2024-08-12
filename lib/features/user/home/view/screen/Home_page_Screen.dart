@@ -164,7 +164,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                print('pressing');
+                                print('pressing1111111111111111');
                                 BlocProvider.of<NavigationBloc>(context)
                                     .add(NavigateToPage(3));
                                 BlocProvider.of<DeatilsForOrderBloc>(context)

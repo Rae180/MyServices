@@ -15,20 +15,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (token == null) {
         emit(UnauthenticatedState());
       } else {
-        bool provider = PreferenceUtils.getbool('provider')!;
-
-        if (provider) {
-          print(token);
-          var data = await client.getRequestAuth(
-              url: ApiConstants.checkactiveaccountprovider);
-
-          if (data['success'] == '0') {
-            emit(UnactiveAccount());
-          } else {
-            emit(AuthenticatedProviderState());
-          }
+        var data1 = await client.getRequestAuth(url: ApiConstants.checkBlock);
+        if (data1["success"].toString() != "1") {
+          emit(BlockAccount());
         } else {
-          emit(AuthenticatedUserState());
+          bool provider = PreferenceUtils.getbool('provider')!;
+
+          if (provider) {
+            print(token);
+            var data = await client.getRequestAuth(
+                url: ApiConstants.checkactiveaccountprovider);
+
+            if (data['success'].toString() == '0') {
+              emit(UnactiveAccount());
+            } else {
+              emit(AuthenticatedProviderState());
+            }
+          } else {
+            emit(AuthenticatedUserState());
+          }
         }
       }
     });

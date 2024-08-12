@@ -178,5 +178,8 @@
     "sharingThoughts":"Your suggestions are valuable to us! Please share your thoughts.",
     "sendingSuggest":"Send a suggest",
     "yoursuggest":"Your Suggest",
-    "search":"Search"
+    "search":"Search",
+    "theaccountisblocked":"The account is blocked",
+    "noteblock":"Your account has been blocked by the administration.Please contact support for more information."
+
   }

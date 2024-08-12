@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:start/core/ui/app_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:start/core/ui/logout_item.dart';
 
 class WaitingActiveProviderScreen extends StatelessWidget {
   const WaitingActiveProviderScreen({super.key});
@@ -46,7 +47,8 @@ class WaitingActiveProviderScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             fontSize: 35,
             AppLocalizations.of(context)!.activeaccount
-           ) 
+           ) ,
+           const LogOutItem()
           ],
         ),
       ],

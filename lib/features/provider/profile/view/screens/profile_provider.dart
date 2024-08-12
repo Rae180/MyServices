@@ -41,86 +41,88 @@ class ProfileProvider extends StatelessWidget {
               return const LoadingWidget();
             } else if (state is SuccessLoadedProfile) {
               print(ApiConstants.STORAGE_URL + state.profileModel.image!);
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context)
-                          .push(MaterialPageRoute(
-                              builder: (cxt) => BlocProvider.value(
-                                    value:
-                                        BlocProvider.of<ProfileBloc>(context),
-                                    child: UserDetailsPage(
-                                      userData: state.profileModel,
-                                    ),
-                                  )))
-                          .then((value) => BlocProvider.of<ProfileBloc>(context)
-                              .add(GetProfileEvent())),
-                      child: Card(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 200,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircleAvatar(
-                                  backgroundColor: Colors.lightGreen,
-                                  radius: 60,
-                                  backgroundImage: NetworkImage(
-                                      "${ApiConstants.STORAGE_URL}${state.profileModel.image!}")),
-                              Text(
-                                  '${state.profileModel.firstName} ${state.profileModel.lastName}'),
-                              Text(state.profileModel.email!),
-                            ],
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () => Navigator.of(context)
+                            .push(MaterialPageRoute(
+                                builder: (cxt) => BlocProvider.value(
+                                      value:
+                                          BlocProvider.of<ProfileBloc>(context),
+                                      child: UserDetailsPage(
+                                        userData: state.profileModel,
+                                      ),
+                                    )))
+                            .then((value) => BlocProvider.of<ProfileBloc>(context)
+                                .add(GetProfileEvent())),
+                        child: Card(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 200,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CircleAvatar(
+                                    backgroundColor: Colors.lightGreen,
+                                    radius: 60,
+                                    backgroundImage: NetworkImage(
+                                        "${ApiConstants.STORAGE_URL}${state.profileModel.image!}")),
+                                Text(
+                                    '${state.profileModel.firstName} ${state.profileModel.lastName}'),
+                                Text(state.profileModel.email!),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    ProfileItem(
-                        icon: Icons.wallet,
-                        text: AppLocalizations.of(context)!.wallet,
+                      ProfileItem(
+                          icon: Icons.wallet,
+                          text: AppLocalizations.of(context)!.wallet,
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => TransactionPage()));
+                          }),
+                      ProfileItem(
+                          icon: Icons.work_history,
+                          text: AppLocalizations.of(context)!.orders,
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const OrdersScreenProvider()));
+                          }),
+                      ProfileItem(
+                        icon: Icons.add,
+                        text: AppLocalizations.of(context)!.addingNewSuggest,
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => TransactionPage()));
-                        }),
-                    ProfileItem(
-                        icon: Icons.work_history,
-                        text: AppLocalizations.of(context)!.orders,
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const OrdersScreenProvider()));
-                        }),
-                    ProfileItem(
-                      icon: Icons.add,
-                      text: AppLocalizations.of(context)!.addingNewSuggest,
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                          AddingNewSuggestScreen.routeName,
-                        );
-                      },
-                    ),
-                    ProfileItem(
-                        icon: Icons.post_add,
-                        text: AppLocalizations.of(context)!.businessexhibition,
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const PostList()));
-                        }),
-                    const LanguageItem(),
-                    BlocProvider.value(
-                      value: BlocProvider.of<ProfileBloc>(context),
-                      child: const DeleteAccountItem(),
-                    ),
-                    const LogOutItem(),
-                  ],
+                          Navigator.of(context).pushNamed(
+                            AddingNewSuggestScreen.routeName,
+                          );
+                        },
+                      ),
+                      ProfileItem(
+                          icon: Icons.post_add,
+                          text: AppLocalizations.of(context)!.businessexhibition,
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const PostList()));
+                          }),
+                      const LanguageItem(),
+                      BlocProvider.value(
+                        value: BlocProvider.of<ProfileBloc>(context),
+                        child: const DeleteAccountItem(),
+                      ),
+                      const LogOutItem(),
+                    ],
+                  ),
                 ),
               );
             } else if (state is ErrorState) {

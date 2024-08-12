@@ -10,9 +10,11 @@ import 'package:start/core/api_service/network_api_service_http.dart';
 import 'package:start/core/ui/error_widget.dart';
 import 'package:start/core/ui/loading_widget.dart';
 import 'package:start/core/utils/helpers/form_submission_state.dart';
+import 'package:start/features/Auth/bloc/auth_bloc.dart';
 import 'package:start/features/Auth/bloc/signup_provider_bloc.dart';
 import 'package:start/features/Auth/pickers/user_image_picker.dart';
 import 'package:start/features/Auth/view/widgets/custom_TextFormField.dart';
+import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/user/home/home_bloc/Category_bloc/category_bloc.dart';
 import 'package:start/features/user/home/home_bloc/service_bloc/service_bloc.dart';
 import 'package:start/features/user/home/model/category_model.dart';
@@ -90,8 +92,10 @@ class _SignupScreenProviderState extends State<SignupScreenProvider> {
           body: BlocConsumer<SignupProviderBloc, SignupProviderState>(
             listener: (context, state) {
               if (state.formSubmissionState is FormSuccesfulState) {
+            BlocProvider.of<AuthBloc>(context).add(AppStarted());
+
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    HomeProviderPage.routeName, (route) => false);
+                    AppWrapper.routeName, (route) => false);
               } else if (state.formSubmissionState is FormNoInternetState) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Text('No Internet'),

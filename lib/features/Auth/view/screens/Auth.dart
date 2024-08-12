@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/managers/languages_manager.dart';
+import 'package:start/features/Auth/bloc/auth_bloc.dart';
 import 'package:start/features/Auth/bloc/login_bloc.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen.dart';
 import 'package:start/features/Auth/view/screens/Signup_Screen_Provider.dart';
 import 'package:start/features/Auth/view/widgets/custom_TextFormField.dart';
+import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
 import 'package:start/features/provider/home_provider/view/screens/home_provider_screen.dart';
 import 'package:start/features/localization/cubit/lacalization_cubit.dart';
@@ -27,13 +29,10 @@ class AuthScreen extends StatelessWidget {
       body: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state is SuccessLoginState) {
-            if (state.isprovider == 0) {
+            BlocProvider.of<AuthBloc>(context).add(AppStarted());
               Navigator.of(context).pushNamedAndRemoveUntil(
-                  HomePage.routeName, (route) => false);
-            } else if (state.isprovider == 1) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  HomeProviderPage.routeName, (route) => false);
-            }
+                  AppWrapper.routeName, (route) => false);
+            
           }
           if (state is ErrorLogingState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(

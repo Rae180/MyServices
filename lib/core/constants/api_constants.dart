@@ -8,6 +8,7 @@ class ApiConstants {
   static const String signupuser = "${baseAppUrl}regascustomer";
   static const String checkactiveaccountprovider =
       "${ApiConstants.baseAppUrl}provider/check_acc";
+  static const String checkBlock = "${ApiConstants.baseAppUrl}check";
   static const String logout = "${ApiConstants.baseAppUrl}logout";
 
   static const String changestatusprovicer =
@@ -53,15 +54,17 @@ class ApiConstants {
   static const String GetOrderDetails =
       "${ApiConstants.baseAppUrl}order/status";
   static const String CancelOrder = "${ApiConstants.baseAppUrl}order/cancel/";
-  static const String ProviderDetails = "${ApiConstants.baseAppUrl}provider/detalise/";
+  static const String ProviderDetails =
+      "${ApiConstants.baseAppUrl}provider/detalise/";
   static const String profile = "${ApiConstants.baseAppUrl}profile";
   static const String post = "${ApiConstants.baseAppUrl}post";
-  
+
   static const String like = "${ApiConstants.baseAppUrl}favorite/";
   static const String faves = "${ApiConstants.baseAppUrl}favorite";
   static const String profiley = "${ApiConstants.baseAppUrl}profile";
   static const String notifications = "${ApiConstants.baseAppUrl}notifications";
-  static const String alltransactions = "${ApiConstants.baseAppUrl}alltransactions";
+  static const String alltransactions =
+      "${ApiConstants.baseAppUrl}alltransactions";
   static const String searchquery = "${ApiConstants.baseAppUrl}search";
   static const String addSugest = "${ApiConstants.baseAppUrl}suggest";
 }

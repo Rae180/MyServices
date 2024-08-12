@@ -9,7 +9,9 @@ part of 'auth_bloc.dart';
 class UnauthenticatedState extends AuthState {}
 
 class UnactiveAccount extends AuthState {}
+class BlockAccount extends AuthState {}
 
 class AuthenticatedUserState extends AuthState {}
 
 class AuthenticatedProviderState extends AuthState {}
+

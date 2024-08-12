@@ -51,9 +51,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ),
           body: MultiBlocProvider(
             providers: [
-              BlocProvider(
-                  create: (context) =>
-                      DeatilsForOrderBloc(client: NetworkApiServiceHttp())),
+              // BlocProvider(
+              //     create: (context) =>
+              //         DeatilsForOrderBloc(client: NetworkApiServiceHttp())),
               BlocProvider(
                 create: (context) => HandlingOrderBloc(NetworkApiServiceHttp()),
               ),
@@ -69,16 +69,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       builder: (context, state) {
                         // OrderFilterState selectedFilter =
                         //     OrderFilterState.pending;
+
                         if (state is SelectOrderLoaded) {
                           selectedFilter = state.selectedFilter;
-                          
                         }
                         if (isone) {
-                           isone = false;
+                          isone = false;
                           BlocProvider.of<DeatilsForOrderBloc>(context)
                               .add(FilterOrdersByStatus(navState.selectedChip));
-                         
-                          //setState(() {});
                         }
 
                         return Row(
@@ -114,6 +112,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 ),
                 BlocBuilder<DeatilsForOrderBloc, DeatilsForOrderState>(
                   builder: (context, state) {
+                    if (state is SelectOrderLoaded) {
+                      selectedFilter = state.selectedFilter;
+                    }
+                    if (isone) {
+                      isone = false;
+                      BlocProvider.of<DeatilsForOrderBloc>(context)
+                          .add(FilterOrdersByStatus(navState.selectedChip));
+                    }
                     if (state is DeatilsForOrderLoading) {
                       return const Center(child: LoadingWidget());
                     } else if (state is DeatilsForOrderLoaded) {

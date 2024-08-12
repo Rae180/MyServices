@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/core/api_service/network_api_service_http.dart';
+import 'package:start/features/Auth/bloc/auth_bloc.dart';
 import 'package:start/features/Auth/bloc/sign_up_user_bloc.dart';
 import 'package:start/features/Auth/pickers/user_image_picker.dart';
 import 'package:start/features/Auth/view/widgets/custom_TextFormField.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:start/features/app_wrapper/app_wrapper.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -29,8 +31,8 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController? addressController = TextEditingController();
   String? SelectedGender;
   File? userimageFile;
-  bool show = true; 
-  bool show1 = true; 
+  bool show = true;
+  bool show1 = true;
   void pickedImage(File pickedImage) {
     userimageFile = pickedImage;
   }
@@ -55,8 +57,9 @@ class _SignupScreenState extends State<SignupScreen> {
       child: BlocConsumer<SignUpUserBloc, SignUpUserState>(
         listener: (context, state) {
           if (state is SuccessSignUpState) {
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil(HomePage.routeName, (route) => false);
+            BlocProvider.of<AuthBloc>(context).add(AppStarted());
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                AppWrapper.routeName, (route) => false);
           }
           if (state is ErrorSignUpState) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -67,10 +70,10 @@ class _SignupScreenState extends State<SignupScreen> {
         },
         builder: (context, state) {
           if (state is ShowPasswordstate) {
-            show=!show;
+            show = !show;
           }
           if (state is ShowRePasswordstate) {
-            show1=!show1;
+            show1 = !show1;
           }
           return Scaffold(
             appBar: AppBar(
@@ -255,13 +258,13 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: CustomTextFormField(
                             obscuretext: show,
                             widget: IconButton(
-                            onPressed: () {
-                              BlocProvider.of<SignUpUserBloc>(context)
-                                  .add(ShowPasswordevent());
-                            },
-                            icon: Icon(show
-                                ? Icons.visibility
-                                : Icons.visibility_off)),
+                                onPressed: () {
+                                  BlocProvider.of<SignUpUserBloc>(context)
+                                      .add(ShowPasswordevent());
+                                },
+                                icon: Icon(show
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
                             label: Row(
                               children: [
                                 const Icon(
@@ -294,13 +297,13 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: CustomTextFormField(
                             obscuretext: show1,
                             widget: IconButton(
-                            onPressed: () {
-                              BlocProvider.of<SignUpUserBloc>(context)
-                                  .add(ShowRePasswordevent());
-                            },
-                            icon: Icon(show
-                                ? Icons.visibility
-                                : Icons.visibility_off)),
+                                onPressed: () {
+                                  BlocProvider.of<SignUpUserBloc>(context)
+                                      .add(ShowRePasswordevent());
+                                },
+                                icon: Icon(show
+                                    ? Icons.visibility
+                                    : Icons.visibility_off)),
                             label: Row(
                               children: [
                                 const Icon(
@@ -490,7 +493,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 30,
                         ),
-                        
                       ],
                     ),
                   ),
@@ -502,5 +504,4 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
-   
 }

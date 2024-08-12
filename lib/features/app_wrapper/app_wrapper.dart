@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:start/features/Auth/bloc/auth_bloc.dart';
 import 'package:start/features/Auth/view/screens/Auth.dart';
 import 'package:start/features/user/home/view/screen/Welcome_screen.dart';
+import 'package:start/features/user/home/view/screen/block_screen.dart';
 import 'package:start/features/user/home/view/screen/home.dart';
 import 'package:start/features/provider/home_provider/view/screens/home_provider_screen.dart';
 import 'package:start/features/provider/home_provider/view/screens/waiting_active_provider_screen.dart';
@@ -24,6 +25,8 @@ class AppWrapper extends StatelessWidget {
   Widget _buildAuthBuilder(AuthState state, BuildContext context) {
     if (state is AuthInitial) {
       return const WelcomeScreen();
+    } else if (state is BlockAccount) {
+      return const AccountBlockedScreen();
     } else if (state is UnauthenticatedState) {
       return const AuthScreen();
     } else if (state is UnactiveAccount) {

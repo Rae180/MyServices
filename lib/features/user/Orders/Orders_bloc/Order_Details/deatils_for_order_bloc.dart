@@ -16,8 +16,9 @@ class DeatilsForOrderBloc
   final BaseApiService client;
   DeatilsForOrderBloc({required this.client})
       : super(DeatilsForOrderInitial()) {
-    on<SelectFilterChip>(
-        (event, emit) => emit(SelectOrderLoaded(selectedFilter: event.status)));
+    on<SelectFilterChip>((event, emit) {
+      emit(SelectOrderLoaded(selectedFilter: event.status));
+    });
     on<FilterOrdersByStatus>(((event, emit) async {
       emit(DeatilsForOrderLoading());
       final data = await BaseRepo.repoRequest(request: () async {
@@ -46,14 +47,9 @@ class DeatilsForOrderBloc
               orders: data, selectedFilter: event.status));
         }
       });
-      
     }));
-    
-
-    
   }
 
-  
   _mapFailureToState(Failure f) {
     switch (f.runtimeType) {
       case OfflineFailure:
@@ -70,6 +66,4 @@ class DeatilsForOrderBloc
         );
     }
   }
-
-  
 }
